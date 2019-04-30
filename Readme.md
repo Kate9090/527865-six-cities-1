@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Екатерина Еремина](https://up.htmlacademy.ru/react/1/user/527865).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Щеколдин](https://htmlacademy.ru/profile/id861059).
 
 ---
 
