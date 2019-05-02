@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Stateless from './components/stateless/stateless';
+import Stateless from './components/stateless/stateless.jsx';
 
 const App = () => {
   return <Stateless />;
