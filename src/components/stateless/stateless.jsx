@@ -73,8 +73,7 @@ const Stateless = (props) => {
 
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {
-                bookList.map(title,i) => (
+              {bookList.map((title, i) => (
                 <article key={i} className="cities__place-card place-card">
                   <div className="place-card__mark">
                     <span>
@@ -111,6 +110,7 @@ const Stateless = (props) => {
                     <p className="place-card__type">Apartment</p>
                   </div>
                 </article>
+              )
               )}
             </div>
           </section>
@@ -125,7 +125,7 @@ const Stateless = (props) => {
 };
 
 Stateless.propTypes = {
-  bookList: PropTypes.object
+  bookList: PropTypes.array
 };
 
 export default Stateless;

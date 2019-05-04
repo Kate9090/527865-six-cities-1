@@ -5,21 +5,19 @@ import ReactDOM from "react-dom";
 import Stateless from './components/stateless/stateless.jsx';
 
 const App = (props) => {
-  const {bookList} = props;
-  return <Stateless
-    {...bookList.map((it, i) => <Stateless bookList={it} key={i} />)}
-  />;
+  const {bookLists} = props;
+  return <Stateless bookList={bookLists}/>;
 };
 
 App.propTypes = {
-  bookList: PropTypes.array
+  bookLists: PropTypes.array
 };
 
 const init = () => {
 
   ReactDOM.render(
       <App
-        bookList={[
+        bookLists={[
           `Beautiful &amp; luxurious apartment at great location`,
           `Wood and stone place`,
           `Canal View Prinsengracht`,
