@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const Stateless = (props) => {
-  const {bookList, hasError} = props;
+  const {bookList, onClick} = props;
   // bookList = [
   //   `Beautiful &amp; luxurious apartment at great location`,
   //   `Wood and stone place`,
@@ -11,9 +11,9 @@ const Stateless = (props) => {
   // ];
   // hasError = false;
 
-  if (hasError) {
-    return <h1>Something went wrong.</h1>;
-  }
+  // if (hasError) {
+  //   return <h1>Something went wrong.</h1>;
+  // }
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
@@ -114,7 +114,7 @@ const Stateless = (props) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">{title}</a>
+                    <a onClick={onClick} href="#">{title}</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -134,7 +134,8 @@ const Stateless = (props) => {
 
 Stateless.propTypes = {
   bookList: PropTypes.array,
-  hasError: PropTypes.bool
+  hasError: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 export default Stateless;

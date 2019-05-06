@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "babel-jest": "^24.8.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.8.0",
     "prop-types": "^15.7.2",
     "react": "16.8.6",
