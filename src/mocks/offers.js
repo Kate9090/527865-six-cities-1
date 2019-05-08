@@ -1,7 +1,7 @@
 const offers = {
   offers: [
     {
-      answer: [
+      answers: [
         {
           src: `path`,
           title: `Beautiful &amp; luxurious apartment at great location`,

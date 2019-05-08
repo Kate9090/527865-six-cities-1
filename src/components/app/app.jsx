@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import Stateless from './components/stateless/stateless.jsx';
+import Stateless from '../stateless/stateless.jsx';
 
 const App = (props) => {
-  const {bookLists} = props;
-  return <Stateless bookList={bookLists}/>;
+  const {offers} = props;
+  return <Stateless bookList={offers}/>;
 };
 
 App.propTypes = {
-  bookLists: PropTypes.array
+  offers: PropTypes.array.isRequired,
 };
 
 export default App;
