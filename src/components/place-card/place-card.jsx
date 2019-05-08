@@ -48,18 +48,13 @@ const PlaceCard = ({offers, onOffer}) => {
 
 PlaceCard.propTypes = {
   offers: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
+    offer: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       stars: PropTypes.number,
       name: PropTypes.string
     })).isRequired,
-    // song: PropTypes.shape({
-    //   artist: PropTypes.string.isRequired,
-    //   src: PropTypes.string.isRequired,
-    // }).isRequired,
-    // type: PropTypes.oneOf([`genre`, `artist`]).isRequired,
   }).isRequired,
   onOffer: PropTypes.func.isRequired,
 

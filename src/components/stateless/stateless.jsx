@@ -93,11 +93,9 @@ const Stateless = ({offers, onOffer}) => {
 };
 
 Stateless.propTypes = {
-  offer: PropTypes.array.is,
-  hasError: PropTypes.bool,
   onOffer: PropTypes.func,
   offers: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
+    offer: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
