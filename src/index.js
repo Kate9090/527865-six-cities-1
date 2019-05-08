@@ -1,17 +1,7 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 
-import Stateless from './components/stateless/stateless.jsx';
-
-const App = (props) => {
-  const {bookLists} = props;
-  return <Stateless bookList={bookLists}/>;
-};
-
-App.propTypes = {
-  bookLists: PropTypes.array
-};
+import App from './components/app/app.jsx';
 
 const init = () => {
 
