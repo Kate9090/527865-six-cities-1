@@ -5,7 +5,7 @@ import Stateless from './stateless';
 
 const mock = {
   offers: {
-    choice: [
+    choices: [
       {
         src: `path`,
         title: `Beautiful &amp; luxurious apartment at great location`,

@@ -78,13 +78,11 @@ const Stateless = ({choice}) => {
           </form>
           <div className="cities__places-list places__list tabs__content">
             {choice.map((it, i) => (
-              // тут должны быть пропсы от PlaceCard
               <PlaceCard
                 key={i}
                 // onChoice={onChoice}
                 offer={choices}
               />
-              // offer={offers}
             )
             )}
           </div>
