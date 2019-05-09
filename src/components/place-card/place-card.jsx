@@ -1,13 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-// import Stateless from './components/stateless/stateless.jsx';
-
 const PlaceCard = (props) => {
   const {offer, onChoice} = props;
-  // const {
-  //   choices,
-  // } = offer;
 
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
@@ -49,13 +44,11 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
-    offers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      stars: PropTypes.number,
-      name: PropTypes.string
-    })).isRequired,
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    stars: PropTypes.number,
+    name: PropTypes.string,
   }).isRequired,
   onChoice: PropTypes.func,
 

@@ -4,34 +4,34 @@ import renderer from 'react-test-renderer';
 import Stateless from './stateless';
 
 const mock = {
-  offer: {
-    choices: [
+  offers: {
+    choice: [
       {
         src: `path`,
         title: `Beautiful &amp; luxurious apartment at great location`,
-        price: `120`,
-        stars: `4`,
+        price: 80,
+        stars: 4,
         name: `Apartment`,
       },
       {
         src: `path`,
         title: `Beautiful &amp; luxurious apartment at great location`,
-        price: `120`,
-        stars: `4`,
+        price: 10,
+        stars: 4,
+        name: `Hostel`,
+      },
+      {
+        src: `path`,
+        title: `Beautiful &amp; luxurious apartment at great location`,
+        price: 100,
+        stars: 4,
         name: `Apartment`,
       },
       {
         src: `path`,
         title: `Beautiful &amp; luxurious apartment at great location`,
-        price: `120`,
-        stars: `4`,
-        name: `Apartment`,
-      },
-      {
-        src: `path`,
-        title: `Beautiful &amp; luxurious apartment at great location`,
-        price: `120`,
-        stars: `4`,
+        price: 120,
+        stars: 4,
         name: `Apartment`,
       },
     ]
@@ -39,10 +39,10 @@ const mock = {
 };
 
 it(`renders correctly stateless screen`, () => {
-  const {offer} = mock;
+  const {offers} = mock;
   const tree = renderer
     .create(<Stateless
-      offer = {offer}
+      choice = {offers}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

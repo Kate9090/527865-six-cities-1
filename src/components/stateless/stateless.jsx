@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
 
-const Stateless = ({choice, onChoice}) => {
+const Stateless = ({choice}) => {
   const {
     choices,
   } = choice;
@@ -79,7 +79,11 @@ const Stateless = ({choice, onChoice}) => {
           <div className="cities__places-list places__list tabs__content">
             {choice.map((it, i) => (
               // тут должны быть пропсы от PlaceCard
-              <PlaceCard key={i} onClick={onChoice} offer={choices} />
+              <PlaceCard
+                key={i}
+                // onChoice={onChoice}
+                offer={choices}
+              />
               // offer={offers}
             )
             )}
@@ -104,7 +108,7 @@ Stateless.propTypes = {
       stars: PropTypes.number,
       name: PropTypes.string
     })).isRequired,
-  }).isRequired,
+  }),
 };
 
 export default Stateless;
