@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 // import Stateless from './components/stateless/stateless.jsx';
 
-const PlaceCard = ({offers, onOffer}) => {
-  const {
-    offer,
-  } = offers;
+const PlaceCard = (props) => {
+  const {offer, onChoice} = props;
+  // const {
+  //   choices,
+  // } = offer;
 
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
@@ -16,7 +17,7 @@ const PlaceCard = ({offers, onOffer}) => {
     </div>
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img onClick= {onOffer} className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
+        <img onClick= {onChoice} className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
@@ -39,7 +40,7 @@ const PlaceCard = ({offers, onOffer}) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a onClick={onOffer} href="#">{offer.title}</a>
+        <a onClick={onChoice} href="#">{offer.title}</a>
       </h2>
       <p className="place-card__type">{offer.name}</p>
     </div>
@@ -47,8 +48,8 @@ const PlaceCard = ({offers, onOffer}) => {
 };
 
 PlaceCard.propTypes = {
-  offers: PropTypes.shape({
-    offer: PropTypes.arrayOf(PropTypes.shape({
+  offer: PropTypes.shape({
+    offers: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
@@ -56,7 +57,7 @@ PlaceCard.propTypes = {
       name: PropTypes.string
     })).isRequired,
   }).isRequired,
-  onOffer: PropTypes.func.isRequired,
+  onChoice: PropTypes.func,
 
 };
 

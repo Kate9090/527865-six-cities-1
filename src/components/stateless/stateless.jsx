@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
 
-const Stateless = ({offers, onOffer}) => {
+const Stateless = ({choice, onChoice}) => {
   const {
-    offer,
-  } = offers;
+    choices,
+  } = choice;
 
 
   return <main className="page__main page__main--index">
@@ -77,8 +77,10 @@ const Stateless = ({offers, onOffer}) => {
 
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {offer.map((i) => (
-              <PlaceCard key={i} offer={offers} onClick={onOffer}/>
+            {choice.map((it, i) => (
+              // тут должны быть пропсы от PlaceCard
+              <PlaceCard key={i} onClick={onChoice} offer={choices} />
+              // offer={offers}
             )
             )}
           </div>
@@ -93,9 +95,9 @@ const Stateless = ({offers, onOffer}) => {
 };
 
 Stateless.propTypes = {
-  onOffer: PropTypes.func,
-  offers: PropTypes.shape({
-    offer: PropTypes.arrayOf(PropTypes.shape({
+  onChoice: PropTypes.func,
+  choice: PropTypes.shape({
+    choices: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
