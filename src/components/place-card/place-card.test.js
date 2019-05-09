@@ -5,12 +5,16 @@ import PlaceCard from './place-card';
 
 const mock = {
   offer: {
-    src: `path`,
-    title: `Beautiful &amp; luxurious apartment at great location`,
-    price: 120,
-    stars: 4,
-    name: `Apartment`,
-  },
+    choices: [
+      {
+        src: `path`,
+        title: `Beautiful &amp; luxurious apartment at great location`,
+        price: 120,
+        stars: 4,
+        name: `Apartment`,
+      },
+    ]
+  }
 };
 
 it(`renders correctly PlaceCard`, () => {

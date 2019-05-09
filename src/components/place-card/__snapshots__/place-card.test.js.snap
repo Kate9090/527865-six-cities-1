@@ -21,7 +21,6 @@ exports[`renders correctly PlaceCard 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
         width="260"
       />
     </a>
@@ -39,7 +38,6 @@ exports[`renders correctly PlaceCard 1`] = `
           className="place-card__price-defaultValue"
         >
           €
-          120
         </b>
         <span
           className="place-card__price-text"
@@ -92,15 +90,11 @@ exports[`renders correctly PlaceCard 1`] = `
     >
       <a
         href="#"
-      >
-        Beautiful &amp; luxurious apartment at great location
-      </a>
+      />
     </h2>
     <p
       className="place-card__type"
-    >
-      Apartment
-    </p>
+    />
   </div>
 </article>
 `;

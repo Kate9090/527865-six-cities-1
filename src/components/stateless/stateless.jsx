@@ -5,7 +5,7 @@ import PlaceCard from '../place-card/place-card.jsx';
 
 const Stateless = ({choice}) => {
   const {
-    choices,
+    bookLists,
   } = choice;
 
 
@@ -77,11 +77,11 @@ const Stateless = ({choice}) => {
 
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {choice.map((it, i) => (
+            {bookLists.map((i) => (
               <PlaceCard
                 key={i}
                 // onChoice={onChoice}
-                offer={choices}
+                offer={bookLists}
               />
             )
             )}
@@ -98,6 +98,7 @@ const Stateless = ({choice}) => {
 
 Stateless.propTypes = {
   onChoice: PropTypes.func,
+  // choice: PropTypes.shape({
   choice: PropTypes.shape({
     choices: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
