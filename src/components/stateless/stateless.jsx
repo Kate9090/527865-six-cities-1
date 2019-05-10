@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
 
-const Stateless = (choice) => {
+const Stateless = ({choice}) => {
   const {
     arrayOfHotelList,
   } = choice;
 
-  console.log( choice);
+  // console.log( choice);
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
@@ -83,7 +83,7 @@ const Stateless = (choice) => {
               <PlaceCard
                 key={i}
                 // onChoice={onChoice}
-                offer={arrayOfHotelList}
+                offer={it}
               />
             )
             )}
