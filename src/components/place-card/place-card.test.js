@@ -7,7 +7,7 @@ const mock = {
   offer: {
     src: `path`,
     title: `Beautiful &amp; luxurious apartment at great location`,
-    price: 120,
+    price: 80,
     stars: 4,
     name: `Apartment`,
   },

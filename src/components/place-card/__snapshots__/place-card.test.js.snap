@@ -39,7 +39,7 @@ exports[`renders correctly PlaceCard 1`] = `
           className="place-card__price-defaultValue"
         >
           €
-          120
+          80
         </b>
         <span
           className="place-card__price-text"

@@ -9,14 +9,16 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  choices: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
-    name: PropTypes.string,
-  })).isRequired,
+  choices: PropTypes.shape({
+    choises: PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      stars: PropTypes.number,
+      name: PropTypes.string
+    })).isRequired,
+  }).isRequired,
 
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 export default App;

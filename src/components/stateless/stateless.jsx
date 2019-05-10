@@ -81,7 +81,7 @@ const Stateless = ({choice}) => {
               <PlaceCard
                 key={i}
                 // onChoice={onChoice}
-                offer={it}
+                offer={bookList}
               />
             )
             )}
@@ -98,14 +98,15 @@ const Stateless = ({choice}) => {
 
 Stateless.propTypes = {
   onChoice: PropTypes.func,
-  // choice: PropTypes.shape({
-  choice: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
-    name: PropTypes.string
-  })).isRequired,
+  choice: PropTypes.shape({
+    choises: PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      stars: PropTypes.number,
+      name: PropTypes.string
+    })).isRequired,
+  }).isRequired,
 
 };
 
