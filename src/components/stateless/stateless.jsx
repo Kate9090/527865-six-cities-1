@@ -6,6 +6,7 @@ import PlaceCard from '../place-card/place-card.jsx';
 const Stateless = (props) => {
   const {
     arrayOfHotelList,
+    onTitleClick,
   } = props;
 
   // console.log( choice);
@@ -82,7 +83,7 @@ const Stateless = (props) => {
               // <li key={i}>{it.title}</li>
               <PlaceCard
                 key={i}
-                // onChoice={onChoice}
+                onChoice={onTitleClick}
                 offerList={it}
               />
             )
@@ -107,7 +108,7 @@ Stateless.propTypes = {
     stars: PropTypes.number,
     name: PropTypes.string,
   })),
-
+  onTitleClick: PropTypes.func
 };
 
 export default Stateless;
