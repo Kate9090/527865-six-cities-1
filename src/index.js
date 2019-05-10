@@ -9,13 +9,7 @@ const init = (hotelOffers) => {
 
   ReactDOM.render(
       <App
-        offer={hotelOffers}
-        // bookLists={[
-        //   `Beautiful &amp; luxurious apartment at great location`,
-        //   `Wood and stone place`,
-        //   `Canal View Prinsengracht`,
-        //   `Nice, cozy, warm big bed apartment`
-        // ]}
+        arrayOfChoices={hotelOffers}
       />, document.querySelector(`.main`));
 };
 
