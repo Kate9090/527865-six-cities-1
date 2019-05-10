@@ -65,7 +65,7 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   onChoice: PropTypes.func.isRequired,
-  _onImageChoice: PropTypes.func.isRequired,
+  // onImageChoice: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
