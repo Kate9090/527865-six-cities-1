@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 const PlaceCard = (props) => {
   const {offer, onChoice} = props;
 
+  // console.log(`typeof offer is ` + props);
+
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
       <span>

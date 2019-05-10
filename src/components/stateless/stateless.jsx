@@ -5,9 +5,10 @@ import PlaceCard from '../place-card/place-card.jsx';
 
 const Stateless = (choice) => {
   const {
-    bookList,
+    arrayOfHotelList,
   } = choice;
 
+  console.log( choice);
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
@@ -77,11 +78,12 @@ const Stateless = (choice) => {
 
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {bookList.map((it, i) => (
+            {arrayOfHotelList.map((it, i) => (
+              // <li key={i}>{it.title}</li>
               <PlaceCard
                 key={i}
                 // onChoice={onChoice}
-                offer={bookList}
+                offer={arrayOfHotelList}
               />
             )
             )}
@@ -99,15 +101,14 @@ const Stateless = (choice) => {
 Stateless.propTypes = {
   onChoice: PropTypes.func,
   choice: PropTypes.shape({
-    choises: PropTypes.arrayOf(PropTypes.shape({
+    arrayOfHotelList: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       stars: PropTypes.number,
-      name: PropTypes.string
-    })).isRequired,
-  }).isRequired,
-
+      name: PropTypes.string,
+    })),
+  }),
 };
 
 export default Stateless;
