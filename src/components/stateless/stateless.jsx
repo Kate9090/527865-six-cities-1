@@ -11,21 +11,13 @@ class Stateless extends Component {
     };
   }
 
-  _onCardActive(active, onClick) {
-    document.querySelector(`PlaceCard`).addEventListener(`mouseEnter`, () => {
-      this.setState({
-        active: true
-      });
-    });
-  }
-
   render() {
     const {
       arrayOfHotelList,
       onTitleClick,
-      onImageClick,
+      // onImageClick,
     } = this.props;
-    const {active} = this.state;
+    // const {active} = this.state;
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -100,8 +92,14 @@ class Stateless extends Component {
                 <PlaceCard
                   key={i}
                   onChoice={onTitleClick}
-                  onImageChoice={onImageClick}
+                  onImageChoice={() => {
+                    this.setState({
+                      active: true
+                    });
+                  }
+                  }
                   offerList={it}
+
                 />
               )
               )}

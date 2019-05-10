@@ -21,6 +21,7 @@ exports[`renders correctly PlaceCard 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
+        onClick={[Function]}
         src="path"
         width="260"
       />
