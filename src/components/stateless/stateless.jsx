@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
 
-const Stateless = ({choice}) => {
+const Stateless = (choice) => {
   const {
     bookList,
   } = choice;
