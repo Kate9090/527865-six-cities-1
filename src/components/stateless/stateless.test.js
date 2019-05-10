@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import Stateless from './stateless';
 
 const mock = {
-  offer: [
+  arrayOfChoices: [
     {
       src: `path`,
       title: `Beautiful &amp; luxurious apartment at great location`,
@@ -38,10 +38,10 @@ const mock = {
 };
 
 it(`renders correctly stateless screen`, () => {
-  const {offer} = mock;
+  const {arrayOfChoices} = mock;
   const tree = renderer
     .create(<Stateless
-      choice = {offer}
+      arrayOfHotelList = {arrayOfChoices}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

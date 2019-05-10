@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
 
-const Stateless = ({choice}) => {
+const Stateless = (props) => {
   const {
     arrayOfHotelList,
-  } = choice;
+  } = props;
 
   // console.log( choice);
 
@@ -83,7 +83,7 @@ const Stateless = ({choice}) => {
               <PlaceCard
                 key={i}
                 // onChoice={onChoice}
-                offer={it}
+                offerList={it}
               />
             )
             )}
@@ -100,15 +100,14 @@ const Stateless = ({choice}) => {
 
 Stateless.propTypes = {
   onChoice: PropTypes.func,
-  choice: PropTypes.shape({
-    arrayOfHotelList: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      stars: PropTypes.number,
-      name: PropTypes.string,
-    })),
-  }),
+  arrayOfHotelList: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    stars: PropTypes.number,
+    name: PropTypes.string,
+  })),
+
 };
 
 export default Stateless;

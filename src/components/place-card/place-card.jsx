@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const PlaceCard = (props) => {
-  const {offer, onChoice} = props;
-
-  // console.log(`typeof offer is ` + props);
+  const {offerList, onChoice} = props;
 
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
@@ -14,13 +12,13 @@ const PlaceCard = (props) => {
     </div>
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img onClick= {onChoice} className="place-card__image" src={offer.src} width="260" height="200" alt="Place image" />
+        <img onClick= {onChoice} className="place-card__image" src={offerList.src} width="260" height="200" alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
-          <b className="place-card__price-defaultValue">&euro;{offer.price}</b>
+          <b className="place-card__price-defaultValue">&euro;{offerList.price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
         <button className="place-card__bookmark-button button" type="button">
@@ -37,15 +35,15 @@ const PlaceCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a onClick={onChoice} href="#">{offer.title}</a>
+        <a onClick={onChoice} href="#">{offerList.title}</a>
       </h2>
-      <p className="place-card__type">{offer.name}</p>
+      <p className="place-card__type">{offerList.name}</p>
     </div>
   </article>;
 };
 
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
+  offerList: PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -53,7 +51,6 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   onChoice: PropTypes.func,
-
 };
 
 export default PlaceCard;

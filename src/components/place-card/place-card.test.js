@@ -18,7 +18,7 @@ it(`renders correctly PlaceCard`, () => {
   const {offer} = mock;
   const tree = renderer
     .create(<PlaceCard
-      offer = {offer}
+      offerList = {offer}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
