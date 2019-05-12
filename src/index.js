@@ -10,6 +10,10 @@ const init = (hotelOffers) => {
   ReactDOM.render(
       <App
         arrayOfChoices={hotelOffers}
+        ClickOnTitle={() => {
+          // console.log(`click on the hotel's title`);
+        }
+        }
       />, document.querySelector(`.main`));
 };
 

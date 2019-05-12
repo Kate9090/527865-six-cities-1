@@ -290,6 +290,7 @@ exports[`renders correctly stateless screen 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
                 </a>
@@ -393,6 +394,7 @@ exports[`renders correctly stateless screen 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
                 </a>
@@ -496,6 +498,7 @@ exports[`renders correctly stateless screen 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
                 </a>
@@ -599,6 +602,7 @@ exports[`renders correctly stateless screen 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
                 </a>

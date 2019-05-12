@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Stateless from '../stateless/stateless.jsx';
 
 const App = (props) => {
-  const {arrayOfChoices} = props;
-  return <Stateless arrayOfHotelList={arrayOfChoices}/>;
+  const {arrayOfChoices, ClickOnTitle} = props;
+  return <Stateless arrayOfHotelList={arrayOfChoices} onTitleClick={ClickOnTitle} />;
 };
 
 App.propTypes = {
@@ -16,7 +16,7 @@ App.propTypes = {
     stars: PropTypes.number,
     name: PropTypes.string
   })).isRequired,
-
+  ClickOnTitle: PropTypes.func,
   onClick: PropTypes.func,
 };
 export default App;

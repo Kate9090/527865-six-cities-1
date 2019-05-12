@@ -42,6 +42,9 @@ it(`renders correctly stateless screen`, () => {
   const tree = renderer
     .create(<Stateless
       arrayOfHotelList = {arrayOfChoices}
+      onTitleClick = {() => {
+        arrayOfChoices.title = `The most chippest room`;
+      }}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

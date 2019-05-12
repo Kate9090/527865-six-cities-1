@@ -93,6 +93,7 @@ exports[`renders correctly PlaceCard 1`] = `
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         Beautiful &amp; luxurious apartment at great location
       </a>

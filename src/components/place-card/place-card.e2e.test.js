@@ -24,6 +24,9 @@ it(`simulates click event on the image to set active state`, () =>{
   const placeCard = mount(<PlaceCard
     offerList = {offer}
     onImageChoice={imageClick}
+    onChoice = {() => {
+      offer.title = `The most chippest room`;
+    }}
   />);
 
   const oneOfImage = placeCard.find(`.place-card__image`);
