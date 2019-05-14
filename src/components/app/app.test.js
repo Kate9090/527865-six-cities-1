@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import Stateless from './stateless';
+import App from './app.jsx';
 
 const mock = {
-  arrayOfChoices: [
+  array: [
     {
       src: `path`,
       title: `Beautiful &amp; luxurious apartment at great location`,
@@ -38,12 +38,12 @@ const mock = {
 };
 
 it(`renders correctly stateless screen`, () => {
-  const {arrayOfChoices} = mock;
+  const {array} = mock;
   const tree = renderer
-    .create(<Stateless
-      arrayOfHotelList = {arrayOfChoices}
-      onTitleClick = {() => {
-        arrayOfChoices.title = `The most chippest room`;
+    .create(<App
+      arrayOfChoices = {array}
+      ClickOnTitle = {() => {
+        array.title = `The most chippest room`;
       }}
     />)
     .toJSON();

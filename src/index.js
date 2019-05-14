@@ -1,29 +1,20 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 
-import Stateless from './components/stateless/stateless.jsx';
+import offer from "./mocks/offers";
 
-const App = (props) => {
-  const {bookLists} = props;
-  return <Stateless bookList={bookLists}/>;
-};
+import App from './components/app/app.jsx';
 
-App.propTypes = {
-  bookLists: PropTypes.array
-};
-
-const init = () => {
+const init = (hotelOffers) => {
 
   ReactDOM.render(
       <App
-        bookLists={[
-          `Beautiful &amp; luxurious apartment at great location`,
-          `Wood and stone place`,
-          `Canal View Prinsengracht`,
-          `Nice, cozy, warm big bed apartment`
-        ]}
+        arrayOfChoices={hotelOffers}
+        ClickOnTitle={() => {
+          // console.log(`click on the hotel's title`);
+        }
+        }
       />, document.querySelector(`.main`));
 };
 
-init();
+init(offer);
