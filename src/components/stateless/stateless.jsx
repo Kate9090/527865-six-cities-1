@@ -20,7 +20,7 @@ class Stateless extends Component {
     } = this.props;
     // const {active} = this.state;
 
-    const {coords} = arrayOfHotelList;
+    // const {coords} = arrayOfHotelList;
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -91,7 +91,6 @@ class Stateless extends Component {
             </form>
             <div className="cities__places-list places__list tabs__content">
               {arrayOfHotelList.map((it, i) => (
-                // <li key={i}>{it.title}</li>
                 <PlaceCard
                   key={i}
                   onChoice={onTitleClick}
@@ -115,8 +114,7 @@ class Stateless extends Component {
             </div>
           </section>
           <div className="cities__right-section">
-            <Map coordPin={coords} />
-            {/* <section className="cities__map map"></section> */}
+            <Map />
           </div>
         </div>
       </div>
@@ -133,7 +131,7 @@ Stateless.propTypes = {
     price: PropTypes.number.isRequired,
     stars: PropTypes.number,
     name: PropTypes.string,
-    offerCords: PropTypes.array.isRequired,
+    offerCords: PropTypes.array,
   })),
   onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func,
