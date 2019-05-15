@@ -40,8 +40,8 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    return <section className="cities__map map">
-      <div id="map"></div>
+    return <section className="cities__map map" id="map">
+      {/* <div id="map"></div> */}
     </section>;
   }
 }
