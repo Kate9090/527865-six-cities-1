@@ -106,7 +106,8 @@ class Stateless extends Component {
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map />
+            {/* <section className="cities__map map"></section> */}
           </div>
         </div>
       </div>
