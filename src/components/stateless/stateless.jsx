@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
+import Map from '../map/map.jsx';
 
 class Stateless extends Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class Stateless extends Component {
       // onImageClick,
     } = this.props;
     // const {active} = this.state;
+
+    const {coords} = arrayOfHotelList;
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -97,16 +100,22 @@ class Stateless extends Component {
                       active: true
                     });
                   }
+                  // handleMarkOnMap={() => {
+                  //   offerCords = it.offerCords
+                  //   leaflet.marker(offerCords, {icon}).addTo(map);
+                  // }
                   }
                   offerList={it}
-
+                  // ф-ция: для каждого отеля отрисовать на карте его метку
+                  // получить его offerCords и сделать
+                  // leaflet.marker(offerCords, {icon}).addTo(map);
                 />
               )
               )}
             </div>
           </section>
           <div className="cities__right-section">
-            <Map />
+            <Map coordPin={coords} />
             {/* <section className="cities__map map"></section> */}
           </div>
         </div>
@@ -124,6 +133,7 @@ Stateless.propTypes = {
     price: PropTypes.number.isRequired,
     stars: PropTypes.number,
     name: PropTypes.string,
+    offerCords: PropTypes.array.isRequired,
   })),
   onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func,

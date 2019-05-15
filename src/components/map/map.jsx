@@ -8,14 +8,14 @@ const icon = leaflet.icon({
   iconSize: [30, 30]
 });
 
-const zoom = 12;
+const zooms = 12;
 const map = leaflet.map(`map`, {
   center: city,
-  // zoom: zoom,
+  zoom: zooms,
   zoomControl: false,
   marker: true
 });
-map.setView(city, zoom);
+map.setView(city, zooms);
 
 leaflet
   .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -40,21 +40,21 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    const {questions} = this.props;
-    const {coord} = questions;
+    const {data} = this.props;
+    const {offerCord} = data;
     return <section className="cities__map map">
-      <div id="map" ref={this._mapRef} coord={coord}></div>
+      <div id="map" ref={this._mapRef} coordPin={offerCord}></div>
     </section>;
   }
 }
 
-Map.PropTypes = {
-  questions: PropTypes.arrayOf(PropTypes.shape({
+Map.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
     coord: PropTypes.shape({
       width: PropTypes.number.isRequired,
       height: PropTypes.number.isRequired,
-    })
-
+    }),
+    offerCord: PropTypes.array.isRequired,
   })).isRequired,
 
 };
