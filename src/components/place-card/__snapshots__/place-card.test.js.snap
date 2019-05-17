@@ -22,7 +22,7 @@ exports[`renders correctly PlaceCard 1`] = `
         className="place-card__image"
         height="200"
         onClick={[Function]}
-        src="path"
+        src="img/apartment-01.jpg"
         width="260"
       />
     </a>
@@ -40,7 +40,7 @@ exports[`renders correctly PlaceCard 1`] = `
           className="place-card__price-defaultValue"
         >
           €
-          80
+          90
         </b>
         <span
           className="place-card__price-text"
@@ -95,7 +95,7 @@ exports[`renders correctly PlaceCard 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Beautiful &amp; luxurious apartment at great location
+        Wood and stone place
       </a>
     </h2>
     <p
