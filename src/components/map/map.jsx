@@ -2,18 +2,11 @@ import React from "react";
 import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 
+console.log(leaflet);
 
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
-    // const {offer} = props;
-
-    // console.log(offer);
-    // const {
-    //   offerCoord
-    // } = offer;
-    // const {_handleAddPinOnMap} = this.props;
-    // this._mapRef = React.createRef();
 
   }
 

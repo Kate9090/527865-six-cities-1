@@ -11,7 +11,7 @@ it(`renders correctly PlaceCard`, () => {
     .create(<PlaceCard
       offer = {mock}
       onChoice = {() => {
-        mock.title = `The most chippest room`;
+        mock[1].title = `The most chippest room`;
       }}
     />)
     .toJSON();

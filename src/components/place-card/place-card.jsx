@@ -25,6 +25,7 @@ class PlaceCard extends Component {
 
   render() {
     const {offer, onChoice} = this.props;
+    // console.log(offer);
     // const {active} = this.state;
 
     return <article className="cities__place-card place-card">
