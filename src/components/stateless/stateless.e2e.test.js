@@ -18,7 +18,7 @@ it(`simulates click event on the title`, () =>{
     onTitleClick={buttonClick}
   />);
 
-  const startButton = stateless.find(`.place-card__name a`);
+  const startButton = stateless.find(`.cities__places-list`).childAt(0).find(`.place-card__name a`);
 
   startButton.simulate(`click`);
   expect(buttonClick).toHaveBeenCalledTimes(1);
