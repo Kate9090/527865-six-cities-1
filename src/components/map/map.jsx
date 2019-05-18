@@ -7,10 +7,11 @@ import PropTypes from 'prop-types';
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.mapRef = React.createRef();
   }
   render() {
     return <section className="cities__map" id="map">
-      <div id="map" style={{height: `800px`}}></div>
+      <div id="map" ref={this.mapRef} style={{height: `800px`}}></div>
     </section>;
   }
   _handleAddPinOnMap(offerCityCords) {
@@ -30,7 +31,7 @@ class Map extends React.PureComponent {
     this.city = [52.38333, 4.9];
 
     this.zooms = 12;
-    this.map = leaflet.map(`map`, {
+    this.map = leaflet.map(this.mapRef.current, {
       center: this.city,
       zoom: this.zooms,
       zoomControl: false,
