@@ -620,9 +620,17 @@ exports[`renders correctly stateless screen 1`] = `
         className="cities__right-section"
       >
         <section
-          className="cities__map map"
-          id="map"
-        />
+          className="cities__map"
+        >
+          <div
+            id="map"
+            style={
+              Object {
+                "height": "800px",
+              }
+            }
+          />
+        </section>
       </div>
     </div>
   </div>
