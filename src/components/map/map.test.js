@@ -1,18 +1,15 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import PlaceCard from './place-card';
+import Map from './map.jsx';
 
 import offer from '../../mocks/offers';
-const mock = offer[1];
+const mock = offer;
 
-it(`renders correctly PlaceCard`, () => {
+it(`renders correctly Map`, () => {
   const tree = renderer
-    .create(<PlaceCard
+    .create(<Map
       offer = {mock}
-      onChoice = {() => {
-        mock[1].title = `The most chippest room`;
-      }}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

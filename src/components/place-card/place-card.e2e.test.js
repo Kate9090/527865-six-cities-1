@@ -5,27 +5,20 @@ import {mount} from 'enzyme';
 
 import PlaceCard from './place-card.jsx';
 
-const mock = {
-  offer: {
-    src: `path`,
-    title: `Beautiful &amp; luxurious apartment at great location`,
-    price: 80,
-    stars: 4,
-    name: `Apartment`,
-  },
-};
+
+import offer from '../../mocks/offers';
+const mockOffer = offer[2];
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`simulates click event on the image to set active state`, () =>{
   const imageClick = jest.fn();
-  const {offer} = mock;
 
   const placeCard = mount(<PlaceCard
-    offerList = {offer}
+    offer = {mockOffer}
     onImageChoice={imageClick}
     onChoice = {() => {
-      offer.title = `The most chippest room`;
+      mockOffer.title = `The most chippest room`;
     }}
   />);
 

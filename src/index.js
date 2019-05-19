@@ -9,7 +9,7 @@ const init = (hotelOffers) => {
 
   ReactDOM.render(
       <App
-        arrayOfChoices={hotelOffers}
+        offer={hotelOffers}
         ClickOnTitle={() => {
           // console.log(`click on the hotel's title`);
         }

@@ -1,7 +1,9 @@
 import React, {Component} from "react";
+// import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 
 import PlaceCard from '../place-card/place-card.jsx';
+import Map from '../map/map.jsx';
 
 class Stateless extends Component {
   constructor(props) {
@@ -13,11 +15,11 @@ class Stateless extends Component {
 
   render() {
     const {
-      arrayOfHotelList,
+      offer,
       onTitleClick,
       // onImageClick,
     } = this.props;
-    // const {active} = this.state;
+
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -87,26 +89,33 @@ class Stateless extends Component {
 
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {arrayOfHotelList.map((it, i) => (
-                // <li key={i}>{it.title}</li>
+              {offer.map((it, i) => (
                 <PlaceCard
                   key={i}
+                  offer={it}
+                  offerCoord={it.offerCoord}
                   onChoice={onTitleClick}
                   onImageChoice={() => {
                     this.setState({
                       active: true
                     });
-                  }
-                  }
-                  offerList={it}
-
+                  }}
+                  // onAddHotel={() => {
+                  //   this.setState({
+                  //     hotels: this.state.hotels + 1
+                  //   });
+                  // }}
+                  // add={
+                  //   this._handleAddHotelOnMap()
+                  // }
                 />
               )
+              // this._handleAddHotelOnMap(it.offerCords)
               )}
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map offer={offer}/>
           </div>
         </div>
       </div>
@@ -117,13 +126,14 @@ class Stateless extends Component {
 
 Stateless.propTypes = {
   onChoice: PropTypes.func,
-  arrayOfHotelList: PropTypes.arrayOf(PropTypes.shape({
+  offer: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     stars: PropTypes.number,
     name: PropTypes.string,
-  })),
+    offerCoord: PropTypes.array.isRequired,
+  })).isRequired,
   onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func,
 };

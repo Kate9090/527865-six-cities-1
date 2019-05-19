@@ -9,8 +9,23 @@ class PlaceCard extends Component {
     };
   }
 
+  // _handleAddHotelOnMap() {
+  //   const {offerList} = this.props;
+  //   const {offerCords} = offerList;
+
+  //   const icon = leaflet.icon({
+  //     iconUrl: `img/pin.svg`,
+  //     iconSize: [30, 30]
+  //   });
+
+  //   leaflet
+  //     .marker(offerCords, {icon})
+  //     .addTo(this.map);
+  // }
+
   render() {
-    const {offerList, onChoice} = this.props;
+    const {offer, onChoice} = this.props;
+    // console.log(offer);
     // const {active} = this.state;
 
     return <article className="cities__place-card place-card">
@@ -25,13 +40,13 @@ class PlaceCard extends Component {
             this.setState({
               active: true,
             });
-          }} className="place-card__image" src={offerList.src} width="260" height="200" alt="Place image" />
+          }} className="place-card__image" src={offer.src} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-defaultValue">&euro;{offerList.price}</b>
+            <b className="place-card__price-defaultValue">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -48,24 +63,24 @@ class PlaceCard extends Component {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={onChoice} href="#">{offerList.title}</a>
+          <a onClick={onChoice} href="#">{offer.title}</a>
         </h2>
-        <p className="place-card__type">{offerList.name}</p>
+        <p className="place-card__type">{offer.name}</p>
       </div>
     </article>;
   }
 }
 
 PlaceCard.propTypes = {
-  offerList: PropTypes.shape({
+  offer: PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     stars: PropTypes.number,
     name: PropTypes.string,
+    offerCoord: PropTypes.array.isRequired,
   }).isRequired,
   onChoice: PropTypes.func.isRequired,
-  // onImageChoice: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
