@@ -1,4 +1,4 @@
-const offerCity = [
+const offer = [
   {
     src: `img/apartment-01.jpg`,
     title: `Beautiful &amp; luxurious apartment at great location`,
@@ -6,7 +6,10 @@ const offerCity = [
     stars: 4,
     name: `Apartment`,
     offerCoord: [52.3909553943508, 4.85309666406198],
-    city: `Amsterdam`,
+    coord: {
+      width: 52.3909553943508,
+      height: 4.85309666406198,
+    }
   },
   {
     src: `img/apartment-01.jpg`,
@@ -15,7 +18,10 @@ const offerCity = [
     stars: 5,
     name: `Apartment`,
     offerCoord: [52.369553943508, 4.85309666406198],
-    city: `London`
+    coord: {
+      width: 52.369553943508,
+      height: 4.85309666406198,
+    }
   },
   {
     src: `img/apartment-01.jpg`,
@@ -24,7 +30,10 @@ const offerCity = [
     stars: 4,
     name: `Apartment`,
     offerCoord: [52.3909553943508, 4.929309666406198],
-    city: `Moscow`,
+    coord: {
+      width: 52.3909553943508,
+      height: 4.929309666406198,
+    },
   },
   {
     src: `img/apartment-01.jpg`,
@@ -33,8 +42,12 @@ const offerCity = [
     stars: 3,
     name: `Apartment`,
     offerCoord: [52.3809553943508, 4.939309666406198],
-    city: `Tokio`,
+    coord: {
+      width: 52.3809553943508,
+      height: 4.939309666406198,
+    },
   },
 ];
 
-export default offerCity;
+
+export default offer;

@@ -9,18 +9,12 @@ import Stateless from '../stateless/stateless.jsx';
 
 const App = (props) => {
   const {offerCity, ClickOnTitle, city, offerOfCity} = props;
+
+  // console.log(city);
   return <Stateless cityForRender={city} offer={offerOfCity} offerscity={offerCity} onTitleClick={ClickOnTitle} />;
 };
 
 App.propTypes = {
-  offer: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
-    name: PropTypes.string,
-    offerCoord: PropTypes.array.isRequired,
-  })).isRequired,
   offerCity: PropTypes.arrayOf(PropTypes.shape({
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
@@ -44,8 +38,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onWelcomeScreenClick: () =>
-    dispatch(ActionCreator[`NEW_CITY`]()),
+  // onWelcomeScreenClick: () =>
+  //   dispatch(ActionCreator[`NEW_CITY`]()),
 
   onUserAnswer: (userAnswer) => {
     dispatch(ActionCreator[`NEW_CITY`](userAnswer));
@@ -58,4 +52,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(App);
-

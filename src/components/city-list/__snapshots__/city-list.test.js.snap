@@ -10,6 +10,7 @@ exports[`renders correctly City List 1`] = `
     <a
       className="locations__item-link tabs__item"
       href="#"
+      onClick={[Function]}
     >
       <span>
         Amsterdam
@@ -22,6 +23,7 @@ exports[`renders correctly City List 1`] = `
     <a
       className="locations__item-link tabs__item"
       href="#"
+      onClick={[Function]}
     >
       <span>
         London
@@ -34,6 +36,7 @@ exports[`renders correctly City List 1`] = `
     <a
       className="locations__item-link tabs__item"
       href="#"
+      onClick={[Function]}
     >
       <span>
         Moscow
@@ -46,6 +49,7 @@ exports[`renders correctly City List 1`] = `
     <a
       className="locations__item-link tabs__item"
       href="#"
+      onClick={[Function]}
     >
       <span>
         Tokio

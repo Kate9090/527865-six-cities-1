@@ -8,7 +8,7 @@ const mock = offer;
 import offerCity from '../../mocks/offers-city';
 const mockOfferCity = offerCity;
 
-it(`renders correctly stateless screen`, () => {
+it(`renders correctly app screen`, () => {
   const tree = renderer
     .create(<App
       offer = {mock}

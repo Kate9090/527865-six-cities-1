@@ -24,6 +24,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               Amsterdam
@@ -36,6 +37,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               London
@@ -48,6 +50,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               Moscow
@@ -60,6 +63,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               Tokio
@@ -87,7 +91,6 @@ exports[`renders correctly stateless screen 1`] = `
           className="places__found"
         >
           312 places to stay in 
-          Amsterdam
         </b>
         <form
           action="#"

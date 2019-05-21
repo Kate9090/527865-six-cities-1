@@ -27,14 +27,17 @@ class Stateless extends Component {
       onTitleClick,
     } = this.props;
 
-    const cityOrder = this.state.activeCity;
+    // console.log(offerscity);
+
+    const current = this.state.activeCity;
+    // console.log(cityOrder);
 
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList offersCity={offerscity} onUserChose={() => this._changeCity(it)} />
+          <CityList offersCity={offerscity} onUserChoose={() => this._changeCity(it)} />
         </section>
       </div>
 
@@ -42,7 +45,7 @@ class Stateless extends Component {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in {offerscity[cityOrder].city}</b>
+            <b className="places__found">312 places to stay in {current}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
