@@ -7,6 +7,8 @@ import Stateless from './stateless.jsx';
 
 import offer from '../../mocks/offers';
 const mock = offer;
+import offerCity from '../../mocks/offers-city';
+const mockOfferCity = offerCity;
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -15,6 +17,7 @@ it(`simulates click event on the title`, () =>{
 
   const stateless = mount(<Stateless
     offer={mock}
+    offerscity={mockOfferCity}
     onTitleClick={buttonClick}
   />);
 

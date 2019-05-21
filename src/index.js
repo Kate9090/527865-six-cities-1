@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import offer from "./mocks/offers";
+import offerCity from "./mocks/offers-city";
 
 
 import {Provider} from 'react-redux';
@@ -12,11 +13,12 @@ import App from './components/app/app.jsx';
 
 const store = createStore(reducer);
 
-const init = (hotelOffers) => {
+const init = (hotelOffers, cityOffers) => {
 
   ReactDOM.render(<Provider store={store}>
     <App
       offer={hotelOffers}
+      offerCity={cityOffers}
       ClickOnTitle={() => {
         // console.log(`click on the hotel's title`);
       }
@@ -25,4 +27,4 @@ const init = (hotelOffers) => {
   </Provider>, document.querySelector(`.main`));
 };
 
-init(offer);
+init(offer, offerCity);

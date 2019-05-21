@@ -9,24 +9,8 @@ class PlaceCard extends Component {
     };
   }
 
-  // _handleAddHotelOnMap() {
-  //   const {offerList} = this.props;
-  //   const {offerCords} = offerList;
-
-  //   const icon = leaflet.icon({
-  //     iconUrl: `img/pin.svg`,
-  //     iconSize: [30, 30]
-  //   });
-
-  //   leaflet
-  //     .marker(offerCords, {icon})
-  //     .addTo(this.map);
-  // }
-
   render() {
     const {offer, onChoice} = this.props;
-    // console.log(offer);
-    // const {active} = this.state;
 
     return <article className="cities__place-card place-card">
       <div className="place-card__mark">
