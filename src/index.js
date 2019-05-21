@@ -16,12 +16,7 @@ const init = (cityOffers) => {
 
   ReactDOM.render(<Provider store={store}>
     <App
-      // offerOfCity={hotelOffers}
       offerCity={cityOffers}
-      ClickOnTitle={() => {
-        // console.log(`click on the hotel's title`);
-      }
-      }
     />
   </Provider>, document.querySelector(`.main`));
 };

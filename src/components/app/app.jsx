@@ -8,10 +8,11 @@ import Stateless from '../stateless/stateless.jsx';
 // import offerCity from "../../mocks/offers-city";
 
 const App = (props) => {
-  const {offerCity, ClickOnTitle, city, offerOfCity} = props;
+  const {offerCity, onUserAnswer, ClickOnTitle, city, offerOfCity} = props;
 
   // console.log(city);
-  return <Stateless cityForRender={city} offer={offerOfCity} offerscity={offerCity} onTitleClick={ClickOnTitle} />;
+  return <Stateless
+    onUserChoose={onUserAnswer} cityForRender={city} offer={offerOfCity} offerscity={offerCity} onTitleClick={ClickOnTitle} />;
 };
 
 App.propTypes = {
@@ -30,6 +31,7 @@ App.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   })).isRequired,
+  onUserAnswer: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -38,8 +40,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // onWelcomeScreenClick: () =>
-  //   dispatch(ActionCreator[`NEW_CITY`]()),
 
   onUserAnswer: (userAnswer) => {
     dispatch(ActionCreator[`NEW_CITY`](userAnswer));
