@@ -1,7 +1,7 @@
 
 const initialState = {
   city: `Amsterdam`,
-  offers: require `./mocks/offers`.offer,
+  offers: require(`./mocks/offers`).offer,
 };
 
 
