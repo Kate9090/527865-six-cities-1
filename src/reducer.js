@@ -1,7 +1,7 @@
 
 const initialState = {
   city: `Amsterdam`,
-  offersCity: require(`./mocks/offers-city`).offer,
+  offerInCity: require(`./mocks/offers-in-amsterdam`).offer,
 };
 
 
@@ -17,7 +17,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `NEW_CITY`:
       return Object.assign({}, state, {
-        city: action.payload
+        city: action.payload,
+        offerInCity: require(`./mocks/offers-in-${state.city}`).offer,
       });
   }
 

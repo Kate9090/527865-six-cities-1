@@ -10,8 +10,14 @@ class Stateless extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
+      activeCity: this.props.cityForRender,
     };
+  }
+
+  _changeCity(city) {
+    this.setState({
+      activeCity: city,
+    });
   }
 
   render() {
@@ -19,15 +25,16 @@ class Stateless extends Component {
       offer,
       offerscity,
       onTitleClick,
-      // onImageClick,
     } = this.props;
+
+    const cityOrder = this.state.activeCity;
 
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList offersCity={offerscity} />
+          <CityList offersCity={offerscity} onUserChose={() => this._changeCity(it)} />
         </section>
       </div>
 
@@ -35,7 +42,7 @@ class Stateless extends Component {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">312 places to stay in {offerscity[cityOrder].city}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -111,6 +118,8 @@ Stateless.propTypes = {
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
+  onCityClick: PropTypes.func,
+  cityForRender: PropTypes.string.isRequired,
 };
 
 export default Stateless;

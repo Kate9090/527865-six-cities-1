@@ -4,9 +4,15 @@ import PropTypes from 'prop-types';
 class CityList extends PureComponent {
   constructor(props) {
     super(props);
+    const {offersCity} = this.props;
     this.state = {
-      show: false,
+      activeCity: offersCity.name,
     };
+    this._onUserChose = this._onUserChose.bind(this);
+  }
+
+  _onUserChose() {
+    this.props.onUserChose();
   }
 
   render() {
@@ -14,7 +20,7 @@ class CityList extends PureComponent {
     return <ul className="locations__list tabs__list">
       {offersCity.map((it, i) => (
         <li className="locations__item" key={`city-${i}`}>
-          <a className="locations__item-link tabs__item" href="#">
+          <a onClick={this._onUserChose} className="locations__item-link tabs__item" href="#">
             <span>{it.city}</span>
           </a>
         </li>
@@ -29,6 +35,7 @@ CityList.propTypes = {
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
+  onUserChose: PropTypes.func.isRequired,
 };
 
 export default CityList;

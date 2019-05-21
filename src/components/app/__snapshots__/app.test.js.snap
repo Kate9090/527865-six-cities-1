@@ -38,7 +38,7 @@ exports[`renders correctly stateless screen 1`] = `
             href="#"
           >
             <span>
-              London,
+              London
             </span>
           </a>
         </li>
@@ -86,7 +86,8 @@ exports[`renders correctly stateless screen 1`] = `
         <b
           className="places__found"
         >
-          312 places to stay in Amsterdam
+          312 places to stay in 
+          Amsterdam
         </b>
         <form
           action="#"

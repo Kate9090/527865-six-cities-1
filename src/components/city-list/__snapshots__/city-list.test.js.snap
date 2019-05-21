@@ -24,7 +24,7 @@ exports[`renders correctly City List 1`] = `
       href="#"
     >
       <span>
-        London,
+        London
       </span>
     </a>
   </li>
