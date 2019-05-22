@@ -7,12 +7,24 @@ import {ActionCreator} from '../../reducer';
 import Stateless from '../stateless/stateless.jsx';
 
 const App = (props) => {
-  const {offerCities, onUserAnswer, ClickOnTitle, city, offerOfCity} = props;
+  const {city, offerOfCity, offerCities, onUserAnswer, ClickOnTitle} = props;
 
   // console.log(city);
   return <Stateless
     onUserChoose={onUserAnswer} cityForRender={city} offer={offerOfCity} offerscities={offerCities} onTitleClick={ClickOnTitle} />;
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  offerOfCity: state.offerInCity,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+  onUserAnswer: (userAnswer) => {
+    dispatch(ActionCreator[`NEW_CITY`](userAnswer));
+  },
+});
 
 App.propTypes = {
   offerCities: PropTypes.arrayOf(PropTypes.shape({
@@ -32,18 +44,6 @@ App.propTypes = {
   })).isRequired,
   onUserAnswer: PropTypes.func,
 };
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.city,
-  offerOfCity: state.offerInCity,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
-  onUserAnswer: (userAnswer) => {
-    dispatch(ActionCreator[`NEW_CITY`](userAnswer));
-  },
-});
 
 export {App};
 

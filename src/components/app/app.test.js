@@ -1,18 +1,19 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import App from './app.jsx';
+import {App} from './app.jsx';
 
-import offer from '../../mocks/offers';
-const mock = offer;
-import offerCity from '../../mocks/offers-city';
-const mockOfferCity = offerCity;
+import offerHotelList from '../../mocks/offers';
+const mock = offerHotelList;
+import offerCities from '../../mocks/offers-city';
+const mockOfferCity = offerCities;
 
 it(`renders correctly app screen`, () => {
   const tree = renderer
     .create(<App
-      offer = {mock}
-      offerCity = {mockOfferCity}
+      offerOfCity = {mock}
+      city={`Amsterdam`}
+      offerCities = {mockOfferCity}
       ClickOnTitle = {() => {
         mock[1].title = `The most chippest room`;
       }}

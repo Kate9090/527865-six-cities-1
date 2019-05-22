@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly stateless screen 1`] = `
+exports[`renders correctly app screen 1`] = `
 <main
   className="page__main page__main--index"
 >
@@ -24,6 +24,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               Amsterdam
@@ -36,6 +37,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               London
@@ -48,6 +50,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               Moscow
@@ -60,6 +63,7 @@ exports[`renders correctly stateless screen 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
               Tokio

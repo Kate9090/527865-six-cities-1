@@ -3,14 +3,14 @@ import renderer from 'react-test-renderer';
 
 import CityList from './city-list.jsx';
 
-import offer from '../../mocks/offers-city';
+import offerCities from '../../mocks/offers-city';
 
-const mock = offer;
+const mock = offerCities;
 
 it(`renders correctly City List`, () => {
   const tree = renderer
     .create(<CityList
-      offersCity = {mock}
+      cities = {mock}
       // onChoice = {jest.fn}
     />)
     .toJSON();

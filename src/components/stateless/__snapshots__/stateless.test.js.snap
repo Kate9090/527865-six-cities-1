@@ -91,6 +91,7 @@ exports[`renders correctly stateless screen 1`] = `
           className="places__found"
         >
           312 places to stay in 
+          Amsterdam
         </b>
         <form
           action="#"

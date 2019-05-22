@@ -3,16 +3,17 @@ import renderer from 'react-test-renderer';
 
 import Stateless from './stateless';
 
-import offer from '../../mocks/offers';
-const mock = offer;
-import offerCity from '../../mocks/offers-city';
-const mockOfferCity = offerCity;
+import offerHotelList from '../../mocks/offers-in-amsterdam';
+const mock = offerHotelList;
+import offerCities from '../../mocks/offers-city';
+const mockOfferCities = offerCities;
 
 it(`renders correctly stateless screen`, () => {
   const tree = renderer
     .create(<Stateless
       offer = {mock}
-      offerscity={mockOfferCity}
+      offerscities={mockOfferCities}
+      cityForRender={`Amsterdam`}
       onTitleClick = {() => {
         mock.title = `The most chippest room`;
       }}
