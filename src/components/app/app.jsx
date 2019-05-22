@@ -16,8 +16,8 @@ const App = (props) => {
 
 App.propTypes = {
   offerCities: PropTypes.arrayOf(PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
+    offerCoord: PropTypes.array.isRequired,
   })).isRequired,
   ClickOnTitle: PropTypes.func,
   onClick: PropTypes.func,

@@ -1,4 +1,4 @@
-const offer = [
+const offerHotelList = [
   {
     src: `img/apartment-01.jpg`,
     title: `Beautiful &amp; luxurious apartment at great location`,
@@ -34,4 +34,4 @@ const offer = [
 ];
 
 
-export default offer;
+export default offerHotelList;
