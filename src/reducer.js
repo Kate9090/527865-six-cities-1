@@ -11,6 +11,10 @@ const ActionCreator = ({
     payload: newCity,
   }),
 
+  // 'RESET': () => ({
+  //   type: `RESET`,
+  // }),
+
 });
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +24,8 @@ const reducer = (state = initialState, action) => {
         city: action.payload,
         offerInCity: require(`./mocks/offers-in-${state.city}`).offer,
       });
+    // case `RESET`:
+    //   return Object.assign({}, state, initialState);
   }
 
   return state;
