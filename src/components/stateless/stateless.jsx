@@ -23,7 +23,7 @@ class Stateless extends Component {
   render() {
     const {
       offer,
-      offerscity,
+      offerscities,
       onTitleClick,
     } = this.props;
 
@@ -37,7 +37,7 @@ class Stateless extends Component {
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList offersCity={offerscity} onUserChoose={() => this._changeCity(it)} />
+          <CityList cities={offerscities} onUserChoose={() => this._changeCity(it)} />
         </section>
       </div>
 
@@ -117,7 +117,7 @@ Stateless.propTypes = {
   })).isRequired,
   onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func,
-  offerscity: PropTypes.arrayOf(PropTypes.shape({
+  offerscities: PropTypes.arrayOf(PropTypes.shape({
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,

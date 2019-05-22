@@ -6,10 +6,6 @@ const offer = [
     stars: 4,
     name: `Apartment`,
     offerCoord: [52.3909553943508, 4.85309666406198],
-    coord: {
-      width: 52.3909553943508,
-      height: 4.85309666406198,
-    }
   },
   {
     src: `img/apartment-01.jpg`,
@@ -18,10 +14,6 @@ const offer = [
     stars: 5,
     name: `Apartment`,
     offerCoord: [52.369553943508, 4.85309666406198],
-    coord: {
-      width: 52.369553943508,
-      height: 4.85309666406198,
-    }
   },
   {
     src: `img/apartment-01.jpg`,
@@ -30,10 +22,6 @@ const offer = [
     stars: 4,
     name: `Apartment`,
     offerCoord: [52.3909553943508, 4.929309666406198],
-    coord: {
-      width: 52.3909553943508,
-      height: 4.929309666406198,
-    },
   },
   {
     src: `img/apartment-01.jpg`,
@@ -42,10 +30,6 @@ const offer = [
     stars: 3,
     name: `Apartment`,
     offerCoord: [52.3809553943508, 4.939309666406198],
-    coord: {
-      width: 52.3809553943508,
-      height: 4.939309666406198,
-    },
   },
 ];
 

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // import offer from "./mocks/offers";
-import offerCity from "./mocks/offers-city";
+import offerCities from "./mocks/offers-city";
 
 import {Provider} from 'react-redux';
 import {reducer} from './reducer';
@@ -19,9 +19,9 @@ const init = (cityOffers) => {
 
   ReactDOM.render(<Provider store={store}>
     <App
-      offerCity={cityOffers}
+      offerCities={cityOffers}
     />
   </Provider>, document.querySelector(`.main`));
 };
 
-init(offerCity);
+init(offerCities);

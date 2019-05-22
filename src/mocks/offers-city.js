@@ -1,4 +1,4 @@
-const offerCity = [
+const offerCities = [
   {
     src: `img/apartment-01.jpg`,
     title: `Beautiful &amp; luxurious apartment at great location`,
@@ -37,4 +37,4 @@ const offerCity = [
   },
 ];
 
-export default offerCity;
+export default offerCities;

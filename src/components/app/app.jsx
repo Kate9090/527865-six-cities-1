@@ -5,18 +5,17 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
 import Stateless from '../stateless/stateless.jsx';
-// import offerCity from "../../mocks/offers-city";
 
 const App = (props) => {
-  const {offerCity, onUserAnswer, ClickOnTitle, city, offerOfCity} = props;
+  const {offerCities, onUserAnswer, ClickOnTitle, city, offerOfCity} = props;
 
   // console.log(city);
   return <Stateless
-    onUserChoose={onUserAnswer} cityForRender={city} offer={offerOfCity} offerscity={offerCity} onTitleClick={ClickOnTitle} />;
+    onUserChoose={onUserAnswer} cityForRender={city} offer={offerOfCity} offerscities={offerCities} onTitleClick={ClickOnTitle} />;
 };
 
 App.propTypes = {
-  offerCity: PropTypes.arrayOf(PropTypes.shape({
+  offerCities: PropTypes.arrayOf(PropTypes.shape({
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,

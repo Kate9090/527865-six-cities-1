@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CityList = (props) => {
 
-  const {offersCity, handleSelectCity} = props;
+  const {cities, handleSelectCity} = props;
 
 
   const _onUserChose = (evt, city) => {
@@ -12,7 +12,7 @@ const CityList = (props) => {
   };
 
   return <ul className="locations__list tabs__list">
-    {offersCity.map((it, i) => (
+    {cities.map((it, i) => (
       <li className="locations__item" key={`city-${i}`}>
         <a onClick={(e) => _onUserChose(e, it.city)} className="locations__item-link tabs__item" href="#">
           <span>{it.city}</span>
@@ -24,7 +24,7 @@ const CityList = (props) => {
 };
 
 CityList.propTypes = {
-  offersCity: PropTypes.arrayOf(PropTypes.shape({
+  cities: PropTypes.arrayOf(PropTypes.shape({
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
