@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // import offer from "./mocks/offers";
-import offerCities from "./mocks/offers-city";
+// import offerCities from "./mocks/offers-city";
 
 import {Provider} from 'react-redux';
 import {reducer} from './reducer';
@@ -15,13 +15,13 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const init = (cityOffers) => {
+const init = () => {
 
   ReactDOM.render(<Provider store={store}>
     <App
-      offerCities={cityOffers}
+      // offerCities={cityOffers}
     />
   </Provider>, document.querySelector(`.main`));
 };
 
-init(offerCities);
+init();

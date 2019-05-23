@@ -24,8 +24,11 @@ class Map extends React.PureComponent {
 
   componentDidMount() {
     if (this.mapRef.current) {
-      const {offer} = this.props;
+      const {offer,
+        //  number
+      } = this.props;
 
+      // this.city = offer.number.offerCoord;
       this.city = [52.38333, 4.9];
 
       this.zooms = 12;

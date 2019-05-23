@@ -17,6 +17,7 @@ const App = (props) => {
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
   offerOfCity: state.offerInCity,
+  offerCities: state.cityListArray,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,9 +1,13 @@
 import offerHotelList from './mocks/offers-in-amsterdam';
+import offerCities from './mocks/offers-city';
+
 const offerInAmsterdam = offerHotelList;
+const cityListArray = offerCities;
 
 const initialState = {
   city: `Amsterdam`,
   offerInCity: offerInAmsterdam,
+  cityListArray,
 };
 
 

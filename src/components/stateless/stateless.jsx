@@ -11,7 +11,17 @@ class Stateless extends Component {
     super(props);
     this.state = {
       activeCity: this.props.cityForRender,
+      activeCityNumber: this.props.cityNumberInList,
     };
+
+    this.onUserChoose=this.onUserChoose.bind(this);
+  }
+
+  onUserChoose(city, num) {
+    this.setState({
+      activeCity: city,
+      activeCityNumber: num,
+    });
   }
 
   render() {
@@ -19,8 +29,9 @@ class Stateless extends Component {
       offer,
       offerscities,
       onTitleClick,
+      // cityForRender,
+      // cityNumberInList,
     } = this.props;
-
 
     const current = this.state.activeCity;
 
@@ -28,9 +39,9 @@ class Stateless extends Component {
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList cities={offerscities} onUserChoose = {(city) => this.setState({
-            activeCity: city,
-          })} />
+          <CityList cities={offerscities}
+            onUserChoose = {this.onUserChoose}
+          />
         </section>
       </div>
 
@@ -81,7 +92,7 @@ class Stateless extends Component {
             </div>
           </section>
           <div className="cities__right-section">
-            <Map offer={offer}/>
+            <Map offer={offer} cityOnMap={this.state.cityNumberInList}/>
           </div>
         </div>
       </div>
@@ -107,7 +118,9 @@ Stateless.propTypes = {
     city: PropTypes.string.isRequired,
   })).isRequired,
   onCityClick: PropTypes.func,
+
   cityForRender: PropTypes.string.isRequired,
+  cityNumberInList: PropTypes.number,
 };
 
 export default Stateless;
