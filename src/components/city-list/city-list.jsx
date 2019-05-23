@@ -12,9 +12,9 @@ class CityList extends PureComponent {
   }
 
 
-  _onUserChose(city, num) {
+  _onUserChose(city, num, evt) {
     // const {handleSelectCity} = this.props;
-    // evt.preventDefault();
+    evt.preventDefault();
     // console.log(num);
     this.setState({
       cityForRender: city,
@@ -29,7 +29,7 @@ class CityList extends PureComponent {
     return <ul className="locations__list tabs__list">
       {cities.map((it, i) => (
         <li className="locations__item" key={`city-${i}`}>
-          <a onClick={() => this._onUserChose(it.city, i)} className="locations__item-link tabs__item" href="#">
+          <a onClick={(e) => this._onUserChose(it.city, i, e)} className="locations__item-link tabs__item" href="#">
             <span>{it.city}</span>
           </a>
         </li>

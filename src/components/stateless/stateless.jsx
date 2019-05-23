@@ -14,7 +14,7 @@ class Stateless extends Component {
       activeCityNumber: this.props.cityNumberInList,
     };
 
-    this.onUserChoose=this.onUserChoose.bind(this);
+    this.onUserChoose = this.onUserChoose.bind(this);
   }
 
   onUserChoose(city, num) {
@@ -29,11 +29,9 @@ class Stateless extends Component {
       offer,
       offerscities,
       onTitleClick,
-      // cityForRender,
-      // cityNumberInList,
     } = this.props;
 
-    const current = this.state.activeCity;
+    // const current = this.state.activeCity;
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -49,7 +47,7 @@ class Stateless extends Component {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in {current}</b>
+            <b className="places__found">312 places to stay in {this.state.activeCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
