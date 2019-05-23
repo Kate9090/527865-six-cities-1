@@ -14,12 +14,6 @@ class Stateless extends Component {
     };
   }
 
-  _changeCity(city) {
-    this.setState({
-      activeCity: city,
-    });
-  }
-
   render() {
     const {
       offer,
@@ -27,17 +21,16 @@ class Stateless extends Component {
       onTitleClick,
     } = this.props;
 
-    // console.log(offerscity);
 
     const current = this.state.activeCity;
-    // console.log(cityOrder);
-
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList cities={offerscities} onUserChoose={() => this._changeCity(it)} />
+          <CityList cities={offerscities} onUserChoose = {(city) => this.setState({
+            activeCity: city,
+          })} />
         </section>
       </div>
 
@@ -81,14 +74,6 @@ class Stateless extends Component {
                       active: true
                     });
                   }}
-                  // onAddHotel={() => {
-                  //   this.setState({
-                  //     hotels: this.state.hotels + 1
-                  //   });
-                  // }}
-                  // add={
-                  //   this._handleAddHotelOnMap()
-                  // }
                 />
               )
               // this._handleAddHotelOnMap(it.offerCords)

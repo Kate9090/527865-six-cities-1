@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 class PlaceCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      active: false,
-    };
   }
 
   render() {
@@ -64,7 +61,7 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
-  onChoice: PropTypes.func.isRequired,
+  onChoice: PropTypes.func,
 };
 
 export default PlaceCard;

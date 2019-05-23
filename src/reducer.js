@@ -1,7 +1,9 @@
+import offerHotelList from './mocks/offers-in-amsterdam';
+const offerInAmsterdam = offerHotelList;
 
 const initialState = {
   city: `Amsterdam`,
-  offerInCity: require(`./mocks/offers-in-amsterdam`).offerHotelList,
+  offerInCity: offerInAmsterdam,
 };
 
 

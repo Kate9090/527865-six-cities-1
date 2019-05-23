@@ -1,34 +1,47 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-const CityList = (props) => {
+class CityList extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cityForRender: this.props.cities[0].city,
+    };
+    this._onUserChose = this._onUserChose.bind(this);
+  }
 
-  const {cities, handleSelectCity} = props;
 
+  _onUserChose(evt, city) {
+    // const {handleSelectCity} = this.props;
+    // evt.preventDefault();
+    this.setState({
+      cityForRender: city,
+    });
+    this.props.onUserChoose(this.state.cityForRender);
+  }
 
-  const _onUserChose = (evt, city) => {
-    evt.preventDefault();
-    handleSelectCity(city);
-  };
+  render() {
+    const {cities} = this.props;
 
-  return <ul className="locations__list tabs__list">
-    {cities.map((it, i) => (
-      <li className="locations__item" key={`city-${i}`}>
-        <a onClick={(e) => _onUserChose(e, it.city)} className="locations__item-link tabs__item" href="#">
-          <span>{it.city}</span>
-        </a>
-      </li>
-    )
-    )}
-  </ul>;
-};
+    return <ul className="locations__list tabs__list">
+      {cities.map((it, i) => (
+        <li className="locations__item" key={`city-${i}`}>
+          <a onClick={(e) => this._onUserChose(e, it.city)} className="locations__item-link tabs__item" href="#">
+            <span>{it.city}</span>
+          </a>
+        </li>
+      )
+      )}
+    </ul>;
+  }
+}
 
 CityList.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.shape({
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
-  handleSelectCity: PropTypes.func.isRequired,
+  onUserChoose: PropTypes.func.isRequired,
 };
 
 export default CityList;

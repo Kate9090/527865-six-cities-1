@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import {reducer} from './reducer';
 import {createStore} from 'redux';
 
-import {App} from './components/app/app.jsx';
+import App from './components/app/app.jsx';
 
 const store = createStore(
     reducer,
