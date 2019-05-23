@@ -8,20 +8,26 @@ class CityList extends PureComponent {
       cityNumberInList: 0,
       cityForRender: this.props.cities[0].city,
     };
+
     this._onUserChose = this._onUserChose.bind(this);
   }
 
-
   _onUserChose(city, num, evt) {
-    // const {handleSelectCity} = this.props;
+    const {onUserChoose} = this.props;
     evt.preventDefault();
-    // console.log(num);
-    this.setState({
-      cityForRender: city,
-      cityNumberInList: num,
-    });
-    this.props.onUserChoose(this.state.cityForRender, this.state.cityNumberInList);
+    onUserChoose(city, num);
   }
+
+  // _onUserChose(city, num, evt) {
+  //   // const {handleSelectCity} = this.props;
+  //   evt.preventDefault();
+  //   // console.log(num);
+  //   this.setState({
+  //     cityForRender: city,
+  //     cityNumberInList: num,
+  //   });
+  //   this.props.onUserChoose(this.state.cityForRender, this.state.cityNumberInList);
+  // }
 
   render() {
     const {cities} = this.props;
