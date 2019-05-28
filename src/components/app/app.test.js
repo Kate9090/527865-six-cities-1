@@ -12,7 +12,7 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-import offerHotelList from '../../mocks/offers';
+import offerHotelList from '../../mocks/offers-in-amsterdam';
 const mock = offerHotelList;
 
 it(`renders correctly app screen`, () => {

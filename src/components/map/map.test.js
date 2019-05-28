@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import Map from './map.jsx';
 
-import offer from '../../mocks/offers';
+import offer from '../../mocks/offers-in-amsterdam';
 const mock = offer;
 
 it(`renders correctly Map`, () => {

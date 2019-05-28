@@ -8,16 +8,16 @@ class CityList extends PureComponent {
     super(props);
     this.state = {
       cityNumberInList: 0,
-      cityForRender: this.props.cities[0].city,
+      cityForRender: `Amsterdam`,
     };
 
-    this._onUserChose = this._onUserChose.bind(this);
+    this._onUserChoose = this._onUserChoose.bind(this);
   }
 
-  _onUserChose(city, num, evt) {
-    const {onUserChoose} = this.props;
+  _onUserChoose(city, num, evt) {
+    // const {onUserChoose} = this.props;
     evt.preventDefault();
-    onUserChoose(city, num);
+    this.props.onUserChoose(city, num);
   }
 
   // _onUserChose(city, num, evt) {
@@ -36,8 +36,9 @@ class CityList extends PureComponent {
 
     return <ul className="locations__list tabs__list">
       {cities.map((it, i) => (
+        // <CityFromTopMenu key={`city-${i}`}/>
         <li className="locations__item" key={`city-${i}`}>
-          <a onClick={(e) => this._onUserChose(it.city, i, e)} className="locations__item-link tabs__item" href="#">
+          <a onClick={(e) => this._onUserChoose(it.city, i, e)} className="locations__item-link tabs__item" href="#">
             <span>{it.city}</span>
           </a>
         </li>
