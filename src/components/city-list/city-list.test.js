@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import CityList from './city-list.jsx';
+import {CityList} from './city-list.jsx';
 
 import offerCities from '../../mocks/offers-city';
 

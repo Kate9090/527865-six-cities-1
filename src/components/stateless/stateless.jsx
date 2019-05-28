@@ -2,6 +2,9 @@ import React, {Component} from "react";
 // import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer';
+
 import CityList from '../city-list/city-list.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
@@ -27,17 +30,15 @@ class Stateless extends Component {
   render() {
     const {
       offer,
-      offerscities,
       onTitleClick,
     } = this.props;
 
-    // const current = this.state.activeCity;
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList cities={offerscities}
+          <CityList
             onUserChoose = {this.onUserChoose}
           />
         </section>
@@ -111,14 +112,27 @@ Stateless.propTypes = {
   })).isRequired,
   onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func,
-  offerscities: PropTypes.arrayOf(PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
-    city: PropTypes.string.isRequired,
-  })).isRequired,
   onCityClick: PropTypes.func,
 
   cityForRender: PropTypes.string.isRequired,
   cityNumberInList: PropTypes.number,
 };
 
-export default Stateless;
+export {Stateless};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  cityForRender: state.city,
+  offer: state.offerInCity,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+  onUserAnswer: (userAnswer) => {
+    dispatch(ActionCreator[`NEW_CITY`](userAnswer));
+  },
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Stateless);

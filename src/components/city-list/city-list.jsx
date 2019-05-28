@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+
 class CityList extends PureComponent {
   constructor(props) {
     super(props);
@@ -50,7 +52,15 @@ CityList.propTypes = {
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
-  onUserChoose: PropTypes.func.isRequired,
+  onUserChoose: PropTypes.func,
 };
 
-export default CityList;
+export {CityList};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  cities: state.cityListArray,
+});
+
+export default connect(
+    mapStateToProps
+)(CityList);

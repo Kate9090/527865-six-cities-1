@@ -5,22 +5,27 @@ import {mount} from 'enzyme';
 
 import Stateless from './stateless.jsx';
 
+import {Provider} from 'react-redux';
+import {reducer} from '../../reducer';
+import {createStore} from 'redux';
+
+const store = createStore(
+    reducer
+);
+
 import offerHotelList from '../../mocks/offers-in-amsterdam';
 const mock = offerHotelList;
-import offerCities from '../../mocks/offers-city';
-const mockOfferCities = offerCities;
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`simulates click event on the title`, () =>{
   const buttonClick = jest.fn();
 
-  const stateless = mount(<Stateless
+  const stateless = mount(<Provider store={store}><Stateless
     offer={mock}
-    offerscities={mockOfferCities}
     cityForRender={`Amsterdam`}
     onTitleClick={buttonClick}
-  />);
+  /></Provider>);
 
   const startButton = stateless.find(`.cities__places-list`).childAt(0).find(`.place-card__name a`);
 

@@ -3,21 +3,26 @@ import renderer from 'react-test-renderer';
 
 import Stateless from './stateless';
 
+import {Provider} from 'react-redux';
+import {reducer} from '../../reducer';
+import {createStore} from 'redux';
+
+const store = createStore(
+    reducer
+);
+
 import offerHotelList from '../../mocks/offers-in-amsterdam';
 const mock = offerHotelList;
-import offerCities from '../../mocks/offers-city';
-const mockOfferCities = offerCities;
 
 it(`renders correctly stateless screen`, () => {
   const tree = renderer
-    .create(<Stateless
+    .create(<Provider store={store}><Stateless
       offer = {mock}
-      offerscities={mockOfferCities}
       cityForRender={`Amsterdam`}
       onTitleClick = {() => {
         mock.title = `The most chippest room`;
       }}
-    />)
+    /></Provider>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
