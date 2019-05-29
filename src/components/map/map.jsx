@@ -1,6 +1,7 @@
 import React from "react";
 import leaflet from "leaflet";
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 class Map extends React.PureComponent {
   constructor(props) {
@@ -24,10 +25,11 @@ class Map extends React.PureComponent {
 
   componentDidMount() {
     if (this.mapRef.current) {
-      const {offer,
+      const {
+        offer, cityOnMap, offerCities
       } = this.props;
 
-      this.city = [52.38333, 4.9];
+      this.city = offerCities[cityOnMap].offerCoord;
 
       this.zooms = 12;
       this.map = leaflet.map(this.mapRef.current, {
@@ -45,7 +47,8 @@ class Map extends React.PureComponent {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         }).addTo(this.map);
 
-      const offerCords = [52.3709553943508, 4.89309666406198];
+      const offerCords = offerCities[cityOnMap].offerCoord;
+      //  [52.3709553943508, 4.89309666406198];
 
       this._handleAddPinOnMap(offerCords);
 
@@ -65,7 +68,20 @@ Map.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   })).isRequired,
-
+  cityOnMap: PropTypes.number.isRequired,
+  offerCities: PropTypes.arrayOf(PropTypes.shape({
+    offerCoord: PropTypes.array.isRequired,
+    city: PropTypes.string.isRequired,
+  })),
 };
 
-export default Map;
+export {Map};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  cityOnMap: state.cityNumber,
+  offerCities: state.cityListArray,
+});
+
+export default connect(
+    mapStateToProps
+)(Map);

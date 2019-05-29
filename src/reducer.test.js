@@ -1,13 +1,24 @@
 import {reducer} from './reducer';
 
+import offerHotelList from './mocks/offers-in-amsterdam';
+import offerCities from './mocks/offers-city';
+
+const offerInCity = offerHotelList;
+const cityAmonthArray = offerCities;
+
 it(`renders correctly when choce other city`, () => {
   expect(reducer({
     city: `Amsterdam`,
-    offersCity: require(`./mocks/offers-city`).offer,
+    offersCity: offerInCity,
+    cityListArray: cityAmonthArray,
+    cityNumber: 0
   }, {
     type: `NEW_CITY`,
     payload: `London`,
   })).toEqual({
     city: `London`,
+    offersCity: offerInCity,
+    cityListArray: cityAmonthArray,
+    cityNumber: 1,
   });
 });

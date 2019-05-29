@@ -123,6 +123,7 @@ export {Stateless};
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cityForRender: state.city,
   offer: state.offerInCity,
+  cityNumberInList: state.cityNumber,
 });
 
 const mapDispatchToProps = (dispatch) => ({

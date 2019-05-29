@@ -2,19 +2,21 @@ import offerHotelList from './mocks/offers-in-amsterdam';
 import offerCities from './mocks/offers-city';
 
 const offerInAmsterdam = offerHotelList;
-const cityListArray = offerCities;
+const cityAmonthArray = offerCities;
 
 const initialState = {
   city: `Amsterdam`,
   offerInCity: offerInAmsterdam,
-  cityListArray,
+  cityListArray: cityAmonthArray,
+  cityNumber: 0
 };
 
 
 const ActionCreator = ({
-  'NEW_CITY': (newCity) => ({
+  'NEW_CITY': (newCity, i) => ({
     type: `NEW_CITY`,
     payload: newCity,
+    num: i
   }),
 
 });
@@ -25,6 +27,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         city: action.payload,
         offerInCity: require(`./mocks/offers-in-${state.city}`).offer,
+        cityListArray: require(`./mocks/offers-city`),
+        cityNumber: action.num
       });
   }
 
