@@ -6,11 +6,6 @@ import {connect} from 'react-redux';
 class CitiesTopMenu extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      cityNumberInList: 0,
-      cityForRender: `Amsterdam`,
-    };
-
     this._onUserChoose = this._onUserChoose.bind(this);
   }
 
@@ -19,17 +14,6 @@ class CitiesTopMenu extends PureComponent {
     evt.preventDefault();
     this.props.onUserAnswer(city, num);
   }
-
-  // _onUserChose(city, num, evt) {
-  //   // const {handleSelectCity} = this.props;
-  //   evt.preventDefault();
-  //   // console.log(num);
-  //   this.setState({
-  //     cityForRender: city,
-  //     cityNumberInList: num,
-  //   });
-  //   this.props.onUserChoose(this.state.cityForRender, this.state.cityNumberInList);
-  // }
 
   render() {
     const {cities} = this.props;
