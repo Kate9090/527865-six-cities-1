@@ -3,7 +3,7 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {mount} from 'enzyme';
 
-import {CityList} from './city-list.jsx';
+import {CitiesTopMenu} from './city-list.jsx';
 
 
 import offerCities from '../../mocks/offers-city';
@@ -16,7 +16,7 @@ it(`simulates click event on the city`, () =>{
   const cityClick = jest.fn();
   // const onUserChoose = jest.fn();
 
-  const cities = mount(<CityList
+  const cities = mount(<CitiesTopMenu
     cities = {mockOffer}
     onUserChoose={cityClick}
   />);
@@ -31,7 +31,7 @@ it(`simulates click event on the city`, () =>{
 it(`simulates click event on the city to set active state`, () =>{
   const cityClick = jest.fn();
 
-  const cities = mount(<CityList
+  const cities = mount(<CitiesTopMenu
     cities = {mockOffer}
     onUserChoose={cityClick}
   />);

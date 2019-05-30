@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import {CityList} from './city-list.jsx';
+import {CitiesTopMenu} from './city-list.jsx';
 
 import offerCities from '../../mocks/offers-city';
 
@@ -9,7 +9,7 @@ const mock = offerCities;
 
 it(`renders correctly City List`, () => {
   const tree = renderer
-    .create(<CityList
+    .create(<CitiesTopMenu
       cities = {mock}
       // onChoice = {jest.fn}
     />)

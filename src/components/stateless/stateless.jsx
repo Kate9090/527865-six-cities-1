@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
-import CityList from '../city-list/city-list.jsx';
+import CitiesTopMenu from '../city-list/city-list.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
@@ -17,10 +17,10 @@ class Stateless extends Component {
       cityNumberInList: 0,
     };
 
-    this.onUserChoose = this.onUserChoose.bind(this);
+    this.onUserAnswer = this.onUserAnswer.bind(this);
   }
 
-  onUserChoose(city, num) {
+  onUserAnswer(city, num) {
     this.setState({
       activeCity: city,
       cityNumberInList: num,
@@ -39,8 +39,8 @@ class Stateless extends Component {
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList
-            onUserChoose = {this.onUserChoose}
+          <CitiesTopMenu
+            onUserAnswer = {this.onUserAnswer}
           />
         </section>
       </div>

@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 class PlaceCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      active: false,
+    };
   }
 
   render() {
