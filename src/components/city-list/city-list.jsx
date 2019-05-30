@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
-class CityList extends PureComponent {
+class CitiesTopMenu extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class CityList extends PureComponent {
   _onUserChoose(city, num, evt) {
     // const {onUserChoose} = this.props;
     evt.preventDefault();
-    this.props.onUserChoose(city, num);
+    this.props.onUserAnswer(city, num);
   }
 
   // _onUserChose(city, num, evt) {
@@ -48,15 +48,15 @@ class CityList extends PureComponent {
   }
 }
 
-CityList.propTypes = {
+CitiesTopMenu.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.shape({
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
-  onUserChoose: PropTypes.func,
+  onUserAnswer: PropTypes.func,
 };
 
-export {CityList};
+export {CitiesTopMenu};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: state.cityListArray,
@@ -64,4 +64,4 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 
 export default connect(
     mapStateToProps
-)(CityList);
+)(CitiesTopMenu);
