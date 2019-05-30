@@ -14,7 +14,7 @@ class Stateless extends Component {
     super(props);
     this.state = {
       activeCity: this.props.cityForRender,
-      activeCityNumber: this.props.cityNumberInList,
+      cityNumberInList: 0,
     };
 
     this.onUserChoose = this.onUserChoose.bind(this);
@@ -23,7 +23,7 @@ class Stateless extends Component {
   onUserChoose(city, num) {
     this.setState({
       activeCity: city,
-      activeCityNumber: num,
+      cityNumberInList: num,
     });
   }
 
@@ -33,6 +33,7 @@ class Stateless extends Component {
       onTitleClick,
     } = this.props;
 
+    // console.log(`cityOnMap ` + this.state.cityNumberInList);
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -115,7 +116,7 @@ Stateless.propTypes = {
   onCityClick: PropTypes.func,
 
   cityForRender: PropTypes.string.isRequired,
-  cityNumberInList: PropTypes.number,
+  // cityNumberInList: PropTypes.number,
 };
 
 export {Stateless};
@@ -123,7 +124,7 @@ export {Stateless};
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cityForRender: state.city,
   offer: state.offerInCity,
-  cityNumberInList: state.cityNumber,
+  // cityNumberInList: state.cityNumber,
 });
 
 const mapDispatchToProps = (dispatch) => ({

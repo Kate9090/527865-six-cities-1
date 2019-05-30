@@ -1,18 +1,18 @@
 const offerCities = [
   {
-    offerCoord: [52.3909553943508, 4.85309666406198],
+    offerCoord: [52.3709553943508, 4.89309666406198],
     city: `Amsterdam`,
   },
   {
-    offerCoord: [52.369553943508, 4.85309666406198],
+    offerCoord: [51.5074, 0.1278],
     city: `London`
   },
   {
-    offerCoord: [52.3909553943508, 4.929309666406198],
+    offerCoord: [55.7558, 37.6173],
     city: `Moscow`,
   },
   {
-    offerCoord: [52.3809553943508, 4.939309666406198],
+    offerCoord: [35.6762, 139.6503],
     city: `Tokio`,
   },
 ];

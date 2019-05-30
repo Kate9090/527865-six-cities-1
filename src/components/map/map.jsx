@@ -29,6 +29,11 @@ class Map extends React.PureComponent {
         offer, cityOnMap, offerCities
       } = this.props;
 
+      // console.log(`offer ` + offer);
+      // console.log(`cityOnMap ` + cityOnMap);
+      // console.log(offerCities[cityOnMap].offerCoord);
+
+
       this.city = offerCities[cityOnMap].offerCoord;
 
       this.zooms = 12;
@@ -48,7 +53,6 @@ class Map extends React.PureComponent {
         }).addTo(this.map);
 
       const offerCords = offerCities[cityOnMap].offerCoord;
-      //  [52.3709553943508, 4.89309666406198];
 
       this._handleAddPinOnMap(offerCords);
 
@@ -78,7 +82,7 @@ Map.propTypes = {
 export {Map};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  cityOnMap: state.cityNumber,
+  // cityOnMap: state.cityNumber,
   offerCities: state.cityListArray,
 });
 
