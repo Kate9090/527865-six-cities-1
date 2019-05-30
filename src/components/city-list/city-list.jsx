@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 const CitiesTopMenu = (props) => {
-  const {cities} = props;
+  const {cities, onUserAnswer} = props;
 
   const _onUserChoose = (city, num, evt) => {
     evt.preventDefault();
-    props.onUserAnswer(city, num);
+    onUserAnswer(city, num);
   };
 
   return <ul className="locations__list tabs__list">
