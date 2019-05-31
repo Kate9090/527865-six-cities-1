@@ -59,7 +59,6 @@ const MainScreen = (props) => {
                 key={i}
                 offer={it}
                 offerCoord={it.offerCoord}
-                current={it.name}
               />
             )
             )}

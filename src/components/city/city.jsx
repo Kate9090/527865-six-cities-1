@@ -8,9 +8,6 @@ import {ActionCreator} from '../../reducer';
 class City extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   active: false,
-    // };
 
     this.handleUserChoose = this.handleUserChoose.bind(this);
   }
@@ -18,9 +15,7 @@ class City extends Component {
   handleUserChoose(city, num, evt) {
     evt.preventDefault();
     this.props.onUserAnswer(city, num);
-    // this.setState({
-    //   active: true,
-    // });
+    this.setActiveItem();
   }
 
   render() {
@@ -28,7 +23,7 @@ class City extends Component {
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
-        className={`locations__item-link tabs__item ${cityObject.city === current ? `tabs__item--current` : ``}`} href="#">
+        className={`locations__item-link tabs__item ${idx === current ? `tabs__item--current` : ``}`} href="#">
         <span>{cityObject.city}</span>
       </a>
     </li>;

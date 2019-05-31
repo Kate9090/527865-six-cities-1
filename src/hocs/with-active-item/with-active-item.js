@@ -11,9 +11,15 @@ const withActiveItem = (WrappedComponent, i) => {
       this._setActiveItem = this._setActiveItem.bind(this);
     }
 
-    _setActiveItem(current) {
+    _setActiveItem(card) {
       this.setState({
-        current,
+        current: card,
+      });
+    }
+
+    _setUnActiveItem() {
+      this.setState({
+        current: null,
       });
     }
 
@@ -21,8 +27,9 @@ const withActiveItem = (WrappedComponent, i) => {
       return (
         <WrappedComponent
           {...this.props}
-          active={this.state.active}
-          setActiveItem={this._setActiveItem} />
+          onClick={this._setActiveItem}
+          onMouseEnter={this._setActiveItem}
+          onMouseLeave={this._setUnActiveItem} />
       );
     }
   };

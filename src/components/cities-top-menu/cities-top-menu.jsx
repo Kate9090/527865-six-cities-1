@@ -14,7 +14,7 @@ const CitiesTopMenu = (props) => {
 
   return <ul className="locations__list tabs__list">
     {cities.map((it, i) => (
-      <WrappedCity current={it.city} key={`city-${i}`} cityObject={it} idx={i} />
+      <WrappedCity key={`city-${i}`} cityObject={it} idx={i} />
     )
     )}
   </ul>;
