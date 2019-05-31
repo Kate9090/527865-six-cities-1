@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
-import CitiesTopMenu from '../city-list/city-list.jsx';
+import CitiesTopMenu from '../cities-top-menu/cities-top-menu.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
