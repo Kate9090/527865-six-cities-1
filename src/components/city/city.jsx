@@ -19,11 +19,15 @@ class City extends Component {
   }
 
   render() {
-    const {cityObject, idx, current} = this.props;
+    const {cityObject, idx} = this.props;
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
-        className={`locations__item-link tabs__item ${idx === current ? `tabs__item--current` : ``}`} href="#">
+        onMouseLeave={() => this.setUnActiveItem()}
+        className={`locations__item-link tabs__item`}
+        //  ${idx === current ?
+        // `tabs__item--current` : ``}`}
+        href="#">
         <span>{cityObject.city}</span>
       </a>
     </li>;
@@ -37,7 +41,6 @@ City.propTypes = {
     city: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
-  current: PropTypes.string.isRequired,
 };
 
 export {City};

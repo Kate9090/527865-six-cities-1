@@ -5,11 +5,11 @@ class PlaceCard extends Component {
   constructor(props) {
     super(props);
 
-    this.setActiveItem = this.setActiveItem.bind(this);
+    // this.setActiveItem = this.setActiveItem.bind(this);
   }
 
   render() {
-    const {offer, setActiveItem, setUnActiveItem} = this.props;
+    const {offer} = this.props;
 
     return <article className="cities__place-card place-card">
       <div className="place-card__mark">
@@ -23,7 +23,9 @@ class PlaceCard extends Component {
             onClick= {this.setActiveItem}
             onMouseEnter={this.setActiveItem}
             onMouseLeave={this.setUnActiveItem}
-            className={`place-card__image ${index === current ? `place-card__image--current` : ``}`} src={offer.src} width="260" height="200" alt="Place image" />
+            className={`place-card__image`}
+            //  {index === current ? `place-card__image--current` : ``}
+            src={offer.src} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
