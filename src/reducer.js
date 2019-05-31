@@ -13,10 +13,10 @@ const initialState = {
 
 
 const ActionCreator = ({
-  'NEW_CITY': (newCity, i) => ({
+  'NEW_CITY': (newCity, numberOfTheCityInList) => ({
     type: `NEW_CITY`,
     payload: newCity,
-    num: i,
+    num: numberOfTheCityInList,
   }),
 
 });
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
         city: action.payload,
         // offerInCity,
         // cityListArray: require(`./mocks/offers-city`),
-        cityNumber: action.num
+        cityNumber: action.num,
       });
   }
 

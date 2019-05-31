@@ -72,7 +72,7 @@ class Map extends React.PureComponent {
       const {offer, cityOnMap, offerCities
       } = this.props;
 
-      console.log(`offerCities ` + offerCities);
+      // console.log(`offerCities ` + offerCities);
 
       this.city = offerCities[cityOnMap].offerCoord;
 

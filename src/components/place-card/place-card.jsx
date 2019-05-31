@@ -10,7 +10,7 @@ class PlaceCard extends Component {
   }
 
   render() {
-    const {offer, onChoice} = this.props;
+    const {offer} = this.props;
 
     return <article className="cities__place-card place-card">
       <div className="place-card__mark">
@@ -47,7 +47,7 @@ class PlaceCard extends Component {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={onChoice} href="#">{offer.title}</a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.name}</p>
       </div>
@@ -64,7 +64,6 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
-  onChoice: PropTypes.func,
 };
 
 export default PlaceCard;

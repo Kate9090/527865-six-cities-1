@@ -11,7 +11,6 @@ it(`renders correctly City List`, () => {
   const tree = renderer
     .create(<CitiesTopMenu
       cities = {mock}
-      // onChoice = {jest.fn}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

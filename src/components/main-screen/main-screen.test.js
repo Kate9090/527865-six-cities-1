@@ -19,9 +19,6 @@ it(`renders correctly stateless screen`, () => {
     .create(<Provider store={store}><MainScreen
       offer = {mock}
       cityForRender={`Amsterdam`}
-      onTitleClick = {() => {
-        mock.title = `The most chippest room`;
-      }}
     /></Provider>)
     .toJSON();
   expect(tree).toMatchSnapshot();

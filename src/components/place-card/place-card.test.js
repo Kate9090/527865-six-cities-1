@@ -10,9 +10,6 @@ it(`renders correctly PlaceCard`, () => {
   const tree = renderer
     .create(<PlaceCard
       offer = {mock}
-      onChoice = {() => {
-        mock[0].title = `The most chippest room`;
-      }}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

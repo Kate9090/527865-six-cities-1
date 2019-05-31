@@ -27,24 +27,3 @@ it(`simulates click event on the city`, () =>{
 
   expect(cityClick).toHaveBeenCalledTimes(1);
 });
-
-// it(`simulates click event on the city to set active city`, () =>{
-//   const cityClick = jest.fn();
-
-//   const cities = mount(<CitiesTopMenu
-//     cities = {mockOffer}
-//     onUserAnswer={cityClick}
-//   />);
-
-//   const oneOfCity = cities.find(`a.locations__item-link`);
-
-//   oneOfCity.at(1).simulate(`click`);
-
-//   // expect(cityClick).toHaveBeenCalledTimes(1);
-//   cities.update();
-
-//   const statusOneOfCity = cities.props(`city`);
-
-//   expect(statusOneOfCity).toEqual(`London`);
-// });
-

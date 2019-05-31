@@ -15,6 +15,7 @@ it(`renders correctly when choce other city`, () => {
   }, {
     type: `NEW_CITY`,
     payload: `London`,
+    num: 1,
   })).toEqual({
     city: `London`,
     offersCity: offerInCity,

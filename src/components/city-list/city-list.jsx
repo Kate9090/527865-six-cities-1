@@ -10,8 +10,6 @@ const CitiesTopMenu = (props) => {
   const handleUserChoose = (city, num, evt) => {
     evt.preventDefault();
     onUserAnswer(city, num);
-
-    // console.log(num);
   };
 
   return <ul className="locations__list tabs__list">
