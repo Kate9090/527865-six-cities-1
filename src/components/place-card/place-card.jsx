@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 class PlaceCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      active: false,
-    };
+    // this.state = {
+    //   active: false,
+    // };
   }
 
   render() {
-    const {offer} = this.props;
+    const {offer, current} = this.props;
 
     return <article className="cities__place-card place-card">
       <div className="place-card__mark">
@@ -20,11 +20,13 @@ class PlaceCard extends Component {
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img onClick= {() => {
-            this.setState({
-              active: true,
-            });
-          }} className="place-card__image" src={offer.src} width="260" height="200" alt="Place image" />
+          <img
+            // onClick= {() => {
+            //   this.setState({
+            //     active: true,
+            //   });
+            // }}
+            className={`place-card__image ${offer.name === current ? `place-card__image--current` : ``}`} src={offer.src} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -64,6 +66,7 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
+  current: PropTypes.string.isRequired,
 };
 
 export default PlaceCard;
