@@ -11,6 +11,7 @@ it(`renders correctly when choce other city`, () => {
     city: `Amsterdam`,
     offersCity: offerInCity,
     cityListArray: cityAmonthArray,
+    cityNumber: 0,
   }, {
     type: `NEW_CITY`,
     payload: `London`,
@@ -18,5 +19,6 @@ it(`renders correctly when choce other city`, () => {
     city: `London`,
     offersCity: offerInCity,
     cityListArray: cityAmonthArray,
+    cityNumber: 1,
   });
 });

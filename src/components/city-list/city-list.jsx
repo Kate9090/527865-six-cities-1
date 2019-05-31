@@ -2,20 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer';
 
 const CitiesTopMenu = (props) => {
   const {cities, onUserAnswer} = props;
 
-  const _onUserChoose = (city, num, evt) => {
+  const handleUserChoose = (city, num, evt) => {
     evt.preventDefault();
     onUserAnswer(city, num);
+
+    // console.log(num);
   };
 
   return <ul className="locations__list tabs__list">
     {cities.map((it, i) => (
       // <CityFromTopMenu key={`city-${i}`}/>
       <li className="locations__item" key={`city-${i}`}>
-        <a onClick={(e) => _onUserChoose(it.city, i, e)} className="locations__item-link tabs__item" href="#">
+        <a onClick={(e) => handleUserChoose(it.city, i, e)} className="locations__item-link tabs__item" href="#">
           <span>{it.city}</span>
         </a>
       </li>
@@ -38,6 +41,12 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: state.cityListArray,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onUserAnswer: (userAnswer) => {
+    dispatch(ActionCreator[`NEW_CITY`](userAnswer));
+  },
+});
+
 export default connect(
-    mapStateToProps
+    mapStateToProps, mapDispatchToProps
 )(CitiesTopMenu);

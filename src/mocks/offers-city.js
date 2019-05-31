@@ -12,7 +12,7 @@ const offerCities = [
     city: `Moscow`,
   },
   {
-    offerCoord: [35.6762, 139.6503],
+    offerCoord: [35.6804, 139.7690],
     city: `Tokio`,
   },
 ];

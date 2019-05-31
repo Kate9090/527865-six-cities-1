@@ -8,7 +8,7 @@ const initialState = {
   city: `Amsterdam`,
   offerInCity: offerInAmsterdam,
   cityListArray: cityAmonthArray,
-  // cityNumber: 0
+  cityNumber: 0,
 };
 
 
@@ -16,7 +16,7 @@ const ActionCreator = ({
   'NEW_CITY': (newCity, i) => ({
     type: `NEW_CITY`,
     payload: newCity,
-    num: i
+    num: i,
   }),
 
 });
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
         city: action.payload,
         // offerInCity,
         // cityListArray: require(`./mocks/offers-city`),
-        // cityNumber: action.num
+        cityNumber: action.num
       });
   }
 

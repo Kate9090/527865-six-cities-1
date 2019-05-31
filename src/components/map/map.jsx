@@ -23,16 +23,56 @@ class Map extends React.PureComponent {
       .marker(offerCityCords, {icon}).addTo(this.map);
   }
 
+  // addCityPinOnMap() {
+  // const {offer, cityOnMap, offerCities
+  // } = this.props;
+
+  // this.city = offerCities[cityOnMap].offerCoord;
+  // this.map.setView(this.city, this.zooms);
+
+  // leaflet
+  //   .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+  //     detectRetina: true,
+  //     attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+  //   }).addTo(this.map);
+
+  // const offerCords = offerCities[cityOnMap].offerCoord;
+
+  // this._handleAddPinOnMap(offerCords);
+
+  // for (let i = 0; i < offer.length; i++) {
+  //   this._handleAddPinOnMap(offer[i].offerCoord);
+  // }
+  // }
+
+  componentDidUpdate() {
+    const {offer, cityOnMap, offerCities
+    } = this.props;
+
+    this.city = offerCities[cityOnMap].offerCoord;
+    this.map.setView(this.city, this.zooms);
+
+    leaflet
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        detectRetina: true,
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      }).addTo(this.map);
+
+    const offerCords = offerCities[cityOnMap].offerCoord;
+
+    this._handleAddPinOnMap(offerCords);
+
+    for (let i = 0; i < offer.length; i++) {
+      this._handleAddPinOnMap(offer[i].offerCoord);
+    }
+  }
+
   componentDidMount() {
     if (this.mapRef.current) {
-      const {
-        offer, cityOnMap, offerCities
+      const {offer, cityOnMap, offerCities
       } = this.props;
 
-      // console.log(`offer ` + offer);
-      // console.log(`cityOnMap ` + cityOnMap);
-      // console.log(offerCities[cityOnMap].offerCoord);
-
+      console.log(`offerCities ` + offerCities);
 
       this.city = offerCities[cityOnMap].offerCoord;
 
@@ -82,8 +122,8 @@ Map.propTypes = {
 export {Map};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  // cityOnMap: state.cityNumber,
   offerCities: state.cityListArray,
+  cityOnMap: state.cityNumber,
 });
 
 export default connect(

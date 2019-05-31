@@ -1,9 +1,9 @@
 import React from "react";
-import Stateless from '../stateless/stateless.jsx';
+import MainScreen from '../main-screen/main-screen.jsx';
 
 const App = () => {
 
-  return <Stateless />;
+  return <MainScreen />;
 };
 
 export default App;

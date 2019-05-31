@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import Stateless from './stateless';
+import MainScreen from './main-screen';
 
 import {Provider} from 'react-redux';
 import {reducer} from '../../reducer';
@@ -16,7 +16,7 @@ const mock = offerHotelList;
 
 it(`renders correctly stateless screen`, () => {
   const tree = renderer
-    .create(<Provider store={store}><Stateless
+    .create(<Provider store={store}><MainScreen
       offer = {mock}
       cityForRender={`Amsterdam`}
       onTitleClick = {() => {
