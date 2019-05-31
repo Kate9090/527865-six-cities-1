@@ -11,14 +11,12 @@ const initialState = {
   cityNumber: 0,
 };
 
-
 const ActionCreator = ({
   'NEW_CITY': (newCity, numberOfTheCityInList) => ({
     type: `NEW_CITY`,
     payload: newCity,
     num: numberOfTheCityInList,
   }),
-
 });
 
 const reducer = (state = initialState, action) => {

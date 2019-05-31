@@ -40,8 +40,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUserAnswer: (userAnswer) => {
-    dispatch(ActionCreator[`NEW_CITY`](userAnswer));
+  onUserAnswer: (city, num) => {
+    dispatch(ActionCreator[`NEW_CITY`](city, num));
   },
 });
 
