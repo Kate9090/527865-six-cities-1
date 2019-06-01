@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import City from '../city/city.jsx';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-const WrappedCity = withActiveItem(City, 0);
+const WrappedCity = withActiveItem(City);
 
 
 const CitiesTopMenu = (props) => {
