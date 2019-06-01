@@ -40,7 +40,7 @@ City.propTypes = {
     city: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
-  onCardClick: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func,
   // onCardMouseEnter: PropTypes.func.isRequired,
   // onCardMouseOut: PropTypes.func.isRequired,
 };

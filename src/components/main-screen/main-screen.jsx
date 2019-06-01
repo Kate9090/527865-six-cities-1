@@ -11,7 +11,6 @@ import Map from '../map/map.jsx';
 import withActiveCard from '../../hocs/with-active-card/with-active-card.js';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
 
-
 const MainScreen = (props) => {
   const {
     offer,

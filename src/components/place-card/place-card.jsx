@@ -59,9 +59,9 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseOut: PropTypes.func.isRequired
+  onCardClick: PropTypes.func,
+  onCardMouseEnter: PropTypes.func,
+  onCardMouseOut: PropTypes.func
 };
 
 export default PlaceCard;

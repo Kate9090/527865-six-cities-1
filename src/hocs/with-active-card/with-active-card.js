@@ -29,9 +29,7 @@ const withActiveCard = (WrappedComponent) => {
     _renderOffers() {
       return <WrappedComponent
         onCardClick={this._setActiveItem()}
-        onCardMouseEnter={() => {
-          this._setActiveItem();
-        }}
+        onCardMouseEnter={this._setActiveItem()}
         onCardMouseOut={this._setUnActiveItem()}
       />;
     }

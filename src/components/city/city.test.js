@@ -12,6 +12,7 @@ it(`renders correctly City List`, () => {
     .create(<City
       cityObject = {mock}
       idx = {2}
+      onClick={jest.fn()}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

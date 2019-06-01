@@ -17,6 +17,7 @@ it(`simulates click event on the city`, () =>{
     cityObject = {mockOffer}
     idx = {2}
     onUserAnswer={cityClick}
+    onClick= {jest.fn()}
   />);
 
   const oneOfCity = cities.find(`a.locations__item-link`);

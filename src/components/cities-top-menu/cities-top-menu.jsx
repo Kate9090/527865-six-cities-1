@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
 
-import withActiveCard from '../../hocs/with-active-item/with-active-item.js';
+import withActiveCard from '../../hocs/with-active-card/with-active-card.js';
 const WrappedCity = withActiveCard(City);
 
 

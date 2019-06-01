@@ -7,25 +7,24 @@ import PlaceCard from './place-card.jsx';
 
 
 import offer from '../../mocks/offers-in-amsterdam';
-const mockOffer = offer[2];
+const mockOffer = offer[1];
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`simulates click event on the image to set active state`, () =>{
-  const imageClick = jest.fn();
+it(`simulates click event on the card`, () =>{
+  const onCardClick = jest.fn();
 
   const placeCard = mount(<PlaceCard
     offer = {mockOffer}
-    onImageChoice={imageClick}
+    onClick = {onCardClick}
+    onMouseOver={jest.fn()}
+    onMouseOut={jest.fn()}
   />);
 
   const oneOfImage = placeCard.find(`.place-card__image`);
 
   oneOfImage.simulate(`click`);
-  placeCard.update();
 
-  const statusCard = placeCard.state(`active`);
-
-  expect(statusCard).toEqual(true);
+  expect(onCardClick).toHaveBeenCalledTimes(1);
 });
 
