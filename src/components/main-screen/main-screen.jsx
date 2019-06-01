@@ -16,6 +16,19 @@ const MainScreen = (props) => {
     offer,
   } = props;
 
+  const _renderPlaceCard = () => {
+
+    return <>
+    {offer.map((it, i) => (
+      <WrappedPlaceCard
+        key={i}
+        offer={it}
+      />
+    )
+    )}
+    </>;
+  };
+
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
@@ -52,13 +65,14 @@ const MainScreen = (props) => {
 
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {offer.map((it, i) => (
+            {_renderPlaceCard()}
+            {/* {offer.map((it, i) => (
               <WrappedPlaceCard
                 key={i}
                 offer={it}
               />
             )
-            )}
+            )} */}
           </div>
         </section>
         <div className="cities__right-section">

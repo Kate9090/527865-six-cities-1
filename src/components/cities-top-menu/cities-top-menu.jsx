@@ -12,12 +12,19 @@ const WrappedCity = withActiveCard(City);
 const CitiesTopMenu = (props) => {
   const {cities} = props;
 
-  return <ul className="locations__list tabs__list">
-    {cities.map((it, i) => (
-      <WrappedCity key={`city-${i}`} cityObject={it} idx={i} />
-    )
-    )}
-  </ul>;
+  const _renderCitiesTopMenu = () => {
+
+    return <ul className="locations__list tabs__list">
+      {cities.map((it, i) => (
+        <WrappedCity key={`city-${i}`} cityObject={it} idx={i} />
+      )
+      )}
+    </ul>;
+  };
+
+  return <>
+  {_renderCitiesTopMenu()}
+  </>;
 };
 
 CitiesTopMenu.propTypes = {

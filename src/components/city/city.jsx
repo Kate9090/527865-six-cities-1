@@ -41,7 +41,7 @@ City.propTypes = {
   }).isRequired,
   idx: PropTypes.number.isRequired,
   onCardClick: PropTypes.func,
-  // onCardMouseEnter: PropTypes.func.isRequired,
+  // onCardMouseEnter: PropTypes.func,
   // onCardMouseOut: PropTypes.func.isRequired,
 };
 
