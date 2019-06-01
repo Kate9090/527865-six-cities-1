@@ -1,10 +1,10 @@
 import React from "react";
-// import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
 import CitiesTopMenu from '../cities-top-menu/cities-top-menu.jsx';
+import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
@@ -14,7 +14,7 @@ const WrappedPlaceCard = withActiveItem(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offer, activeCity,
+    offer,
   } = props;
 
   return <main className="page__main page__main--index">
@@ -28,8 +28,7 @@ const MainScreen = (props) => {
     <div className="cities__places-wrapper">
       <div className="cities__places-container container">
         <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in {activeCity}</b>
+          <HeaderPlaces />
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex="0">
@@ -58,7 +57,6 @@ const MainScreen = (props) => {
               <WrappedPlaceCard
                 key={i}
                 offer={it}
-                offerCoord={it.offerCoord}
               />
             )
             )}
@@ -82,7 +80,6 @@ MainScreen.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   })).isRequired,
-  activeCity: PropTypes.string.isRequired,
 };
 
 export {MainScreen};
