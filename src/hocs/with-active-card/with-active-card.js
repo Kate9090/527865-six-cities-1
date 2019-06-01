@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import PlaceCard from '../../components/place-card/place-card.jsx';
 
 const withActiveCard = (WrappedComponent) => {
   class WithActiveCard extends PureComponent {
@@ -28,7 +27,7 @@ const withActiveCard = (WrappedComponent) => {
     }
 
     _renderOffers() {
-      return <PlaceCard
+      return <WrappedComponent
         onCardClick={this._setActiveItem()}
         onCardMouseEnter={() => {
           this._setActiveItem();

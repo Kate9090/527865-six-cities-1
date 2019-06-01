@@ -5,16 +5,16 @@ import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-const WrappedCity = withActiveItem(City);
+import withActiveCard from '../../hocs/with-active-item/with-active-item.js';
+const WrappedCity = withActiveCard(City);
 
 
 const CitiesTopMenu = (props) => {
-  const {cities, onCityClick} = props;
+  const {cities} = props;
 
   return <ul className="locations__list tabs__list">
     {cities.map((it, i) => (
-      <WrappedCity key={`city-${i}`} setActiveItem={onCityClick} cityObject={it} idx={i} />
+      <WrappedCity key={`city-${i}`} cityObject={it} idx={i} />
     )
     )}
   </ul>;
@@ -25,14 +25,12 @@ CitiesTopMenu.propTypes = {
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
-  onCityClick: PropTypes.func.isRequired,
 };
 
 export {CitiesTopMenu};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: state.cityListArray,
-
 });
 
 export default connect(
