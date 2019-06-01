@@ -8,14 +8,23 @@ import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-const WrappedPlaceCard = withActiveItem(PlaceCard);
+import withActiveCard from '../../hocs/with-active-item/with-active-item.js';
+const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 
 const MainScreen = (props) => {
   const {
     offer,
   } = props;
+
+  // _renderPlaceList = () => {
+  //   const {city, offers} = this.props;
+
+  //   return <WrappedPlaceCard
+  //     selectedCity={city}
+  //     offers={offers}
+  //   />;
+  // }
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>

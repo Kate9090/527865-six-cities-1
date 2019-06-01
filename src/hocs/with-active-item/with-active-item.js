@@ -1,38 +1,53 @@
 import React, {PureComponent} from 'react';
+import PlaceCard from '../../components/place-card/place-card.jsx';
 
-const withActiveItem = (WrappedComponent, i) => {
-  return class WithActiveItem extends PureComponent {
+const withActiveCard = (WrappedComponent) => {
+  class WithActiveCard extends PureComponent {
     constructor(props) {
       super(props);
+
       this.state = {
-        current: i,
+        active: false,
       };
 
       this._setActiveItem = this._setActiveItem.bind(this);
+      this._setUnActiveItem = this._setUnActiveItem.bind(this);
+      this._renderOffers = this._renderOffers.bind(this);
     }
 
-    _setActiveItem(card) {
+    _setActiveItem() {
       this.setState({
-        current: card,
+        active: true,
       });
     }
 
     _setUnActiveItem() {
       this.setState({
-        current: null,
+        active: false,
       });
+    }
+
+    _renderOffers() {
+      return <PlaceCard
+        onCardClick={this._setActiveItem()}
+        onCardMouseEnter={() => {
+          this._setActiveItem();
+        }}
+        onCardMouseOut={this._setUnActiveItem()}
+      />;
     }
 
     render() {
       return (
         <WrappedComponent
           {...this.props}
-          onClick={this._setActiveItem}
-          onMouseEnter={this._setActiveItem}
-          onMouseLeave={this._setUnActiveItem} />
+          renderOffers={this._renderOffers}
+          className={this.state.active === true ? `active` : ``} />
       );
     }
-  };
+  }
+
+  return WithActiveCard;
 };
 
-export default withActiveItem;
+export default withActiveCard;

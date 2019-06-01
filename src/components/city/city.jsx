@@ -15,7 +15,7 @@ class City extends Component {
   handleUserChoose(city, num, evt) {
     evt.preventDefault();
     this.props.onUserAnswer(city, num);
-    this.setActiveItem();
+    this.props.setActiveItem();
   }
 
   render() {
@@ -23,10 +23,8 @@ class City extends Component {
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
-        // onMouseLeave={() => this.setUnActiveItem()}
+
         className={`locations__item-link tabs__item`}
-        //  ${idx === current ?
-        // `tabs__item--current` : ``}`}
         href="#">
         <span>{cityObject.city}</span>
       </a>
@@ -41,6 +39,7 @@ City.propTypes = {
     city: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
 };
 
 export {City};

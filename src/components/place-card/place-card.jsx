@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 class PlaceCard extends Component {
   constructor(props) {
     super(props);
-
-    // this.setActiveItem = this.setActiveItem.bind(this);
   }
 
   render() {
@@ -65,9 +63,6 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired
 };
 
 export default PlaceCard;

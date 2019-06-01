@@ -10,11 +10,11 @@ const WrappedCity = withActiveItem(City);
 
 
 const CitiesTopMenu = (props) => {
-  const {cities} = props;
+  const {cities, onCityClick} = props;
 
   return <ul className="locations__list tabs__list">
     {cities.map((it, i) => (
-      <WrappedCity key={`city-${i}`} cityObject={it} idx={i} />
+      <WrappedCity key={`city-${i}`} setActiveItem={onCityClick} cityObject={it} idx={i} />
     )
     )}
   </ul>;
@@ -25,12 +25,14 @@ CitiesTopMenu.propTypes = {
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
+  onCityClick: PropTypes.func.isRequired,
 };
 
 export {CitiesTopMenu};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: state.cityListArray,
+
 });
 
 export default connect(
