@@ -8,7 +8,7 @@ import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
-import withActiveCard from '../../hocs/with-active-card/with-active-card.js';
+import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
