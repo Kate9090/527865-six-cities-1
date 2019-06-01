@@ -8,6 +8,9 @@ import CitiesTopMenu from '../cities-top-menu/cities-top-menu.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+const WrappedPlaceCard = withActiveItem(PlaceCard);
+
 
 const MainScreen = (props) => {
   const {
@@ -52,7 +55,7 @@ const MainScreen = (props) => {
           </form>
           <div className="cities__places-list places__list tabs__content">
             {offer.map((it, i) => (
-              <PlaceCard
+              <WrappedPlaceCard
                 key={i}
                 offer={it}
                 offerCoord={it.offerCoord}

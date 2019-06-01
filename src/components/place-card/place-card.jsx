@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 class PlaceCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      active: false,
-    };
+
+    // this.setActiveItem = this.setActiveItem.bind(this);
   }
 
   render() {
@@ -20,11 +19,13 @@ class PlaceCard extends Component {
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img onClick= {() => {
-            this.setState({
-              active: true,
-            });
-          }} className="place-card__image" src={offer.src} width="260" height="200" alt="Place image" />
+          <img
+            onClick= {this.setActiveItem}
+            onMouseEnter={this.setActiveItem}
+            onMouseLeave={this.setUnActiveItem}
+            className={`place-card__image`}
+            //  {index === current ? `place-card__image--current` : ``}
+            src={offer.src} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -64,6 +65,9 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired
 };
 
 export default PlaceCard;
