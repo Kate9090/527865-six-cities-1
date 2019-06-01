@@ -1,20 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import offer from "./mocks/offers";
+import {Provider} from 'react-redux';
+import {reducer} from './reducer';
+import {createStore} from 'redux';
 
 import App from './components/app/app.jsx';
 
-const init = (hotelOffers) => {
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-  ReactDOM.render(
-      <App
-        offer={hotelOffers}
-        ClickOnTitle={() => {
-          // console.log(`click on the hotel's title`);
-        }
-        }
-      />, document.querySelector(`.main`));
+const init = () => {
+
+  ReactDOM.render(<Provider store={store}>
+    <App />
+  </Provider>, document.querySelector(`.main`));
 };
 
-init(offer);
+init();

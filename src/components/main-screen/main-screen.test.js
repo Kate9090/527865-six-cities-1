@@ -1,20 +1,24 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import App from './app.jsx';
+import MainScreen from './main-screen';
 
 import {Provider} from 'react-redux';
 import {reducer} from '../../reducer';
 import {createStore} from 'redux';
 
 const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    reducer
 );
 
-it(`renders correctly app screen`, () => {
+import offerHotelList from '../../mocks/offers-in-amsterdam';
+const mock = offerHotelList;
+
+it(`renders correctly stateless screen`, () => {
   const tree = renderer
-    .create(<Provider store={store}><App
+    .create(<Provider store={store}><MainScreen
+      offer = {mock}
+      cityForRender={`Amsterdam`}
     /></Provider>)
     .toJSON();
   expect(tree).toMatchSnapshot();

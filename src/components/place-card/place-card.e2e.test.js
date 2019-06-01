@@ -6,7 +6,7 @@ import {mount} from 'enzyme';
 import PlaceCard from './place-card.jsx';
 
 
-import offer from '../../mocks/offers';
+import offer from '../../mocks/offers-in-amsterdam';
 const mockOffer = offer[2];
 
 Enzyme.configure({adapter: new Adapter()});
@@ -17,9 +17,6 @@ it(`simulates click event on the image to set active state`, () =>{
   const placeCard = mount(<PlaceCard
     offer = {mockOffer}
     onImageChoice={imageClick}
-    onChoice = {() => {
-      mockOffer.title = `The most chippest room`;
-    }}
   />);
 
   const oneOfImage = placeCard.find(`.place-card__image`);

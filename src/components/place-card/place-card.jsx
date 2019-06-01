@@ -9,24 +9,8 @@ class PlaceCard extends Component {
     };
   }
 
-  // _handleAddHotelOnMap() {
-  //   const {offerList} = this.props;
-  //   const {offerCords} = offerList;
-
-  //   const icon = leaflet.icon({
-  //     iconUrl: `img/pin.svg`,
-  //     iconSize: [30, 30]
-  //   });
-
-  //   leaflet
-  //     .marker(offerCords, {icon})
-  //     .addTo(this.map);
-  // }
-
   render() {
-    const {offer, onChoice} = this.props;
-    // console.log(offer);
-    // const {active} = this.state;
+    const {offer} = this.props;
 
     return <article className="cities__place-card place-card">
       <div className="place-card__mark">
@@ -63,7 +47,7 @@ class PlaceCard extends Component {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={onChoice} href="#">{offer.title}</a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.name}</p>
       </div>
@@ -80,7 +64,6 @@ PlaceCard.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   }).isRequired,
-  onChoice: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
