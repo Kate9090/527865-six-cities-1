@@ -12,6 +12,10 @@ describe(`withActiveCard`, () => {
     const wrapper = shallow(<MockComponentWrapped />);
 
     expect(wrapper.state().active).toEqual(false);
+
+    wrapper.props().onCardClick();
+
+    expect(wrapper.state().active).toEqual(true);
   });
 });
 
