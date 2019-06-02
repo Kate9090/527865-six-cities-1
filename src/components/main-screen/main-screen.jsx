@@ -13,7 +13,7 @@ const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offer,
+    offer, onCardClick,
   } = props;
 
   const _renderPlaceCard = () => {
@@ -23,6 +23,7 @@ const MainScreen = (props) => {
       <WrappedPlaceCard
         key={i}
         offer={it}
+        onCardClick={onCardClick}
       />
     )
     )}
@@ -93,6 +94,7 @@ MainScreen.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   })).isRequired,
+  onCardClick: PropTypes.func,
 };
 
 export {MainScreen};

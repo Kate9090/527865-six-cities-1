@@ -23,7 +23,7 @@ class City extends Component {
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
-        // onMouseOver={this.props.onCardMouseEnter()}
+        // handleClick={() => this.props.onCardClick()}
         // onMouseOut={this.props.onCardMouseOut()}
         className={`locations__item-link tabs__item`}
         href="#">
