@@ -5,7 +5,6 @@ import {mount} from 'enzyme';
 
 import PlaceCard from './place-card.jsx';
 
-
 import offer from '../../mocks/offers-in-amsterdam';
 const mockOffer = offer[1];
 
@@ -16,7 +15,7 @@ it(`simulates click event on the card`, () =>{
 
   const placeCard = mount(<PlaceCard
     offer = {mockOffer}
-    onClick = {onCardClick}
+    onCardClick = {onCardClick}
     onMouseOver={jest.fn()}
     onMouseOut={jest.fn()}
   />);

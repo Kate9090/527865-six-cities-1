@@ -16,8 +16,8 @@ it(`simulates click event on the city`, () =>{
   const cities = mount(<City
     cityObject = {mockOffer}
     idx = {2}
-    onUserAnswer={cityClick}
-    onClick= {jest.fn()}
+    onUserAnswer={jest.fn()}
+    onCardClick= {cityClick}
   />);
 
   const oneOfCity = cities.find(`a.locations__item-link`);
