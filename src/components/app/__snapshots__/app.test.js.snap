@@ -195,6 +195,9 @@ exports[`renders correctly app screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
@@ -297,6 +300,9 @@ exports[`renders correctly app screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
@@ -399,6 +405,9 @@ exports[`renders correctly app screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
@@ -501,6 +510,9 @@ exports[`renders correctly app screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"

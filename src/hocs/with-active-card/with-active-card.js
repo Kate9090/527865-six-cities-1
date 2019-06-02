@@ -29,9 +29,9 @@ const withActiveCard = (WrappedComponent) => {
       return (
         <WrappedComponent
           {...this.props}
-          onCardClick={this._setActiveItem()}
-          onCardMouseEnter={this._setActiveItem()}
-          onCardMouseOut={this._setUnActiveItem()}
+          onCardClick={this._setActiveItem}
+          onCardMouseEnter={this._setActiveItem}
+          onCardMouseOut={this._setUnActiveItem}
           className={this.state.active === true ? `active` : ``} />
       );
     }
