@@ -23,8 +23,6 @@ class City extends Component {
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
-        // handleClick={() => this.props.onCardClick()}
-        // onMouseOut={this.props.onCardMouseOut()}
         className={`locations__item-link tabs__item`}
         href="#">
         <span>{cityObject.city}</span>
@@ -41,8 +39,7 @@ City.propTypes = {
   }).isRequired,
   idx: PropTypes.number.isRequired,
   onCardClick: PropTypes.func,
-  // onCardMouseEnter: PropTypes.func,
-  // onCardMouseOut: PropTypes.func.isRequired,
+  onCardMouseOut: PropTypes.func,
 };
 
 export {City};

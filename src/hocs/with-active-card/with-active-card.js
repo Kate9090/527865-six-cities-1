@@ -11,7 +11,6 @@ const withActiveCard = (WrappedComponent) => {
 
       this._setActiveItem = this._setActiveItem.bind(this);
       this._setUnActiveItem = this._setUnActiveItem.bind(this);
-      // this._renderOffers = this._renderOffers.bind(this);
     }
 
     _setActiveItem() {
@@ -26,14 +25,6 @@ const withActiveCard = (WrappedComponent) => {
       });
     }
 
-    // _renderOffers() {
-    //   return <WrappedComponent
-    //     onCardClick={this._setActiveItem()}
-    //     onCardMouseEnter={this._setActiveItem()}
-    //     onCardMouseOut={this._setUnActiveItem()}
-    //   />;
-    // }
-
     render() {
       return (
         <WrappedComponent
@@ -43,6 +34,10 @@ const withActiveCard = (WrappedComponent) => {
           onCardMouseOut={this._setUnActiveItem()}
           className={this.state.active === true ? `active` : ``} />
       );
+    }
+
+    componentWillUpdate() {
+
     }
   }
 
