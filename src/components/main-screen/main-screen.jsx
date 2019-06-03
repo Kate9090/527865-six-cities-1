@@ -1,18 +1,34 @@
 import React from "react";
-// import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
 import CitiesTopMenu from '../cities-top-menu/cities-top-menu.jsx';
+import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
+import withActiveCard from '../../hocs/with-active-card/with-active-card';
+const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offer, activeCity,
+    offer, onCardClick,
   } = props;
+
+  const _renderPlaceCard = () => {
+
+    return <>
+    {offer.map((it, i) => (
+      <WrappedPlaceCard
+        key={i}
+        offer={it}
+        onCardClick={onCardClick}
+      />
+    )
+    )}
+    </>;
+  };
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
@@ -25,8 +41,7 @@ const MainScreen = (props) => {
     <div className="cities__places-wrapper">
       <div className="cities__places-container container">
         <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in {activeCity}</b>
+          <HeaderPlaces />
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex="0">
@@ -51,14 +66,14 @@ const MainScreen = (props) => {
 
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {offer.map((it, i) => (
-              <PlaceCard
+            {_renderPlaceCard()}
+            {/* {offer.map((it, i) => (
+              <WrappedPlaceCard
                 key={i}
                 offer={it}
-                offerCoord={it.offerCoord}
               />
             )
-            )}
+            )} */}
           </div>
         </section>
         <div className="cities__right-section">
@@ -79,7 +94,7 @@ MainScreen.propTypes = {
     name: PropTypes.string,
     offerCoord: PropTypes.array.isRequired,
   })).isRequired,
-  activeCity: PropTypes.string.isRequired,
+  onCardClick: PropTypes.func,
 };
 
 export {MainScreen};

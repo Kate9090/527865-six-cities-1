@@ -5,15 +5,26 @@ import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
 
-const CitiesTopMenu = (props) => {
-  const {cities} = props;
+import withActiveCard from '../../hocs/with-active-card/with-active-card';
+const WrappedCity = withActiveCard(City);
 
-  return <ul className="locations__list tabs__list">
-    {cities.map((it, i) => (
-      <City key={`city-${i}`} cityObject={it} idx={i} />
-    )
-    )}
-  </ul>;
+
+const CitiesTopMenu = (props) => {
+  const {cities, onCardClick, onCardMouseOut} = props;
+
+  const _renderCitiesTopMenu = () => {
+
+    return <ul className="locations__list tabs__list">
+      {cities.map((it, i) => (
+        <WrappedCity onCardClick={onCardClick} onCardMouseOut={onCardMouseOut} key={`city-${i}`} cityObject={it} idx={i} />
+      )
+      )}
+    </ul>;
+  };
+
+  return <>
+  {_renderCitiesTopMenu()}
+  </>;
 };
 
 CitiesTopMenu.propTypes = {
@@ -21,6 +32,8 @@ CitiesTopMenu.propTypes = {
     offerCoord: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
+  onCardMouseOut: PropTypes.func,
+  onCardClick: PropTypes.func,
 };
 
 export {CitiesTopMenu};

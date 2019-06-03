@@ -8,9 +8,6 @@ import {ActionCreator} from '../../reducer';
 class City extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      active: false,
-    };
 
     this.handleUserChoose = this.handleUserChoose.bind(this);
   }
@@ -18,16 +15,16 @@ class City extends Component {
   handleUserChoose(city, num, evt) {
     evt.preventDefault();
     this.props.onUserAnswer(city, num);
-    this.setState({
-      active: true,
-    });
+    this.props.onCardClick();
   }
 
   render() {
     const {cityObject, idx} = this.props;
 
     return <li className="locations__item">
-      <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)} className="locations__item-link tabs__item" href="#">
+      <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
+        className={`locations__item-link tabs__item`}
+        href="#">
         <span>{cityObject.city}</span>
       </a>
     </li>;
@@ -41,6 +38,8 @@ City.propTypes = {
     city: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
+  onCardClick: PropTypes.func,
+  onCardMouseOut: PropTypes.func,
 };
 
 export {City};

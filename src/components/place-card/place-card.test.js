@@ -10,6 +10,9 @@ it(`renders correctly PlaceCard`, () => {
   const tree = renderer
     .create(<PlaceCard
       offer = {mock}
+      onClick= {jest.fn()}
+      onMouseOver={jest.fn()}
+      onMouseOut={jest.fn()}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

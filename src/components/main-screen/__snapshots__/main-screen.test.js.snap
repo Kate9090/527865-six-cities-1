@@ -195,12 +195,14 @@ exports[`renders correctly stateless screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -298,12 +300,14 @@ exports[`renders correctly stateless screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -401,12 +405,14 @@ exports[`renders correctly stateless screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -504,12 +510,14 @@ exports[`renders correctly stateless screen 1`] = `
             >
               <a
                 href="#"
+                onClick={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
               >
                 <img
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
