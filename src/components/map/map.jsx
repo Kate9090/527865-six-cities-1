@@ -27,7 +27,9 @@ class Map extends React.PureComponent {
     const {offer, cityOnMap, offerCities
     } = this.props;
 
-    this.city = offerCities[cityOnMap].offerCoord;
+    const offerCoordCity = [offerCities.city.location.latitude, offerCities.city.location.longitude];
+    this.city = offerCities[cityOnMap][offerCoordCity];
+
     this.map.setView(this.city, this.zooms);
 
     leaflet
@@ -36,12 +38,13 @@ class Map extends React.PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       }).addTo(this.map);
 
-    const offerCords = offerCities[cityOnMap].offerCoord;
+    const offerCords = offerCities[cityOnMap][offerCoordCity];
 
     this._handleAddPinOnMap(offerCords);
 
+    const offerCoordHotel = [offer.location.latitude, offer.location.longitude];
     for (let i = 0; i < offer.length; i++) {
-      this._handleAddPinOnMap(offer[i].offerCoord);
+      this._handleAddPinOnMap(offer[i][offerCoordHotel]);
     }
   }
 
@@ -50,7 +53,12 @@ class Map extends React.PureComponent {
       const {offer, cityOnMap, offerCities
       } = this.props;
 
-      this.city = offerCities[cityOnMap].offerCoord;
+      console.log(offerCities);
+      console.log(offer);
+
+      const offerCoordCity = [offerCities.city.location.latitude, offerCities.city.location.longitude];
+
+      this.city = offerCities[cityOnMap][offerCoordCity];
 
       this.zooms = 12;
       this.map = leaflet.map(this.mapRef.current, {
@@ -68,12 +76,14 @@ class Map extends React.PureComponent {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         }).addTo(this.map);
 
-      const offerCords = offerCities[cityOnMap].offerCoord;
+
+      const offerCords = offerCities[cityOnMap][offerCoordCity];
 
       this._handleAddPinOnMap(offerCords);
 
+      const offerCoordHotel = [offer.location.latitude, offer.location.longitude];
       for (let i = 0; i < offer.length; i++) {
-        this._handleAddPinOnMap(offer[i].offerCoord);
+        this._handleAddPinOnMap(offer[i][offerCoordHotel]);
       }
     }
   }
@@ -84,13 +94,16 @@ Map.propTypes = {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
+    raiting: PropTypes.number,
     name: PropTypes.string,
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
   })).isRequired,
   cityOnMap: PropTypes.number.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.array.isRequired,
     city: PropTypes.string.isRequired,
   })),
 };
@@ -100,6 +113,7 @@ export {Map};
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offerCities: state.cityListArray,
   cityOnMap: state.cityNumber,
+  offer: state.offerInCity,
 });
 
 export default connect(

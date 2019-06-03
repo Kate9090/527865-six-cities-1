@@ -1,11 +1,11 @@
 const initialState = {
-  city: `Amsterdam`,
+  city: ``,
   cityNumber: 0,
 };
 
 
 const ActionCreator = ({
-  'NEW_CITY': (newCity, numberOfTheCityInList) => ({
+  'selectCity': (newCity, numberOfTheCityInList) => ({
     type: `NEW_CITY`,
     payload: newCity,
     num: numberOfTheCityInList,
