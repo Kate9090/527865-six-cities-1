@@ -19,7 +19,7 @@ const MainScreen = (props) => {
     offers, onCardClick,
   } = props;
 
-  console.log(offers);
+  // console.log(offers);
 
   const _renderPlaceCard = () => {
 
