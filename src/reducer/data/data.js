@@ -6,11 +6,6 @@ const initialState = {
 const MAX_NUMBER_OF_CITIES = 6;
 
 const ActionCreator = ({
-  // 'NEW_CITY': (newCity, numberOfTheCityInList) => ({
-  //   type: `NEW_CITY`,
-  //   payload: newCity,
-  //   num: numberOfTheCityInList,
-  // }),
   'loadHotels': (hotels) => {
     return {
       type: `LOAD_HOTELS`,
@@ -23,7 +18,8 @@ const ActionCreator = ({
     if (hotels) {
       cities = [...new Set(hotels.map((it) =>
         it.city.name
-        // {it.city.name, it.city.location}
+        // return {it.city.name, it.city.location}
+
       ))].slice(0, MAX_NUMBER_OF_CITIES);
     }
 
