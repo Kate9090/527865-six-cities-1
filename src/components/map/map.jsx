@@ -3,6 +3,10 @@ import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import {getCities, getHotels} from "../../reducer/data/selectors";
+import {getSelectCityNumber} from "../../reducer/user/selectors";
+
+
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -54,7 +58,7 @@ class Map extends React.PureComponent {
       } = this.props;
 
       console.log(offerCities);
-      console.log(`offer in Map ` + offer);
+      // console.log(`offer in Map ` + offer);
 
       const offerCoordCity = [offerCities.city.location.latitude, offerCities.city.location.longitude];
 
@@ -114,9 +118,9 @@ Map.propTypes = {
 export {Map};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offerCities: state.cityListArray,
-  cityOnMap: state.cityNumber,
-  offer: state.offerInCity,
+  offerCities: getCities(state),
+  cityOnMap: getSelectCityNumber(state),
+  offer: getHotels(state),
 });
 
 export default connect(

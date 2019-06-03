@@ -8,6 +8,9 @@ import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
+import {getHotels} from "../../reducer/data/selectors";
+import {getSelectCity} from "../../reducer/user/selectors";
+
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
 
@@ -16,8 +19,7 @@ const MainScreen = (props) => {
     offers, onCardClick,
   } = props;
 
-
-  console.log(`offers in MainScreen ` + offers);
+  console.log(offers);
 
   const _renderPlaceCard = () => {
 
@@ -99,8 +101,8 @@ MainScreen.propTypes = {
 export {MainScreen};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offers: state.offerInCity,
-  activeCity: state.city,
+  offers: getHotels(state),
+  activeCity: getSelectCity(state),
 });
 
 export default connect(

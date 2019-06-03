@@ -10,6 +10,10 @@ export const getSelectCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
+export const getSelectCityNumber = (state) => {
+  return state[NAME_SPACE].cityNumber;
+};
+
 // export const getAuthorizationStatus = (state) => {
 //   return state[NAME_SPACE].isAuthorizationRequired;
 // };

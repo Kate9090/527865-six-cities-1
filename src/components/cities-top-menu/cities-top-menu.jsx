@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
+import {getCities} from "../../reducer/data/selectors";
+
 
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedCity = withActiveCard(City);
@@ -42,7 +44,7 @@ CitiesTopMenu.propTypes = {
 export {CitiesTopMenu};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  cities: state.cityListArray,
+  cities: getCities(state),
 });
 
 export default connect(

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {getSelectCity} from "../../reducer/user/selectors";
 
 const HeaderPlaces = (props) => {
   const {activeCity} = props;
@@ -19,7 +20,7 @@ HeaderPlaces.propTypes = {
 export {HeaderPlaces};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeCity: state.city,
+  activeCity: getSelectCity(state),
 });
 
 export default connect(
