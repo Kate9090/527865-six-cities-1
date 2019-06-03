@@ -29,7 +29,10 @@ const CitiesTopMenu = (props) => {
 
 CitiesTopMenu.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
     city: PropTypes.string.isRequired,
   })).isRequired,
   onCardMouseOut: PropTypes.func,

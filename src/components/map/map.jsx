@@ -54,7 +54,7 @@ class Map extends React.PureComponent {
       } = this.props;
 
       console.log(offerCities);
-      console.log(offer);
+      console.log(`offer in Map ` + offer);
 
       const offerCoordCity = [offerCities.city.location.latitude, offerCities.city.location.longitude];
 
@@ -103,7 +103,10 @@ Map.propTypes = {
   })).isRequired,
   cityOnMap: PropTypes.number.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.shape({
-    location: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
     city: PropTypes.string.isRequired,
   })),
 };

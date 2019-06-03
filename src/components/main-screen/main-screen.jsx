@@ -13,13 +13,16 @@ const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offer, onCardClick,
+    offers, onCardClick,
   } = props;
+
+
+  console.log(`offers in MainScreen ` + offers);
 
   const _renderPlaceCard = () => {
 
     return <>
-    {offer.map((it, i) => (
+    {offers.map((it, i) => (
       <WrappedPlaceCard
         key={i}
         offer={it}
@@ -67,13 +70,6 @@ const MainScreen = (props) => {
           </form>
           <div className="cities__places-list places__list tabs__content">
             {_renderPlaceCard()}
-            {/* {offer.map((it, i) => (
-              <WrappedPlaceCard
-                key={i}
-                offer={it}
-              />
-            )
-            )} */}
           </div>
         </section>
         <div className="cities__right-section">
@@ -86,13 +82,16 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  offer: PropTypes.arrayOf(PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     stars: PropTypes.number,
     name: PropTypes.string,
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
   })).isRequired,
   onCardClick: PropTypes.func,
 };
@@ -100,7 +99,7 @@ MainScreen.propTypes = {
 export {MainScreen};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offer: state.offerInCity,
+  offers: state.offerInCity,
   activeCity: state.city,
 });
 

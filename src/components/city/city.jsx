@@ -34,7 +34,10 @@ class City extends Component {
 City.propTypes = {
   onUserAnswer: PropTypes.func,
   cityObject: PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
     city: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
