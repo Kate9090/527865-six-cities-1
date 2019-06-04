@@ -1,7 +1,21 @@
 const initialState = {
-  offerInCity: [],
-  cityListArray: [],
+  hotels: [],
+  cities: [],
 };
+
+const hotelsDataAdapter = (hotels) => hotels.map((it) => {
+  return {
+    bedrooms: it.bedrooms,
+    city: it.city,
+    description: it.description,
+    location: it.location,
+    previewImage: it.preview_image,
+    price: it.price,
+    rating: it.rating,
+    title: it.title,
+    type: it.type,
+  };
+});
 
 const MAX_NUMBER_OF_CITIES = 6;
 
@@ -34,8 +48,10 @@ const Operation = {
   loadHotels: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreator.loadHotels(response.data));
-        dispatch(ActionCreator.loadCityList(response.data));
+        const hotels = hotelsDataAdapter(response.data);
+        initialState.hotels = JSON.parse(JSON.stringify(hotels));
+        dispatch(ActionCreator.loadHotels(hotels));
+        dispatch(ActionCreator.loadCityList(hotels));
       });
   }
 };
@@ -49,11 +65,11 @@ const reducer = (state = initialState, action) => {
     //   });
     case `LOAD_HOTELS`:
       return Object.assign({}, state, {
-        offerInCity: action.payload,
+        hotels: action.payload,
       });
     case `LOAD_CITY_LIST`:
       return Object.assign({}, state, {
-        cityListArray: action.payload,
+        cities: action.payload,
       });
   }
 

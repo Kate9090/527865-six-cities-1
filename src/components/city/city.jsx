@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer/user/user';
 
 class City extends Component {
   constructor(props) {
