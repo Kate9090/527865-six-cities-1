@@ -25,6 +25,10 @@ const getCityFromOffers = (hotels, cityName) =>
 const MAX_NUMBER_OF_CITIES = 6;
 
 const ActionCreator = ({
+  'selectCity': (newCity) => ({
+    type: `NEW_CITY`,
+    payload: newCity,
+  }),
   'loadHotels': (hotels) => {
     // hotels = [hotels.map((it) => getSelectedOffers(it, city))];
 
@@ -63,11 +67,6 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // case `NEW_CITY`:
-    //   return Object.assign({}, state, {
-    //     city: action.payload,
-    //     cityNumber: action.num,
-    //   });
     case `LOAD_HOTELS`:
       return Object.assign({}, state, {
         hotels: action.payload,
@@ -75,6 +74,10 @@ const reducer = (state = initialState, action) => {
     case `LOAD_CITY_LIST`:
       return Object.assign({}, state, {
         cities: action.payload,
+      });
+    case `NEW_CITY`:
+      return Object.assign({}, state, {
+        city: getCityFromOffers(state.hotels, action.payload)
       });
   }
 
