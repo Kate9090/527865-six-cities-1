@@ -31,8 +31,8 @@ class Map extends React.PureComponent {
     const {offer, cityOnMap, offerCities
     } = this.props;
 
-    const offerCoordCity = [offerCities.city.location.latitude, offerCities.city.location.longitude];
-    this.city = offerCities[cityOnMap][offerCoordCity];
+    const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
+    this.city = offerCoordCity;
 
     this.map.setView(this.city, this.zooms);
 
@@ -42,13 +42,10 @@ class Map extends React.PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       }).addTo(this.map);
 
-    const offerCords = offerCities[cityOnMap][offerCoordCity];
+    this._handleAddPinOnMap(offerCoordCity);
 
-    this._handleAddPinOnMap(offerCords);
-
-    const offerCoordHotel = [offer.location.latitude, offer.location.longitude];
     for (let i = 0; i < offer.length; i++) {
-      this._handleAddPinOnMap(offer[i][offerCoordHotel]);
+      this._handleAddPinOnMap(offer[i].location.latitude, offer[i].location.longitude);
     }
   }
 
@@ -58,40 +55,34 @@ class Map extends React.PureComponent {
       } = this.props;
 
       console.log(offerCities);
-      // console.log(`offer in Map ` + offer);
-      if (offerCities) {
-        const offerCoordCity = [offerCities.city.location.latitude, offerCities.city.location.longitude];
 
-        this.city = offerCities[cityOnMap][offerCoordCity];
+      const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
+      this.city = offerCoordCity;
 
-        this.zooms = 12;
-        this.map = leaflet.map(this.mapRef.current, {
-          center: this.city,
-          zoom: this.zooms,
-          zoomControl: false,
-          marker: true
-        });
+      this.zooms = 12;
+      this.map = leaflet.map(this.mapRef.current, {
+        center: this.city,
+        zoom: this.zooms,
+        zoomControl: false,
+        marker: true
+      });
 
-        this.map.setView(this.city, this.zooms);
+      this.map.setView(this.city, this.zooms);
 
-        leaflet
-          .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-            detectRetina: true,
-            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-          }).addTo(this.map);
+      leaflet
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          detectRetina: true,
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        }).addTo(this.map);
 
+      this._handleAddPinOnMap(offerCoordCity);
 
-        const offerCords = offerCities[cityOnMap][offerCoordCity];
-
-        this._handleAddPinOnMap(offerCords);
-
-        const offerCoordHotel = [offer.location.latitude, offer.location.longitude];
-        for (let i = 0; i < offer.length; i++) {
-          this._handleAddPinOnMap(offer[i][offerCoordHotel]);
-        }
+      for (let i = 0; i < offer.length; i++) {
+        this._handleAddPinOnMap(offer[i].location.latitude, offer[i].location.longitude);
       }
     }
   }
+
 }
 
 Map.propTypes = {
@@ -112,7 +103,7 @@ Map.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
     }),
-    city: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   })),
 };
 

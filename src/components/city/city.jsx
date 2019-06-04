@@ -22,10 +22,10 @@ class City extends Component {
     const {cityObject, idx} = this.props;
 
     return <li className="locations__item">
-      <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
+      <a onClick={(e) => this.handleUserChoose(cityObject.name, idx, e)}
         className={`locations__item-link tabs__item`}
         href="#">
-        <span>{cityObject.city}</span>
+        <span>{cityObject.name}</span>
       </a>
     </li>;
   }
@@ -38,7 +38,7 @@ City.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
     }).isRequired,
-    city: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
   onCardClick: PropTypes.func,

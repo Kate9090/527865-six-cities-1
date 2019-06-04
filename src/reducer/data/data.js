@@ -1,26 +1,33 @@
 const initialState = {
   hotels: [],
   cities: [],
+  city: ``,
 };
 
-const hotelsDataAdapter = (hotels) => hotels.map((it) => {
-  return {
-    bedrooms: it.bedrooms,
-    city: it.city,
-    description: it.description,
-    location: it.location,
-    previewImage: it.preview_image,
-    price: it.price,
-    rating: it.rating,
-    title: it.title,
-    type: it.type,
-  };
-});
+const getCityFromOffers = (hotels, cityName) =>
+  hotels.filter((hotel) => hotel.city.name === cityName)[0].city;
+
+// const hotelsDataAdapter = (hotels) => hotels.map((it) => {
+//   return {
+//     bedrooms: it.bedrooms,
+//     city: it.city,
+//     cityCoord: [it.city.location.latitude, it.city.location.longitude],
+//     description: it.description,
+//     location: it.location,
+//     previewImage: it.preview_image,
+//     price: it.price,
+//     rating: it.rating,
+//     title: it.title,
+//     type: it.type,
+//   };
+// });
 
 const MAX_NUMBER_OF_CITIES = 6;
 
 const ActionCreator = ({
   'loadHotels': (hotels) => {
+    // hotels = [hotels.map((it) => getSelectedOffers(it, city))];
+
     return {
       type: `LOAD_HOTELS`,
       payload: hotels,
@@ -31,8 +38,7 @@ const ActionCreator = ({
 
     if (hotels) {
       cities = [...new Set(hotels.map((it) =>
-        it.city.name
-        // return {it.city.name, it.city.location}
+        it.city
 
       ))].slice(0, MAX_NUMBER_OF_CITIES);
     }
@@ -48,10 +54,9 @@ const Operation = {
   loadHotels: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        const hotels = hotelsDataAdapter(response.data);
-        initialState.hotels = JSON.parse(JSON.stringify(hotels));
-        dispatch(ActionCreator.loadHotels(hotels));
-        dispatch(ActionCreator.loadCityList(hotels));
+        initialState.hotels = JSON.parse(JSON.stringify(response));
+        dispatch(ActionCreator.loadHotels(response));
+        dispatch(ActionCreator.loadCityList(response));
       });
   }
 };

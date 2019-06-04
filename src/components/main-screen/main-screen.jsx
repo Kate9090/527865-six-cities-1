@@ -88,7 +88,7 @@ MainScreen.propTypes = {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
+    rating: PropTypes.number,
     name: PropTypes.string,
     location: PropTypes.shape({
       latitude: PropTypes.number.isRequired,
