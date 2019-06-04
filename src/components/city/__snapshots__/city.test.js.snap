@@ -9,9 +9,7 @@ exports[`renders correctly City List 1`] = `
     href="#"
     onClick={[Function]}
   >
-    <span>
-      Moscow
-    </span>
+    <span />
   </a>
 </li>
 `;

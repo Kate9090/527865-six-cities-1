@@ -12,9 +12,7 @@ exports[`renders correctly City List 1`] = `
       href="#"
       onClick={[Function]}
     >
-      <span>
-        Amsterdam
-      </span>
+      <span />
     </a>
   </li>
   <li
@@ -25,9 +23,7 @@ exports[`renders correctly City List 1`] = `
       href="#"
       onClick={[Function]}
     >
-      <span>
-        London
-      </span>
+      <span />
     </a>
   </li>
   <li
@@ -38,9 +34,7 @@ exports[`renders correctly City List 1`] = `
       href="#"
       onClick={[Function]}
     >
-      <span>
-        Moscow
-      </span>
+      <span />
     </a>
   </li>
   <li
@@ -51,9 +45,7 @@ exports[`renders correctly City List 1`] = `
       href="#"
       onClick={[Function]}
     >
-      <span>
-        Tokio
-      </span>
+      <span />
     </a>
   </li>
 </ul>

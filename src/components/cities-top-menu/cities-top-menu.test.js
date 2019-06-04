@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import {CitiesTopMenu} from './cities-top-menu.jsx';
 
 import {Provider} from 'react-redux';
-import {reducer} from '../../reducer';
+import reducer from '../../reducer/index';
 import {createStore} from 'redux';
 
 const store = createStore(
