@@ -58,9 +58,9 @@ const Operation = {
   loadHotels: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        initialState.hotels = JSON.parse(JSON.stringify(response));
-        dispatch(ActionCreator.loadHotels(response));
-        dispatch(ActionCreator.loadCityList(response));
+        // initialState.hotels = JSON.parse(JSON.stringify(response));
+        dispatch(ActionCreator.loadHotels(response.data));
+        dispatch(ActionCreator.loadCityList(response.data));
       });
   }
 };

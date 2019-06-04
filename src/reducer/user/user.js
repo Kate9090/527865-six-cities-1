@@ -3,7 +3,6 @@ const initialState = {
   cityNumber: 0,
 };
 
-
 const ActionCreator = ({
   'selectCity': (newCity, numberOfTheCityInList) => ({
     type: `NEW_CITY`,

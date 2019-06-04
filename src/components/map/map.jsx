@@ -54,7 +54,7 @@ class Map extends React.PureComponent {
       const {offer, cityOnMap, offerCities
       } = this.props;
 
-      console.log(offerCities);
+      // console.log(offerCities);
 
       const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
       this.city = offerCoordCity;
