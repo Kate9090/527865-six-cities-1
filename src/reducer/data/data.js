@@ -65,6 +65,38 @@ const Operation = {
   }
 };
 
+// const hotelsDataAdapter = (data) => {
+//   return {
+//     bedrooms: data.bedrooms,
+//     city: data[`city`],
+//     cityCoord: [data[`city`][`location`][`latitude`], data[`city`][`location`][`longitude`]],
+//     description: data[`description`],
+//     location: data[`location`],
+//     src: data[`preview_image`],
+//     price: data[`price`],
+//     rating: data[`rating`],
+//     title: data[`title`],
+//     type: data.type,
+//   };
+// };
+
+// const parseServerResponseHotels = (response) => {
+//   return response.data.map(hotelsDataAdapter);
+// };
+
+// const Operation = {
+//   loadHotels: () => (dispatch, _getState, api) => {
+//     dispatch(ActionCreator.loadHotels());
+//     return api.get(`/hotels`)
+//       .then(parseServerResponseHotels)
+//       .then((hotels) => {
+//         // initialState.hotels = JSON.parse(JSON.stringify(response));
+//         dispatch(ActionCreator.loadHotels(hotels));
+//         dispatch(ActionCreator.loadCityList(hotels));
+//       });
+//   }
+// };
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `LOAD_HOTELS`:
