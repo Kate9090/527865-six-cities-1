@@ -14,6 +14,6 @@ export const getSelectCityNumber = (state) => {
   return state[NAME_SPACE].cityNumber;
 };
 
-// export const getAuthorizationStatus = (state) => {
-//   return state[NAME_SPACE].isAuthorizationRequired;
-// };
+export const getStatusAuthorization = (state) => {
+  return state[NAME_SPACE].isAuthorizationRequired;
+};
