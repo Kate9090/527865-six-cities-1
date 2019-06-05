@@ -1,5 +1,5 @@
 const initialState = {
-  city: `Amsterdam`,
+  city: `Cologne`,
   cityNumber: 0,
 };
 

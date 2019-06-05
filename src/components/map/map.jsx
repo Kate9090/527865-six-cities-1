@@ -28,6 +28,9 @@ class Map extends React.PureComponent {
 
     if (offerCities.length > 1) {
       if (this.mapRef.current) {
+        if (this.map) {
+          this.map.remove();
+        }
 
         const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
 

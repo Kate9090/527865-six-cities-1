@@ -20,9 +20,6 @@ class City extends Component {
   render() {
     const {cityObject, idx} = this.props;
 
-    console.log(`cityObject`);
-    console.log(cityObject);
-
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.name, idx, e)}
         className={`locations__item-link tabs__item`}
@@ -51,7 +48,7 @@ export {City};
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAnswer: (city, num) => {
-    dispatch(ActionCreator[`NEW_CITY`](city, num));
+    dispatch(ActionCreator.selectCity(city, num));
   },
 });
 
