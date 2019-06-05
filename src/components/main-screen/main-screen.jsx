@@ -118,6 +118,14 @@ MainScreen.propTypes = {
     }).isRequired,
   })).isRequired,
   onCardClick: PropTypes.func,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool,
+  }),
+  checkAuthorization: PropTypes.bool.isRequired,
 };
 
 export {MainScreen};
