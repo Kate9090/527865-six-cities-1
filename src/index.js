@@ -14,6 +14,7 @@ import App from './components/app/app.jsx';
 import reducer from './reducer/index';
 
 import {Operation} from './reducer/data/data';
+import {Operation as UserOperation} from './reducer/user/user';
 
 const init = () => {
   const api = configureAPI((...args) => store.dispatch(...args));
@@ -27,6 +28,7 @@ const init = () => {
   );
 
   store.dispatch(Operation.loadHotels());
+  store.dispatch(UserOperation.checkAuthorization());
 
   ReactDOM.render(<Provider store={store}>
     <App />
