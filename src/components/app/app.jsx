@@ -10,10 +10,13 @@ import {getStatusAuthorization} from '../../reducer/user/selectors';
 const App = (props) => {
   const {authorized} = props;
 
+  console.log(`authorized`);
+  console.log(authorized);
+
   if (authorized) {
-    return <SignIn />;
+    return <MainScreen />;
   }
-  return <MainScreen />;
+  return <SignIn />;
 };
 
 App.propTypes = {

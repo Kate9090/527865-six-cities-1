@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/user/user";
 import {getUser} from "../../reducer/user/selectors";
-import {ActionCreator} from "../../reducer/user/user";
+// import {ActionCreator} from "../../reducer/user/user";
 
 const SignIn = (props) => {
   const {user} = props;
   const {_loginField} = React.createRef();
   const {_passwordField} = React.createRef();
+
+  console.log(`user`);
+  console.log(user);
 
   const handleCheckDataSignIn = (email, password) => {
     if (email && password) {
@@ -99,9 +102,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  signIn: (email, password) => {
-    dispatch(Operation.signIn(email, password));
-    dispatch(ActionCreator.getUser(email, password));
+  signIn: (data) => {
+    dispatch(Operation.signIn(data));
+    // dispatch(ActionCreator.getUser(email, password));
   },
 });
 

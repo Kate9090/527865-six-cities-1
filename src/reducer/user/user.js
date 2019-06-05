@@ -28,16 +28,6 @@ const ActionCreator = ({
 });
 
 const Operation = {
-  checkAuthorization: () => (dispatch, _getState, api) => {
-    return api.get(`/login`)
-      .then((response) => {
-        if (response.data) {
-          dispatch(ActionCreator.signIn(response.data));
-          dispatch(ActionCreator.requireAuthorization(true));
-        }
-      })
-      .catch(() => {});
-  },
   signIn: (data) => (dispatch, _getState, api) => {
     return api.post(`/login`, data)
       .then((response) => {
@@ -47,6 +37,16 @@ const Operation = {
         }
       })
       .catch(() => { });
+  },
+  checkAuthorization: () => (dispatch, _getState, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        if (response.data) {
+          dispatch(ActionCreator.signIn(response.data));
+          dispatch(ActionCreator.requireAuthorization(true));
+        }
+      })
+      .catch(() => {});
   },
 };
 
