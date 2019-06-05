@@ -1,9 +1,21 @@
 import React from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {Operation} from "../../reducer/user/user";
+import {getUser} from "../../reducer/user/selectors";
+import {ActionCreator} from "../../reducer/user/user";
 
 const SignIn = (props) => {
-  const {
-  } = props;
+  const {user} = props;
+  const {_loginField} = React.createRef();
+  const {_passwordField} = React.createRef();
+
+  const handleCheckDataSignIn = (email, password) => {
+    if (email && password) {
+      props.signIn({email, password});
+    }
+  };
+
 
   return <div className="page page--gray page--login">
     <div style={{display: `none`}}>
@@ -15,7 +27,7 @@ const SignIn = (props) => {
         <div className="header__wrapper">
           <div className="header__left">
             <a className="header__logo-link" href="main.html">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+              <img className="header__logo" src={user.avatarUrl} alt="6 cities logo" width="81" height="41" />
             </a>
           </div>
           <nav className="header__nav">
@@ -40,13 +52,21 @@ const SignIn = (props) => {
           <form className="login__form form" action="#" method="post">
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
-              <input className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
+              <input ref={_loginField} className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
             </div>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">Password</label>
-              <input className="login__input form__input" type="password" name="password" placeholder="Password" required="" />
+              <input ref={_passwordField} className="login__input form__input" type="password" name="password" placeholder="Password" required="" />
             </div>
-            <button className="login__submit form__submit button" type="submit">Sign in</button>
+            <button className="login__submit form__submit button"
+              type="submit"
+              onClick={(evt) => {
+                evt.preventDefault();
+                if (_loginField && _passwordField) {
+                  handleCheckDataSignIn(_loginField.current.value, _passwordField.current.value);
+                }
+              }}
+            >Sign in</button>
           </form>
         </section>
         <section className="locations locations--login locations--current">
@@ -62,7 +82,28 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
-
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.string,
+  }),
+  signIn: PropTypes.func,
 };
 
-export default SignIn;
+export {SignIn};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  user: getUser(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (email, password) => {
+    dispatch(Operation.signIn(email, password));
+    dispatch(ActionCreator.getUser(email, password));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+
