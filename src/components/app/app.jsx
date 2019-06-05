@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+import {Switch, Route} from 'react-router-dom';
+
 import MainScreen from '../main-screen/main-screen.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 
@@ -10,10 +12,18 @@ import {getStatusAuthorization} from '../../reducer/user/selectors';
 const App = (props) => {
   const {authorized} = props;
 
-  if (authorized) {
-    return <MainScreen />;
-  }
-  return <SignIn />;
+  return <Switch>
+    <Route path="/">
+      <MainScreen />;
+    </Route>
+
+    <Route path="/login">
+    </Route>
+  </Switch>;
+  // if (authorized) {
+  //   return <MainScreen />;
+  // }
+  // return <SignIn />;
 };
 
 App.propTypes = {
