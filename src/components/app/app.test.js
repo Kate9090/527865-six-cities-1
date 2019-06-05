@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import App from './app.jsx';
 
 import {Provider} from 'react-redux';
-import {reducer} from '../../reducer';
+import reducer from '../../reducer/index';
 import {createStore} from 'redux';
 
 const store = createStore(

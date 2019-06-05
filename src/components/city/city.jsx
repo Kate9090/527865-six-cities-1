@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
-
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer/user/user';
 
 class City extends Component {
   constructor(props) {
@@ -22,10 +21,10 @@ class City extends Component {
     const {cityObject, idx} = this.props;
 
     return <li className="locations__item">
-      <a onClick={(e) => this.handleUserChoose(cityObject.city, idx, e)}
+      <a onClick={(e) => this.handleUserChoose(cityObject.name, idx, e)}
         className={`locations__item-link tabs__item`}
         href="#">
-        <span>{cityObject.city}</span>
+        <span>{cityObject.name}</span>
       </a>
     </li>;
   }
@@ -34,8 +33,11 @@ class City extends Component {
 City.propTypes = {
   onUserAnswer: PropTypes.func,
   cityObject: PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
-    city: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
   idx: PropTypes.number.isRequired,
   onCardClick: PropTypes.func,
@@ -46,7 +48,7 @@ export {City};
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAnswer: (city, num) => {
-    dispatch(ActionCreator[`NEW_CITY`](city, num));
+    dispatch(ActionCreator.selectCity(city, num));
   },
 });
 

@@ -3,6 +3,10 @@ import leaflet from "leaflet";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import {getCities, getHotels} from "../../reducer/data/selectors";
+import {getSelectCityNumber} from "../../reducer/user/selectors";
+
+
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -14,69 +18,52 @@ class Map extends React.PureComponent {
     </section>;
   }
 
-  _handleAddPinOnMap(offerCityCords) {
+  componentDidUpdate() {
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [22, 30]
     });
-    leaflet
-      .marker(offerCityCords, {icon}).addTo(this.map);
-  }
-
-  componentDidUpdate() {
     const {offer, cityOnMap, offerCities
     } = this.props;
 
-    this.city = offerCities[cityOnMap].offerCoord;
-    this.map.setView(this.city, this.zooms);
+    if (offerCities.length > 1) {
+      if (this.mapRef.current) {
+        if (this.map) {
+          this.map.remove();
+        }
 
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        detectRetina: true,
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      }).addTo(this.map);
+        const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
 
-    const offerCords = offerCities[cityOnMap].offerCoord;
+        this.city = offerCoordCity;
 
-    this._handleAddPinOnMap(offerCords);
+        this.zooms = 12;
+        this.map = leaflet.map(this.mapRef.current, {
+          center: this.city,
+          zoom: this.zooms,
+          zoomControl: false,
+          marker: true
+        });
 
-    for (let i = 0; i < offer.length; i++) {
-      this._handleAddPinOnMap(offer[i].offerCoord);
-    }
-  }
+        this.map.setView(this.city, this.zooms);
 
-  componentDidMount() {
-    if (this.mapRef.current) {
-      const {offer, cityOnMap, offerCities
-      } = this.props;
+        leaflet
+          .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+            detectRetina: true,
+            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+          }).addTo(this.map);
 
-      this.city = offerCities[cityOnMap].offerCoord;
+        leaflet
+          .marker(offerCoordCity, {icon}).addTo(this.map);
 
-      this.zooms = 12;
-      this.map = leaflet.map(this.mapRef.current, {
-        center: this.city,
-        zoom: this.zooms,
-        zoomControl: false,
-        marker: true
-      });
 
-      this.map.setView(this.city, this.zooms);
-
-      leaflet
-        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-          detectRetina: true,
-          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-        }).addTo(this.map);
-
-      const offerCords = offerCities[cityOnMap].offerCoord;
-
-      this._handleAddPinOnMap(offerCords);
-
-      for (let i = 0; i < offer.length; i++) {
-        this._handleAddPinOnMap(offer[i].offerCoord);
+        for (let i = 0; i < offer.length; i++) {
+          leaflet
+            .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
+        }
       }
     }
   }
+
 }
 
 Map.propTypes = {
@@ -84,22 +71,29 @@ Map.propTypes = {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
+    raiting: PropTypes.number,
     name: PropTypes.string,
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }),
   })).isRequired,
   cityOnMap: PropTypes.number.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
-    city: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }),
+    name: PropTypes.string.isRequired,
   })),
 };
 
 export {Map};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offerCities: state.cityListArray,
-  cityOnMap: state.cityNumber,
+  offerCities: getCities(state),
+  cityOnMap: getSelectCityNumber(state),
+  offer: getHotels(state),
 });
 
 export default connect(

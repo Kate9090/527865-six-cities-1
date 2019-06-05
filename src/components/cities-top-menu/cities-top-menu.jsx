@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
+import {getCities} from "../../reducer/data/selectors";
+
 
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedCity = withActiveCard(City);
-
 
 const CitiesTopMenu = (props) => {
   const {cities, onCardClick, onCardMouseOut} = props;
@@ -29,8 +30,11 @@ const CitiesTopMenu = (props) => {
 
 CitiesTopMenu.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.shape({
-    offerCoord: PropTypes.array.isRequired,
-    city: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
+    name: PropTypes.string.isRequired,
   })).isRequired,
   onCardMouseOut: PropTypes.func,
   onCardClick: PropTypes.func,
@@ -39,7 +43,7 @@ CitiesTopMenu.propTypes = {
 export {CitiesTopMenu};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  cities: state.cityListArray,
+  cities: getCities(state),
 });
 
 export default connect(

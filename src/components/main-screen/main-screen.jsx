@@ -8,18 +8,21 @@ import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
+import {getHotels} from "../../reducer/data/selectors";
+import {getSelectCity} from "../../reducer/user/selectors";
+
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offer, onCardClick,
+    offers, onCardClick,
   } = props;
 
   const _renderPlaceCard = () => {
 
     return <>
-    {offer.map((it, i) => (
+    {offers.map((it, i) => (
       <WrappedPlaceCard
         key={i}
         offer={it}
@@ -67,17 +70,10 @@ const MainScreen = (props) => {
           </form>
           <div className="cities__places-list places__list tabs__content">
             {_renderPlaceCard()}
-            {/* {offer.map((it, i) => (
-              <WrappedPlaceCard
-                key={i}
-                offer={it}
-              />
-            )
-            )} */}
           </div>
         </section>
         <div className="cities__right-section">
-          <Map offer={offer} />
+          <Map />
         </div>
       </div>
     </div>
@@ -86,13 +82,16 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  offer: PropTypes.arrayOf(PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    stars: PropTypes.number,
+    rating: PropTypes.number,
     name: PropTypes.string,
-    offerCoord: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
   })).isRequired,
   onCardClick: PropTypes.func,
 };
@@ -100,8 +99,8 @@ MainScreen.propTypes = {
 export {MainScreen};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offer: state.offerInCity,
-  activeCity: state.city,
+  offers: getHotels(state),
+  activeCity: getSelectCity(state),
 });
 
 export default connect(
