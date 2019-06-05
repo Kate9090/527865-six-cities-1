@@ -11,9 +11,9 @@ const App = (props) => {
   const {authorized} = props;
 
   if (authorized) {
-    return <MainScreen />;
+    return <SignIn />;
   }
-  return <SignIn />;
+  return <MainScreen />;
 };
 
 App.propTypes = {

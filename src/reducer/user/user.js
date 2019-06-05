@@ -16,6 +16,19 @@ const ActionCreator = ({
   }),
 });
 
+const Operation = {
+  checkAuthorization: () => (dispatch, _getState, api) => {
+    return api.post(`/login`)
+      .then((response) => {
+        if (response.data) {
+          // dispatch(ActionCreator.signIn(response.data));
+          dispatch(ActionCreator.requireAuthorization(true));
+        }
+      })
+      .catch(() => {});
+  },
+};
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -33,4 +46,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator};
+export {reducer, ActionCreator, Operation};
