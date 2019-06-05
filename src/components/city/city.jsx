@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
-
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
@@ -20,6 +19,9 @@ class City extends Component {
 
   render() {
     const {cityObject, idx} = this.props;
+
+    console.log(`cityObject`);
+    console.log(cityObject);
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(cityObject.name, idx, e)}

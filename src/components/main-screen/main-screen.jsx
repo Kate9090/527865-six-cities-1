@@ -19,8 +19,6 @@ const MainScreen = (props) => {
     offers, onCardClick,
   } = props;
 
-  // console.log(offers);
-
   const _renderPlaceCard = () => {
 
     return <>

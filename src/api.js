@@ -12,7 +12,7 @@ export const configureAPI = () => { // (dispatch) later
   const onSuccess = (response) => response;
   const onFail = (err) => {
     // console.log(err);
-    // if (err.response.status === 401) {
+    // if (err.response.status === 403) {
     //   dispatch(actionCreator.checkAuthorization(true));
     //   dispatch(userActionCreator.changeAuthorization(true));
     // }

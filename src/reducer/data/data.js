@@ -7,21 +7,6 @@ const initialState = {
 const getCityFromOffers = (hotels, cityName) =>
   hotels.filter((hotel) => hotel.city.name === cityName)[0].city;
 
-// const hotelsDataAdapter = (hotels) => hotels.map((it) => {
-//   return {
-//     bedrooms: it.bedrooms,
-//     city: it.city,
-//     cityCoord: [it.city.location.latitude, it.city.location.longitude],
-//     description: it.description,
-//     location: it.location,
-//     previewImage: it.preview_image,
-//     price: it.price,
-//     rating: it.rating,
-//     title: it.title,
-//     type: it.type,
-//   };
-// });
-
 const MAX_NUMBER_OF_CITIES = 6;
 
 const ActionCreator = ({
@@ -54,48 +39,47 @@ const ActionCreator = ({
   }
 });
 
-const Operation = {
-  loadHotels: () => (dispatch, _getState, api) => {
-    return api.get(`/hotels`)
-      .then((response) => {
-        // initialState.hotels = JSON.parse(JSON.stringify(response));
-        dispatch(ActionCreator.loadHotels(response.data));
-        dispatch(ActionCreator.loadCityList(response.data));
-      });
-  }
-};
-
-// const hotelsDataAdapter = (data) => {
-//   return {
-//     bedrooms: data.bedrooms,
-//     city: data[`city`],
-//     cityCoord: [data[`city`][`location`][`latitude`], data[`city`][`location`][`longitude`]],
-//     description: data[`description`],
-//     location: data[`location`],
-//     src: data[`preview_image`],
-//     price: data[`price`],
-//     rating: data[`rating`],
-//     title: data[`title`],
-//     type: data.type,
-//   };
-// };
-
-// const parseServerResponseHotels = (response) => {
-//   return response.data.map(hotelsDataAdapter);
-// };
-
 // const Operation = {
 //   loadHotels: () => (dispatch, _getState, api) => {
-//     dispatch(ActionCreator.loadHotels());
 //     return api.get(`/hotels`)
-//       .then(parseServerResponseHotels)
-//       .then((hotels) => {
-//         // initialState.hotels = JSON.parse(JSON.stringify(response));
-//         dispatch(ActionCreator.loadHotels(hotels));
-//         dispatch(ActionCreator.loadCityList(hotels));
+//       .then((response) => {
+//         initialState.hotels = JSON.parse(JSON.stringify(response));
+//         dispatch(ActionCreator.loadHotels(response));
+//         dispatch(ActionCreator.loadCityList(response));
 //       });
 //   }
 // };
+
+const hotelsDataAdapter = (data) => {
+  return {
+    bedrooms: data.bedrooms,
+    city: data[`city`],
+    cityCoord: [data[`city`][`location`][`latitude`], data[`city`][`location`][`longitude`]],
+    description: data[`description`],
+    location: data[`location`],
+    src: data[`preview_image`],
+    price: data[`price`],
+    rating: data[`rating`],
+    title: data[`title`],
+    type: data.type,
+  };
+};
+
+const parseServerResponseHotels = (response) => {
+  return response.data.map(hotelsDataAdapter);
+};
+
+const Operation = {
+  loadHotels: () => (dispatch, _getState, api) => {
+    return api.get(`/hotels`)
+      .then(parseServerResponseHotels)
+      .then((hotels) => {
+        // initialState.hotels = JSON.parse(JSON.stringify(response));
+        dispatch(ActionCreator.loadHotels(hotels));
+        dispatch(ActionCreator.loadCityList(hotels));
+      });
+  }
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

@@ -10,7 +10,6 @@ import {getCities} from "../../reducer/data/selectors";
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedCity = withActiveCard(City);
 
-
 const CitiesTopMenu = (props) => {
   const {cities, onCardClick, onCardMouseOut} = props;
 
@@ -35,7 +34,7 @@ CitiesTopMenu.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
     }).isRequired,
-    city: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   })).isRequired,
   onCardMouseOut: PropTypes.func,
   onCardClick: PropTypes.func,
