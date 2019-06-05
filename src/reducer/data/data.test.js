@@ -12,14 +12,14 @@ describe(`Reducer works correctly`, () => {
     const hotelsLoader = Operation.loadHotels();
 
     apiMock.onGet(`/hotels`)
-    .reply(200, [{fake: true}]);
+    .reply(200, [{"bedrooms": undefined, "city": undefined, "description": undefined, "location": undefined, "price": undefined, "rating": undefined, "src": undefined, "title": undefined, "type": undefined}]);
 
     return hotelsLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: `LOAD_HOTELS`,
-          payload: [{fake: true}],
+          payload: [{"bedrooms": undefined, "city": undefined, "description": undefined, "location": undefined, "price": undefined, "rating": undefined, "src": undefined, "title": undefined, "type": undefined}],
         });
       });
   });

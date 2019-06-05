@@ -54,7 +54,6 @@ const hotelsDataAdapter = (data) => {
   return {
     bedrooms: data.bedrooms,
     city: data[`city`],
-    cityCoord: [data[`city`][`location`][`latitude`], data[`city`][`location`][`longitude`]],
     description: data[`description`],
     location: data[`location`],
     src: data[`preview_image`],

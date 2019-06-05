@@ -38,7 +38,7 @@ exports[`renders correctly stateless screen 1`] = `
           className="places__found"
         >
           312 places to stay in 
-          
+          Cologne
         </b>
         <form
           action="#"
