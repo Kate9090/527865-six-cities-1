@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+import withRedirect from '../../hocs/with-redirect/with-redirect';
+
 import MainScreen from '../main-screen/main-screen.jsx';
-import SignIn from '../sign-in/sign-in.jsx';
 
 import {connect} from 'react-redux';
 import {getStatusAuthorization} from '../../reducer/user/selectors';
 
+const WrappedMainScreen = withRedirect(MainScreen);
+
 const App = (props) => {
   const {authorized} = props;
 
-  if (authorized) {
-    return <MainScreen />;
-  }
-  return <SignIn />;
+  return <WrappedMainScreen notNeedToAuthrized={authorized}/>;
 };
 
 App.propTypes = {

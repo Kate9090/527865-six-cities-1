@@ -16,7 +16,9 @@ export const getSelectCity = (state) => {
 };
 
 export const getSelectedOffers = createSelector(
-    [getHotels, getSelectCity],
-    (offers, city) => offers.filter((offer) => offer.city.name === city.name)
+    getHotels,
+    getSelectCity,
+    (offers, city) => {
+      return offers.filter((offer) => offer.city.name === city.name);
+    }
 );
-

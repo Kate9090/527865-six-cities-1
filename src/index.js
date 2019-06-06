@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import thunk from 'redux-thunk';
+import {BrowserRouter} from 'react-router-dom';
 
 import {compose} from 'recompose';
 
@@ -31,7 +32,9 @@ const init = () => {
   store.dispatch(UserOperation.checkAuthorization());
 
   ReactDOM.render(<Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>, document.querySelector(`.main`));
 };
 

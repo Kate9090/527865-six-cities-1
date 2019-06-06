@@ -1,7 +1,6 @@
 const initialState = {
   hotels: [],
   cities: [],
-  city: ``,
 };
 
 const getCityFromOffers = (hotels, cityName) =>
@@ -15,8 +14,6 @@ const ActionCreator = ({
     payload: newCity,
   }),
   'loadHotels': (hotels) => {
-    // hotels = [hotels.map((it) => getSelectedOffers(it, city))];
-
     return {
       type: `LOAD_HOTELS`,
       payload: hotels,
@@ -38,17 +35,6 @@ const ActionCreator = ({
     };
   }
 });
-
-// const Operation = {
-//   loadHotels: () => (dispatch, _getState, api) => {
-//     return api.get(`/hotels`)
-//       .then((response) => {
-//         initialState.hotels = JSON.parse(JSON.stringify(response));
-//         dispatch(ActionCreator.loadHotels(response));
-//         dispatch(ActionCreator.loadCityList(response));
-//       });
-//   }
-// };
 
 const hotelsDataAdapter = (data) => {
   return {
@@ -73,7 +59,6 @@ const Operation = {
     return api.get(`/hotels`)
       .then(parseServerResponseHotels)
       .then((hotels) => {
-        // initialState.hotels = JSON.parse(JSON.stringify(response));
         dispatch(ActionCreator.loadHotels(hotels));
         dispatch(ActionCreator.loadCityList(hotels));
       });
