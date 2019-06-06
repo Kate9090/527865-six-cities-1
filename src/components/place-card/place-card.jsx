@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 import {ActionCreator} from '../../reducer/user/user';
+
+import {getStatusAuthorization} from "../../reducer/user/selectors";
 
 
 const PlaceCard = (props) => {
 
-  const {offer, onCardClick, onCardMouseEnter, onCardMouseOut} = props;
+  const {offer, onCardClick, onCardMouseEnter, onCardMouseOut, checkAuthorization} = props;
 
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
@@ -45,6 +48,12 @@ const PlaceCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
+        {!checkAuthorization ?
+          <Link to="/login" className="header__login">Sign in</Link>
+          : <>
+              <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+              <Link to="/offer" className="header__user-name user__name">{offer.email}</Link>
+            </>}
         <a href="#">{offer.title}</a>
       </h2>
       <p className="place-card__type">{offer.name}</p>
@@ -67,11 +76,16 @@ PlaceCard.propTypes = {
   }).isRequired,
   onCardClick: PropTypes.func,
   onCardMouseEnter: PropTypes.func,
-  onCardMouseOut: PropTypes.func
+  onCardMouseOut: PropTypes.func,
+  checkAuthorization: PropTypes.bool.isRequired,
 };
 
 export {PlaceCard};
 
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  checkAuthorization: getStatusAuthorization(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick: (offer) => {
@@ -79,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(PlaceCard);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);
