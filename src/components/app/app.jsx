@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 
 import MainScreen from '../main-screen/main-screen.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
@@ -13,17 +13,24 @@ const App = (props) => {
   const {authorized} = props;
 
   return <Switch>
-    <Route path="/">
-      <MainScreen />;
+    <Route exact path="/" render={() => {
+      if (authorized) {
+        return <MainScreen />;
+      }
+      return <Redirect to="/login" />;
+    }}>
     </Route>
 
-    <Route path="/login">
+    <Route path="/login" render={() => {
+
+      if (authorized) {
+        return <Redirect to="/" />;
+      }
+
+      return <SignIn />;
+    }}>
     </Route>
   </Switch>;
-  // if (authorized) {
-  //   return <MainScreen />;
-  // }
-  // return <SignIn />;
 };
 
 App.propTypes = {
