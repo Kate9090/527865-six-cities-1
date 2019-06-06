@@ -1,16 +1,22 @@
 const initialState = {
-  city: `Cologne`,
+  city: ``,
   cityNumber: 0,
   isAuthorizationRequired: false,
   user: {},
 };
 
 const ActionCreator = ({
-  'selectCity': (newCity, numberOfTheCityInList) => ({
-    type: `NEW_CITY`,
-    payload: newCity,
-    num: numberOfTheCityInList,
-  }),
+  'selectCity': (newCity, numberOfTheCityInList, hotels) => {
+    if (newCity.length < 1) {
+      newCity = hotels[0].city;
+    }
+
+    return {
+      type: `NEW_CITY`,
+      payload: newCity,
+      num: numberOfTheCityInList,
+    };
+  },
   'requireAuthorization': (status) => ({
     type: `AUTHORIZATION_REQUIRED`,
     payload: status,
