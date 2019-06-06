@@ -18,8 +18,11 @@ const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offers, onCardClick, user, checkAuthorization
+    offers, onCardClick, user, checkAuthorization, activeCard
   } = props;
+
+  // console.log(`activeCard`);
+  // console.log(activeCard);
 
   const _renderPlaceCard = () => {
 
@@ -33,6 +36,12 @@ const MainScreen = (props) => {
     )
     )}
     </>;
+  };
+
+  const _renderMap = () => {
+    return <Map
+      actionCard={activeCard}
+    />;
   };
 
   return <>
@@ -97,7 +106,9 @@ const MainScreen = (props) => {
             </div>
           </section>
           <div className="cities__right-section">
-            <Map />
+            {/* <Map activeCard={activeCard}/>
+           */}
+            {_renderMap()}
           </div>
         </div>
       </div>
@@ -127,6 +138,7 @@ MainScreen.propTypes = {
     isPro: PropTypes.bool,
   }),
   checkAuthorization: PropTypes.bool.isRequired,
+  activeCard: PropTypes.object
 };
 
 export {MainScreen};

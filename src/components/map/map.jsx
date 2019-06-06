@@ -23,8 +23,15 @@ class Map extends React.PureComponent {
       iconUrl: `img/pin.svg`,
       iconSize: [22, 30]
     });
-    const {offer, cityOnMap, offerCities
+    const activeIcon = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+    const {offer, cityOnMap, offerCities, activeCard
     } = this.props;
+
+    // console.log(`activeCard`);
+    // console.log(activeCard);
 
     if (offerCities.length > 1) {
       if (this.mapRef.current) {
@@ -57,8 +64,18 @@ class Map extends React.PureComponent {
 
 
         for (let i = 0; i < offer.length; i++) {
-          leaflet
+          if (activeCard) {
+            leaflet
+              .marker([offer[i].location.latitude, offer[i].location.longitude],
+                  {
+                    icon: offer[i].id === activeCard.id ?
+                      activeIcon
+                      : icon
+                  }).addTo(this.map);
+          } else {
+            leaflet
             .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
+          }
         }
       }
     }
@@ -86,6 +103,7 @@ Map.propTypes = {
     }),
     name: PropTypes.string.isRequired,
   })),
+  activeCard: PropTypes.object,
 };
 
 export {Map};

@@ -1,4 +1,6 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+
 
 const withActiveCard = (WrappedComponent) => {
   class WithActiveCard extends PureComponent {
@@ -7,28 +9,39 @@ const withActiveCard = (WrappedComponent) => {
 
       this.state = {
         active: false,
+        activeCard: null,
       };
 
       this._setActiveItem = this._setActiveItem.bind(this);
       this._setUnActiveItem = this._setUnActiveItem.bind(this);
     }
 
-    _setActiveItem() {
+    _setActiveItem(card) {
+
       this.setState({
         active: true,
+        activeCard: card,
       });
+
+
     }
 
     _setUnActiveItem() {
+
       this.setState({
         active: false,
+        activeCard: null,
       });
     }
 
     render() {
+
+      // console.log(`wrapped`);
+      // console.log(this.state.activeCard);
       return (
         <WrappedComponent
           {...this.props}
+          activeCard={this.state.activeCard}
           onCardClick={this._setActiveItem}
           onCardMouseEnter={this._setActiveItem}
           onCardMouseOut={this._setUnActiveItem}
@@ -36,10 +49,12 @@ const withActiveCard = (WrappedComponent) => {
       );
     }
 
-    componentWillUpdate() {
-
-    }
   }
+
+  WithActiveCard.propTypes = {
+    activeCard: PropTypes.string,
+    offer: PropTypes.object,
+  };
 
   return WithActiveCard;
 };
