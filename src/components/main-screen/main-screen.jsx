@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 
 import CitiesTopMenu from '../cities-top-menu/cities-top-menu.jsx';
 import HeaderPlaces from '../header-places/header-places.jsx';
@@ -46,10 +47,10 @@ const MainScreen = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               {!checkAuthorization ?
-                <a to="/login" className="header__login">Sign in</a>
+                <Link to="/login" className="header__login">Sign in</Link>
                 : <>
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <a to="/favorites" className="header__user-name user__name">{user.email}</a>
+                    <Link to="/favorites" className="header__user-name user__name">{user.email}</Link>
                   </>}
             </ul>
           </nav>
