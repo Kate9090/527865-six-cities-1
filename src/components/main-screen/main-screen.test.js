@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import MainScreen from './main-screen';
 
@@ -16,10 +17,10 @@ const mock = offerHotelList;
 
 it(`renders correctly stateless screen`, () => {
   const tree = renderer
-    .create(<Provider store={store}><MainScreen
+    .create(<BrowserRouter><Provider store={store}><MainScreen
       offer = {mock}
       cityForRender={`Amsterdam`}
-    /></Provider>)
+    /></Provider></BrowserRouter>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

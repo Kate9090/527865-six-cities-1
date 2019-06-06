@@ -105,7 +105,11 @@ exports[`renders correctly PlaceCard 1`] = `
                     className="place-card__stars rating__stars"
                   >
                     <span
-                      style="width: 100%"
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
                     />
                     <span
                       className="visually-hidden"
@@ -195,7 +199,11 @@ exports[`renders correctly PlaceCard 1`] = `
                     className="place-card__stars rating__stars"
                   >
                     <span
-                      style="width: 80%"
+                      style={
+                        Object {
+                          "width": "80%",
+                        }
+                      }
                     />
                     <span
                       className="visually-hidden"
@@ -309,7 +317,11 @@ exports[`renders correctly PlaceCard 1`] = `
                     className="place-card__stars rating__stars"
                   >
                     <span
-                      style="width: 100%"
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
                     />
                     <span
                       className="visually-hidden"

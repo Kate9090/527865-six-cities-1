@@ -35,7 +35,8 @@ Array [
           >
             <a
               className="header__login"
-              to="/login"
+              href="/login"
+              onClick={[Function]}
             >
               Sign in
             </a>
