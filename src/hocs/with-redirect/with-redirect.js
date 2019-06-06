@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 import MainScreen from '../../components/main-screen/main-screen.jsx';
 import SignIn from '../../components/sign-in/sign-in.jsx';
@@ -11,7 +11,7 @@ const withRedirect = () => {
   const WithRedirect = (props) => {
     const {notNeedToAuthrized} = props;
 
-    return <Switch>
+    return <BrowserRouter><Switch>
       <Route exact path="/" render={() => {
         if (notNeedToAuthrized) {
           return <MainScreen
@@ -38,7 +38,8 @@ const withRedirect = () => {
         return <SignIn />;
       }}>
       </Route>
-    </Switch>;
+    </Switch>
+    </BrowserRouter>;
   };
 
   WithRedirect.propTypes = {
