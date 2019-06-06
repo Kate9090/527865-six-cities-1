@@ -1,8 +1,6 @@
 import React from "react";
-// import PropTypes from 'prop-types';
 
 const Favourites = () => {
-  // const {authorized} = props;
 
   return <main className="page__main page__main--favorites">
     <div className="page__favorites-container container">
@@ -130,10 +128,6 @@ const Favourites = () => {
       </section>
     </div>
   </main>;
-};
-
-Favourites.propTypes = {
-  // authorized: PropTypes.bool.isRequired,
 };
 
 export default Favourites;

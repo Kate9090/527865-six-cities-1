@@ -12,10 +12,8 @@ export const configureAPI = (dispatch) => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    // console.log(err);
     if (err.response.status === 403) {
       dispatch(ActionCreator.requireAuthorization(false));
-      // dispatch(userActionCreator.getStatusAuthorization(true));
     }
 
     return err;

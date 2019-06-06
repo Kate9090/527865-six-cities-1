@@ -59,7 +59,6 @@ const Operation = {
     return api.get(`/hotels`)
       .then(parseServerResponseHotels)
       .then((hotels) => {
-        // initialState.hotels = JSON.parse(JSON.stringify(response));
         dispatch(ActionCreator.loadHotels(hotels));
         dispatch(ActionCreator.loadCityList(hotels));
       });
