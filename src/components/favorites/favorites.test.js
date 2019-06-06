@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import Favourites from './favourites.jsx';
+import Favorites from './favorites.jsx';
 
 it(`renders correctly PlaceCard`, () => {
   const tree = renderer
-    .create(<Favourites
+    .create(<Favorites
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
