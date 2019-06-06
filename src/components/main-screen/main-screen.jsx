@@ -18,16 +18,18 @@ const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offers, onCardClick, user, checkAuthorization, activeCard
+    offers, onCardClick, user, checkAuthorization,
   } = props;
 
-  // console.log(`activeCard`);
-  // console.log(activeCard);
+  const _getActiveOffers = () => {
+    const {activeCity} = props;
+    return activeCity === `` ? offers : offers.filter((it) => it.city.name === activeCity);
+  };
 
   const _renderPlaceCard = () => {
 
     return <>
-    {offers.map((it, i) => (
+    {_getActiveOffers(offers).map((it, i) => (
       <WrappedPlaceCard
         key={i}
         offer={it}
@@ -39,9 +41,7 @@ const MainScreen = (props) => {
   };
 
   const _renderMap = () => {
-    return <Map
-      actionCard={activeCard}
-    />;
+    return <Map />;
   };
 
   return <>
@@ -138,7 +138,7 @@ MainScreen.propTypes = {
     isPro: PropTypes.bool,
   }),
   checkAuthorization: PropTypes.bool.isRequired,
-  activeCard: PropTypes.object
+  activeCity: PropTypes.string.isRequired,
 };
 
 export {MainScreen};

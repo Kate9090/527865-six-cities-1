@@ -23,11 +23,11 @@ class Map extends React.PureComponent {
       iconUrl: `img/pin.svg`,
       iconSize: [22, 30]
     });
-    const activeIcon = leaflet.icon({
-      iconUrl: `/img/pin-active.svg`,
-      iconSize: [30, 30]
-    });
-    const {offer, cityOnMap, offerCities, activeCard
+    // const activeIcon = leaflet.icon({
+    //   iconUrl: `/img/pin-active.svg`,
+    //   iconSize: [30, 30]
+    // });
+    const {offer, cityOnMap, offerCities,
     } = this.props;
 
     // console.log(`activeCard`);
@@ -64,18 +64,18 @@ class Map extends React.PureComponent {
 
 
         for (let i = 0; i < offer.length; i++) {
-          if (activeCard) {
-            leaflet
+          // if (activeCard) {
+          leaflet
               .marker([offer[i].location.latitude, offer[i].location.longitude],
-                  {
-                    icon: offer[i].id === activeCard.id ?
-                      activeIcon
-                      : icon
-                  }).addTo(this.map);
-          } else {
-            leaflet
-            .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
-          }
+                  {icon}).addTo(this.map);
+          //   icon: offer[i].id === activeCard.id ?
+          //     activeIcon
+          //     : icon
+          // }).addTo(this.map);
+          // } else {
+          //   leaflet
+          //   .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
+          // }
         }
       }
     }
@@ -103,7 +103,7 @@ Map.propTypes = {
     }),
     name: PropTypes.string.isRequired,
   })),
-  activeCard: PropTypes.object,
+  // activeCard: PropTypes.object,
 };
 
 export {Map};
