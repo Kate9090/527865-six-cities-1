@@ -1,10 +1,8 @@
 const initialState = {
   hotels: [],
   cities: [],
+  defaultCity: ``,
 };
-
-const getCityFromOffers = (hotels, cityName) =>
-  hotels.filter((hotel) => hotel.city.name === cityName)[0].city;
 
 const MAX_NUMBER_OF_CITIES = 6;
 
@@ -32,6 +30,17 @@ const ActionCreator = ({
     return {
       type: `LOAD_CITY_LIST`,
       payload: cities,
+    };
+  },
+  'getDefaultCity': (cities) => {
+    let defaultcity;
+    if (cities) {
+      defaultcity = cities[0].name;
+    }
+
+    return {
+      type: `GET_DEFAULT_CITY`,
+      payload: defaultcity,
     };
   }
 });
@@ -76,9 +85,9 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         cities: action.payload,
       });
-    case `NEW_CITY`:
+    case `GET_DEFAULT_CITY`:
       return Object.assign({}, state, {
-        city: getCityFromOffers(state.hotels, action.payload)
+        defaultCity: action.payload,
       });
   }
 

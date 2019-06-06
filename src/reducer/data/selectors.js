@@ -15,6 +15,10 @@ export const getSelectCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
+export const getDefaultCity = (state) => {
+  return state[NAME_SPACE].defaultCity;
+};
+
 export const getSelectedOffers = createSelector(
     getHotels,
     getSelectCity,
