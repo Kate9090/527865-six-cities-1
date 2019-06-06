@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer/user/user';
+
 
 const PlaceCard = (props) => {
 
@@ -13,7 +16,7 @@ const PlaceCard = (props) => {
     </div>
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#"
-        onClick= {onCardClick}
+        onClick= {onCardClick(offer)}
         onMouseOver={onCardMouseEnter}
         onMouseOut={onCardMouseOut}
       >
@@ -67,4 +70,13 @@ PlaceCard.propTypes = {
   onCardMouseOut: PropTypes.func
 };
 
-export default PlaceCard;
+export {PlaceCard};
+
+
+const mapDispatchToProps = (dispatch) => ({
+  onCardClick: (offer) => {
+    dispatch(ActionCreator.showActiveOffer(offer));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(PlaceCard);

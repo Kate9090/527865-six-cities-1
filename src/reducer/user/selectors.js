@@ -17,3 +17,7 @@ export const getStatusAuthorization = (state) => {
 export const getUser = (state) => {
   return state[NAME_SPACE].user;
 };
+
+export const getActiveOffer = (state) => {
+  return state[NAME_SPACE].activeOffer;
+};

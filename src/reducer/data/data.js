@@ -47,6 +47,7 @@ const hotelsDataAdapter = (data) => {
     rating: data[`rating`],
     title: data[`title`],
     type: data.type,
+    id: data.id,
   };
 };
 

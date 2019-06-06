@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getCities, getHotels} from "../../reducer/data/selectors";
-import {getSelectCityNumber} from "../../reducer/user/selectors";
+import {getSelectCityNumber, getActiveOffer} from "../../reducer/user/selectors";
 
 
 class Map extends React.PureComponent {
@@ -23,15 +23,12 @@ class Map extends React.PureComponent {
       iconUrl: `img/pin.svg`,
       iconSize: [22, 30]
     });
-    // const activeIcon = leaflet.icon({
-    //   iconUrl: `/img/pin-active.svg`,
-    //   iconSize: [30, 30]
-    // });
-    const {offer, cityOnMap, offerCities,
+    const activeIcon = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+    const {offer, cityOnMap, offerCities, activeCard
     } = this.props;
-
-    // console.log(`activeCard`);
-    // console.log(activeCard);
 
     if (offerCities.length > 1) {
       if (this.mapRef.current) {
@@ -42,10 +39,11 @@ class Map extends React.PureComponent {
         const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
 
         this.city = offerCoordCity;
+        this.center = activeCard !== {} ? [activeCard.location.latitude, activeCard.location.longitude] : this.city;
 
         this.zooms = 12;
         this.map = leaflet.map(this.mapRef.current, {
-          center: this.city,
+          center: this.center,
           zoom: this.zooms,
           zoomControl: false,
           marker: true
@@ -64,18 +62,18 @@ class Map extends React.PureComponent {
 
 
         for (let i = 0; i < offer.length; i++) {
-          // if (activeCard) {
-          leaflet
+          if (activeCard) {
+            leaflet
               .marker([offer[i].location.latitude, offer[i].location.longitude],
-                  {icon}).addTo(this.map);
-          //   icon: offer[i].id === activeCard.id ?
-          //     activeIcon
-          //     : icon
-          // }).addTo(this.map);
-          // } else {
-          //   leaflet
-          //   .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
-          // }
+                  {
+                    icon: offer[i].id === activeCard.id ?
+                      activeIcon
+                      : icon
+                  }).addTo(this.map);
+          } else {
+            leaflet
+            .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
+          }
         }
       }
     }
@@ -103,7 +101,7 @@ Map.propTypes = {
     }),
     name: PropTypes.string.isRequired,
   })),
-  // activeCard: PropTypes.object,
+  activeCard: PropTypes.object,
 };
 
 export {Map};
@@ -112,6 +110,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offerCities: getCities(state),
   cityOnMap: getSelectCityNumber(state),
   offer: getHotels(state),
+  activeCard: getActiveOffer(state),
 });
 
 export default connect(

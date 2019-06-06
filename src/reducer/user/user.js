@@ -3,6 +3,7 @@ const initialState = {
   cityNumber: 0,
   isAuthorizationRequired: false,
   user: {},
+  activeOffer: {},
 };
 
 const ActionCreator = ({
@@ -30,6 +31,10 @@ const ActionCreator = ({
       avatarUrl: user.avatar_url,
       isPro: user.is_pro,
     },
+  }),
+  'showActiveOffer': (offer) => ({
+    type: `SHOW_ACTIVE_OFFER`,
+    payload: offer,
   })
 });
 
@@ -71,6 +76,10 @@ const reducer = (state = initialState, action) => {
     case `SIGN_IN`:
       return Object.assign({}, state, {
         user: action.payload,
+      });
+    case `SHOW_ACTIVE_OFFER`:
+      return Object.assign({}, state, {
+        activeOffer: action.payload,
       });
   }
 
