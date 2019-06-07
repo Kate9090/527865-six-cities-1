@@ -107,7 +107,7 @@ const Offer = (props) => {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {offers.filter((it) => it.city.name === offer.name).map((i) => <PlaceCard offer={offers.i} key={`nearPlace-${i}`}/>).slice(0, 3)}
+            {offers.filter((it) => it.city.name === offer.name && it.id !== offer.id).map((i) => <PlaceCard offer={offers.i} key={`nearPlace-${i}`}/>).slice(0, 3)}
           </div>
         </section>
       </div>
