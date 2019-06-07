@@ -10,12 +10,13 @@ const ReviewList = (props) => {
 
   const {checkAuthorization, reviews} = props;
 
+
   return <section className="property__reviews reviews">
     <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">reviews.length</span></h2>
     <ul className="reviews__list">
-      {/* {reviews.map((i) =>  */}
+      {/* {reviews.map((i) => */}
       <Review
-      //  key={`review-${i}`}
+      // key={`review-${i}`}
       />
       {/* )} */}
     </ul>
@@ -96,10 +97,4 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   rewiews: getReviews(state),
 });
 
-const mapDispatchToProps = () => ({
-  // onCardClick: (offer) => {
-  //   dispatch(ActionCreator.showActiveOffer(offer));
-  // },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewList);
+export default connect(mapStateToProps)(ReviewList);

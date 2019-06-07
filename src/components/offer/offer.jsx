@@ -18,6 +18,11 @@ const Offer = (props) => {
   const {offers, favouriteOffers,
     offer, onCardClick} = props;
 
+  console.log(`favouriteOffers in offer`);
+  console.log(favouriteOffers);
+  console.log(`offers in offer`);
+  console.log(offer);
+
   return <>
     <Header />
     <main className="page__main page__main--property">
@@ -151,8 +156,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCardClick: (offers, offer) => {
-    dispatch(ActionCreator.addCardToFavourite(offers, offer));
+  onCardClick: (favouriteOffers, offer) => {
+    dispatch(ActionCreator.addCardToFavourite(favouriteOffers, offer));
   },
 });
 
