@@ -5,7 +5,7 @@ const initialState = {
   user: {},
   activeOffer: {},
   reviews: [],
-  // favouriteOffer: [],
+  favouriteOffer: [],
 };
 
 const ActionCreator = ({
@@ -38,10 +38,15 @@ const ActionCreator = ({
     type: `SHOW_ACTIVE_OFFER`,
     payload: offer,
   }),
-  // 'addCardToFavourite': (favouriteOffer, offer) => ({
-  //   type: `ADD_CARD_TO_FAVOURITE`,
-  //   payload: favouriteOffer.push(offer),
-  // }),
+  'addCardToFavourite': (favouriteOffer = [], offer = {}) => {
+    if (favouriteOffer) {
+      favouriteOffer = favouriteOffer.push(offer);
+    }
+    return {
+      type: `ADD_CARD_TO_FAVOURITE`,
+      payload: favouriteOffer,
+    };
+  },
 });
 
 const Operation = {

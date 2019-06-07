@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getActiveOffer} from '../../reducer/user/selectors';
 
-// import {ActionCreator} from '../../reducer/user/user';
+import {ActionCreator} from '../../reducer/user/user';
 
 import {getHotels} from "../../reducer/data/selectors";
+import {getFavouritesList} from '../../reducer/user/selectors';
 
 import Header from '../header/header.jsx';
 import ReviewList from '../reviews-list/review-list.jsx';
@@ -14,7 +15,7 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 
 const Offer = (props) => {
 
-  const {offers,
+  const {offers, favouriteOffers,
     offer, onCardClick} = props;
 
   return <>
@@ -39,7 +40,7 @@ const Offer = (props) => {
               <h1 className="property__name">
                 {offer.title}
               </h1>
-              <button onClick={onCardClick(offer)} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`}}>
+              <button onClick={onCardClick(favouriteOffers, offer)} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`}}>
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
@@ -106,7 +107,7 @@ const Offer = (props) => {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {offers.map((i) => <PlaceCard offer={offers.i} key={`nearPlace-${i}`}/>).slice(0, 3)}
+            {offers.filter((it) => it.city.name === offer.name).map((i) => <PlaceCard offer={offers.i} key={`nearPlace-${i}`}/>).slice(0, 3)}
           </div>
         </section>
       </div>
@@ -127,6 +128,17 @@ Offer.propTypes = {
       longitude: PropTypes.number.isRequired,
     }).isRequired,
   })).isRequired,
+  favouriteOffers: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }),
+  })).isRequired,
   onCardClick: PropTypes.func.isRequired,
 };
 
@@ -134,17 +146,17 @@ export {Offer};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offer: getActiveOffer(state),
-  // favouriteOffers: addCardToFavourites(state),
+  favouriteOffers: getFavouritesList(state),
   offers: getHotels(state),
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   addCard: (offers, offer) => {
-//     dispatch(ActionCreator.addCardToFavourite(offers, offer));
-//   },
-// });
+const mapDispatchToProps = (dispatch) => ({
+  onCardClick: (offers, offer) => {
+    dispatch(ActionCreator.addCardToFavourite(offers, offer));
+  },
+});
 
 export default connect(
-    mapStateToProps
-    //  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Offer);

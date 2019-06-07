@@ -22,7 +22,7 @@ export const getActiveOffer = (state) => {
   return state[NAME_SPACE].activeOffer;
 };
 
-export const addCardToFavourites = (state) => {
+export const getFavouritesList = (state) => {
   return state[NAME_SPACE].favouriteOffer;
 };
 
