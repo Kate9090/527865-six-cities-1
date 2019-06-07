@@ -4,6 +4,8 @@ const initialState = {
   isAuthorizationRequired: false,
   user: {},
   activeOffer: {},
+  reviews: [],
+  // favouriteOffer: [],
 };
 
 const ActionCreator = ({
@@ -35,7 +37,11 @@ const ActionCreator = ({
   'showActiveOffer': (offer) => ({
     type: `SHOW_ACTIVE_OFFER`,
     payload: offer,
-  })
+  }),
+  // 'addCardToFavourite': (favouriteOffer, offer) => ({
+  //   type: `ADD_CARD_TO_FAVOURITE`,
+  //   payload: favouriteOffer.push(offer),
+  // }),
 });
 
 const Operation = {
@@ -80,6 +86,10 @@ const reducer = (state = initialState, action) => {
     case `SHOW_ACTIVE_OFFER`:
       return Object.assign({}, state, {
         activeOffer: action.payload,
+      });
+    case `ADD_CARD_TO_FAVOURITE`:
+      return Object.assign({}, state, {
+        favouriteOffer: action.payload,
       });
   }
 

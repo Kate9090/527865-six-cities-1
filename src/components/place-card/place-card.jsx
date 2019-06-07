@@ -50,7 +50,7 @@ const PlaceCard = (props) => {
       <h2 className="place-card__name">
         {!checkAuthorization ?
           <Link to="/login" className="header__login">Sign in</Link>
-          : <Link to="/offer" className="header__user-name user__name">{offer.title}</Link>
+          : <Link to={`/offer/${offer.id}`} className="header__user-name user__name">{offer.title}</Link>
         }
       </h2>
       <p className="place-card__type">{offer.name}</p>

@@ -91,9 +91,11 @@ exports[`renders correctly PlaceCard 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        className="header__login"
+        href="/login"
+        onClick={[Function]}
       >
-        Beautiful &amp; luxurious apartment at great location
+        Sign in
       </a>
     </h2>
     <p

@@ -21,3 +21,11 @@ export const getUser = (state) => {
 export const getActiveOffer = (state) => {
   return state[NAME_SPACE].activeOffer;
 };
+
+export const addCardToFavourites = (state) => {
+  return state[NAME_SPACE].favouriteOffer;
+};
+
+export const getReviews = (state) => {
+  return state[NAME_SPACE].reviews;
+};

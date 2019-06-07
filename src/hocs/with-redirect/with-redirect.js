@@ -8,9 +8,12 @@ import SignIn from '../../components/sign-in/sign-in.jsx';
 import Favorites from '../../components/favorites/favorites.jsx';
 import Offer from '../../components/offer/offer.jsx';
 
+import withFavouriteCard from '../with-favourite-card/with-favourite-card';
+const WrappedOffer = withFavouriteCard(Offer);
+
 const withRedirect = () => {
   const WithRedirect = (props) => {
-    const {notNeedToAuthrized} = props;
+    const {notNeedToAuthrized, onCardClick} = props;
 
     return <BrowserRouter><Switch>
       <Route exact path="/" render={() => {
@@ -30,9 +33,9 @@ const withRedirect = () => {
 
         return <Redirect to="/login" />;
       }} />
-      <Route path="/offer" render={() => {
+      <Route path="/offer/:id" render={() => {
         if (notNeedToAuthrized) {
-          return <Offer />;
+          return <WrappedOffer onCardClick={onCardClick}/>;
         }
 
         return <Redirect to="/login" />;
@@ -52,6 +55,7 @@ const withRedirect = () => {
 
   WithRedirect.propTypes = {
     notNeedToAuthrized: PropTypes.bool.isRequired,
+    onCardClick: PropTypes.func,
   };
 
   return WithRedirect;
