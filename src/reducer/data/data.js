@@ -61,7 +61,7 @@ const hotelsDataAdapter = (data) => {
     images: data.images,
     goods: data.goods,
     maxAdults: data.max_adults,
-
+    isPremium: data.is_premium
   };
 };
 
