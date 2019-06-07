@@ -30,7 +30,7 @@ const withRedirect = () => {
 
         return <Redirect to="/login" />;
       }} />
-      <Route path="/favorites" render={() => {
+      <Route path="/offer" render={() => {
         if (notNeedToAuthrized) {
           return <Offer />;
         }

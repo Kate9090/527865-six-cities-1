@@ -57,6 +57,11 @@ const hotelsDataAdapter = (data) => {
     title: data[`title`],
     type: data.type,
     id: data.id,
+    host: data.host,
+    images: data.images,
+    goods: data.goods,
+    maxAdults: data.max_adults,
+
   };
 };
 
