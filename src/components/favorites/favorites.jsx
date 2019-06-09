@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getFavouritesList} from '../../reducer/user/selectors';
+import {getFavouriteList} from '../../reducer/user/selectors';
 
 import Header from '../header/header.jsx';
 
@@ -102,7 +102,7 @@ Favourites.propTypes = {
 export {Favourites};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  favouriteOffers: getFavouritesList(state),
+  favouriteOffers: getFavouriteList(state),
 });
 
 export default connect(

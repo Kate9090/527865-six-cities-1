@@ -21,8 +21,11 @@ const Offer = (props) => {
   const onCardClick = () => {
     if (favouriteOffers && offer) {
       sendOfferToFavourite(favouriteOffers, offer);
+      console.log(`send`);
+      console.log(offer);
     }
-  }
+  };
+
   return <>
     <Header />
     <main className="page__main page__main--property">
