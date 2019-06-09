@@ -9,21 +9,21 @@ import {ActionCreator} from '../../reducer/user/user';
 import {getHotels} from "../../reducer/data/selectors";
 import {getFavouritesList} from '../../reducer/user/selectors';
 
+import {getStatusAuthorization} from "../../reducer/user/selectors";
+
 import Header from '../header/header.jsx';
 import ReviewList from '../reviews-list/review-list.jsx';
 import {PlaceCard} from "../place-card/place-card.jsx";
 
 const Offer = (props) => {
 
-  const {offers, favouriteOffers,
+  const {offers, favouriteOffers, checkAuthorization,
     offer, sendOfferToFavourite} = props;
 
   const onCardClick = () => {
     if (favouriteOffers && offer) {
       let i = favouriteOffers.length;
       sendOfferToFavourite(favouriteOffers, offer, i);
-      console.log(`send`);
-      console.log(offer);
     }
   };
 
@@ -92,7 +92,7 @@ const Offer = (props) => {
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src={offer.host.avatar_url} width="74" height="74" alt="Host avatar" />
+                  <img className="property__avatar user__avatar" src={`/${offer.host.avatar_url}`} width="74" height="74" alt="Host avatar" />
                 </div>
                 <span className="property__user-name">
                   {offer.host.name}
@@ -116,7 +116,11 @@ const Offer = (props) => {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {offers.filter((it) => it.city.name === offer.name && it.id !== offer.id).map((i) => <PlaceCard offer={offers.i} key={`nearPlace-${i}`}/>).slice(0, 3)}
+            {offers
+              .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
+              .map((it, num) => <PlaceCard {...props} checkAuthorization={checkAuthorization} offer={offers[num]} key={`nearPlace-${num}`}/>)
+              .slice(0, 3)
+            }
           </div>
         </section>
       </div>
@@ -149,6 +153,7 @@ Offer.propTypes = {
     }),
   })).isRequired,
   sendOfferToFavourite: PropTypes.func.isRequired,
+  checkAuthorization: PropTypes.bool.isRequired,
 };
 
 export {Offer};
@@ -157,6 +162,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offer: getActiveOffer(state),
   favouriteOffers: getFavouritesList(state),
   offers: getHotels(state),
+  checkAuthorization: getStatusAuthorization(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
