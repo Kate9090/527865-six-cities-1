@@ -122,14 +122,6 @@ const Offer = (props) => {
           </div>
         </div>
         {_renderMap()}
-        {/* <Map {...props}
-          offer={offers
-            .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
-            .slice(0, 3)}
-          cityOnMap={cityOnMap} */}
-          {/* // style={{width: `100%`, height: `40%`}} */}
-        {/* /> */}
-        {/* <section className="property__map map"></section> */}
       </section>
       <div className="container">
         <section className="near-places places">
