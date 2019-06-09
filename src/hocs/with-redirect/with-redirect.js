@@ -28,7 +28,8 @@ const withRedirect = () => {
       </Route>
       <Route path="/favorites" render={() => {
         if (notNeedToAuthrized) {
-          return <Favorites />;
+          return <Favorites onCardClick={onCardClick}/>;
+
         }
 
         return <Redirect to="/login" />;

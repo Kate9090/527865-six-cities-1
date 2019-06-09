@@ -20,7 +20,8 @@ const Offer = (props) => {
 
   const onCardClick = () => {
     if (favouriteOffers && offer) {
-      sendOfferToFavourite(favouriteOffers, offer);
+      let i = favouriteOffers.length;
+      sendOfferToFavourite(favouriteOffers, offer, i);
       console.log(`send`);
       console.log(offer);
     }
@@ -159,8 +160,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendOfferToFavourite: (favouriteOffers, offer) => {
-    dispatch(ActionCreator.addCardToFavourite(favouriteOffers, offer));
+  sendOfferToFavourite: (favouriteOffers, offer, i) => {
+    dispatch(ActionCreator.addCardToFavourite(favouriteOffers, offer, i));
   },
 });
 

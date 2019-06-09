@@ -17,14 +17,14 @@ const withFavouriteCard = (WrappedComponent) => {
     _setActiveItem() {
 
       this.setState({
-        // isFavorite: true,
+        isFavorite: true,
       });
     }
 
     _setUnActiveItem() {
 
       this.setState({
-        // isFavorite: false,
+        isFavorite: false,
       });
     }
 

@@ -38,9 +38,9 @@ const ActionCreator = ({
     type: `SHOW_ACTIVE_OFFER`,
     payload: offer,
   }),
-  'addCardToFavourite': (favouriteOffer, offer) => {
+  'addCardToFavourite': (favouriteOffer, offer, i) => {
     if (favouriteOffer && offer) {
-      favouriteOffer = favouriteOffer.map(() => offer);
+      favouriteOffer[i] = offer;
     }
     return {
       type: `ADD_CARD_TO_FAVOURITE`,
