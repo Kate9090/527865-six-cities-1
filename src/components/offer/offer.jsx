@@ -9,15 +9,17 @@ import {ActionCreator} from '../../reducer/user/user';
 import {getHotels} from "../../reducer/data/selectors";
 import {getFavouritesList} from '../../reducer/user/selectors';
 
-import {getStatusAuthorization} from "../../reducer/user/selectors";
+import {getStatusAuthorization, getSelectCityNumber} from "../../reducer/user/selectors";
 
 import Header from '../header/header.jsx';
 import ReviewList from '../reviews-list/review-list.jsx';
+import {Map} from "../map/map.jsx";
+
 import {PlaceCard} from "../place-card/place-card.jsx";
 
 const Offer = (props) => {
 
-  const {offers, favouriteOffers, checkAuthorization,
+  const {offers, favouriteOffers, checkAuthorization, cityOnMap,
     offer, sendOfferToFavourite} = props;
 
   const onCardClick = () => {
@@ -25,6 +27,15 @@ const Offer = (props) => {
       let i = favouriteOffers.length;
       sendOfferToFavourite(favouriteOffers, offer, i);
     }
+  };
+
+  const _renderMap = () => {
+    return <Map
+      {...props}
+      offer={offers
+        .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
+        .slice(0, 3)}
+      cityOnMap={cityOnMap} />;
   };
 
   return <>
@@ -110,7 +121,15 @@ const Offer = (props) => {
             <ReviewList />
           </div>
         </div>
-        <section className="property__map map"></section>
+        {_renderMap()}
+        {/* <Map {...props}
+          offer={offers
+            .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
+            .slice(0, 3)}
+          cityOnMap={cityOnMap} */}
+          {/* // style={{width: `100%`, height: `40%`}} */}
+        {/* /> */}
+        {/* <section className="property__map map"></section> */}
       </section>
       <div className="container">
         <section className="near-places places">
@@ -154,6 +173,7 @@ Offer.propTypes = {
   })).isRequired,
   sendOfferToFavourite: PropTypes.func.isRequired,
   checkAuthorization: PropTypes.bool.isRequired,
+  cityOnMap: PropTypes.number.isRequired,
 };
 
 export {Offer};
@@ -163,6 +183,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   favouriteOffers: getFavouritesList(state),
   offers: getHotels(state),
   checkAuthorization: getStatusAuthorization(state),
+  cityOnMap: getSelectCityNumber(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
