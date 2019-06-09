@@ -16,13 +16,13 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 const Offer = (props) => {
 
   const {offers, favouriteOffers,
-    offer, onCardClick} = props;
+    offer, sendOfferToFavourite} = props;
 
-  console.log(`favouriteOffers in offer`);
-  console.log(favouriteOffers);
-  console.log(`offers in offer`);
-  console.log(offer);
-
+  const onCardClick = () => {
+    if (favouriteOffers && offer) {
+      sendOfferToFavourite(favouriteOffers, offer);
+    }
+  }
   return <>
     <Header />
     <main className="page__main page__main--property">
@@ -45,7 +45,7 @@ const Offer = (props) => {
               <h1 className="property__name">
                 {offer.title}
               </h1>
-              <button onClick={onCardClick(favouriteOffers, offer)} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`}}>
+              <button onClick={onCardClick} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`}}>
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
@@ -144,7 +144,7 @@ Offer.propTypes = {
       longitude: PropTypes.number.isRequired,
     }),
   })).isRequired,
-  onCardClick: PropTypes.func.isRequired,
+  sendOfferToFavourite: PropTypes.func.isRequired,
 };
 
 export {Offer};
@@ -156,7 +156,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCardClick: (favouriteOffers, offer) => {
+  sendOfferToFavourite: (favouriteOffers, offer) => {
     dispatch(ActionCreator.addCardToFavourite(favouriteOffers, offer));
   },
 });
