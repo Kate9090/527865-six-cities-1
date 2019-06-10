@@ -12,7 +12,7 @@ import Map from '../map/map.jsx';
 import {ActionCreator} from '../../reducer/data/data';
 
 
-import {getHotels} from "../../reducer/data/selectors";
+import {getHotels, getSortHotels} from "../../reducer/data/selectors";
 import {getSelectCity} from "../../reducer/user/selectors";
 // import {sortOffers}
 
@@ -21,25 +21,40 @@ const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offers, onCardClick, choseSort
+    offers, onCardClick, choseSort, sortHotels
   } = props;
 
   const _getActiveOffers = () => {
     const {activeCity} = props;
+    if (sortHotels.length > 0) {
+      return activeCity === `` ? sortHotels : sortHotels.filter((it) => it.city.name === activeCity);
+    }
     return activeCity === `` ? offers : offers.filter((it) => it.city.name === activeCity);
   };
 
   const _renderPlaceCard = () => {
 
+    if (sortHotels.length > 0) {
+      return <>
+        {_getActiveOffers(sortHotels).map((it, i) => (
+          <WrappedPlaceCard
+            key={i}
+            offer={it}
+            onCardClick={onCardClick}
+          />
+        )
+        )}
+      </>;
+    }
     return <>
-    {_getActiveOffers(offers).map((it, i) => (
-      <WrappedPlaceCard
-        key={i}
-        offer={it}
-        onCardClick={onCardClick}
-      />
-    )
-    )}
+      {_getActiveOffers(offers).map((it, i) => (
+        <WrappedPlaceCard
+          key={i}
+          offer={it}
+          onCardClick={onCardClick}
+        />
+      )
+      )}
     </>;
   };
 
@@ -48,8 +63,16 @@ const MainScreen = (props) => {
   };
 
   const selectSort = (e) => {
+    const {activeCity} = props;
     let type = e.target.innerHTML;
-    choseSort(type, offers);
+    if (activeCity === ``) {
+      choseSort(type, offers);
+    } else {
+      choseSort(type, offers.filter((it) => it.city.name === activeCity));
+    }
+    _renderPlaceCard();
+
+    console.log(sortHotels);
   };
 
   return <>
@@ -117,6 +140,17 @@ MainScreen.propTypes = {
       longitude: PropTypes.number.isRequired,
     }).isRequired,
   })).isRequired,
+  sortHotels: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
+  })).isRequired,
   onCardClick: PropTypes.func,
   activeCity: PropTypes.string.isRequired,
   choseSort: PropTypes.func.isRequired,
@@ -127,6 +161,7 @@ export {MainScreen};
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: getHotels(state),
   activeCity: getSelectCity(state),
+  sortHotels: getSortHotels(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,6 +2,7 @@ const initialState = {
   hotels: [],
   cities: [],
   defaultCity: ``,
+  sortHotels: []
 };
 
 const MAX_NUMBER_OF_CITIES = 6;
@@ -126,7 +127,7 @@ const reducer = (state = initialState, action) => {
       });
     case `SORT_HOTELS`:
       return Object.assign({}, state, {
-        hotels: action.payload,
+        sortHotels: action.payload,
       });
   }
 

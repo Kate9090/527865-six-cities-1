@@ -28,5 +28,5 @@ export const getSelectedOffers = createSelector(
 );
 
 export const getSortHotels = (state) => {
-  return state[NAME_SPACE].offers;
+  return state[NAME_SPACE].sortHotels;
 };
