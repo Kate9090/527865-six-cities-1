@@ -9,16 +9,19 @@ import HeaderPlaces from '../header-places/header-places.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
 import Map from '../map/map.jsx';
 
+import {ActionCreator} from '../../reducer/data/data';
+
 
 import {getHotels} from "../../reducer/data/selectors";
 import {getSelectCity} from "../../reducer/user/selectors";
+// import {sortOffers}
 
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const MainScreen = (props) => {
   const {
-    offers, onCardClick,
+    offers, onCardClick, choseSort
   } = props;
 
   const _getActiveOffers = () => {
@@ -44,6 +47,11 @@ const MainScreen = (props) => {
     return <Map />;
   };
 
+  const selectSort = (e) => {
+    let type = e.target.innerHTML;
+    choseSort(type, offers);
+  };
+
   return <>
     <Header />
     <main className="page__main page__main--index">
@@ -67,18 +75,18 @@ const MainScreen = (props) => {
                 </svg>
               </span>
               <ul className="places__options places__options--custom places__options--opened">
-                <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                <li className="places__option" tabIndex="0">Price: low to high</li>
-                <li className="places__option" tabIndex="0">Price: high to low</li>
-                <li className="places__option" tabIndex="0">Top rated first</li>
+                <li onClick={(e) => selectSort(e)} className="places__option places__option--active" tabIndex="0">Popular</li>
+                <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: low to high</li>
+                <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: high to low</li>
+                <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Top rated first</li>
               </ul>
 
-              <select className="places__sorting-type" id="places-sorting" defaultValue={`popular`}>
+              {/* <select className="places__sorting-type" id="places-sorting" defaultValue={`popular`}>
                 <option className="places__option" value={`popular`}>Popular</option>
                 <option className="places__option" value={`to-high`}>Price: low to high</option>
                 <option className="places__option" value={`to-low`}>Price: high to low</option>
                 <option className="places__option" value={`top-rated`}>Top rated first</option>
-              </select>
+              </select> */}
 
             </form>
             <div className="cities__places-list places__list tabs__content">
@@ -111,6 +119,7 @@ MainScreen.propTypes = {
   })).isRequired,
   onCardClick: PropTypes.func,
   activeCity: PropTypes.string.isRequired,
+  choseSort: PropTypes.func.isRequired,
 };
 
 export {MainScreen};
@@ -120,6 +129,12 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeCity: getSelectCity(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  choseSort: (type, offers) => {
+    dispatch(ActionCreator.sortOffers(type, offers));
+  },
+});
+
 export default connect(
-    mapStateToProps
+    mapStateToProps, mapDispatchToProps
 )(MainScreen);

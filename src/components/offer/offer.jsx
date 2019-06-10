@@ -35,7 +35,8 @@ const Offer = (props) => {
       offer={offers
         .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
         .slice(0, 3)}
-      cityOnMap={cityOnMap} />;
+      cityOnMap={cityOnMap}
+      className="offer-map" />;
   };
 
   return <>

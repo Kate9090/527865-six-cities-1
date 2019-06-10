@@ -47,6 +47,7 @@ const ActionCreator = ({
       payload: favouriteOffer,
     };
   },
+
 });
 
 const Operation = {

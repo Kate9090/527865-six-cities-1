@@ -7,7 +7,7 @@ import {getCities, getHotels} from "../../reducer/data/selectors";
 import {getSelectCityNumber, getActiveOffer} from "../../reducer/user/selectors";
 
 
-class Map extends React.PureComponent {
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
@@ -16,6 +16,13 @@ class Map extends React.PureComponent {
     return <section className="cities__map">
       <div id="map" ref={this.mapRef} style={{height: `800px`}}></div>
     </section>;
+  }
+
+  shouldComponentUpdate() {
+    if (this.map) {
+      this.map.remove();
+    }
+    return true;
   }
 
   componentDidUpdate() {
@@ -32,9 +39,6 @@ class Map extends React.PureComponent {
 
     if (offerCities.length > 1) {
       if (this.mapRef.current) {
-        if (this.map) {
-          this.map.remove();
-        }
 
         const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
 

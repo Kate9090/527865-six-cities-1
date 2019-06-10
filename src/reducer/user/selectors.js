@@ -29,3 +29,4 @@ export const getFavouritesList = (state) => {
 export const getReviews = (state) => {
   return state[NAME_SPACE].reviews;
 };
+

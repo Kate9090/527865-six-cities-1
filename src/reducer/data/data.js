@@ -24,7 +24,12 @@ const ActionCreator = ({
       cities = [...new Set(hotels.map((it) =>
         it.city
 
-      ))].slice(0, MAX_NUMBER_OF_CITIES);
+      ))];
+      if (cities.length < MAX_NUMBER_OF_CITIES) {
+        cities = cities.slice(0, cities.length);
+      } else {
+        cities = cities.slice(0, MAX_NUMBER_OF_CITIES);
+      }
     }
 
     return {
@@ -42,7 +47,31 @@ const ActionCreator = ({
       type: `GET_DEFAULT_CITY`,
       payload: defaultcity,
     };
-  }
+  },
+  'sortOffers': (type, offers) => {
+    let copyHotels = offers;
+    let newHotels = null;
+    switch (type) {
+      case `Price: low to high`:
+        newHotels = copyHotels.sort((a, b) => a.price - b.price);
+        break;
+      case `Price: high to low`:
+        newHotels = copyHotels.sort((a, b) => b.price - a.price);
+        break;
+      case `Top rated first`:
+        newHotels = copyHotels.sort((a, b) => b.rating - a.rating);
+        break;
+    }
+
+    if (!newHotels) {
+      newHotels = copyHotels;
+    }
+
+    return {
+      type: `SORT_HOTELS`,
+      payload: newHotels,
+    };
+  },
 });
 
 const hotelsDataAdapter = (data) => {
@@ -94,6 +123,10 @@ const reducer = (state = initialState, action) => {
     case `GET_DEFAULT_CITY`:
       return Object.assign({}, state, {
         defaultCity: action.payload,
+      });
+    case `SORT_HOTELS`:
+      return Object.assign({}, state, {
+        hotels: action.payload,
       });
   }
 

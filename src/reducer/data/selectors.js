@@ -26,3 +26,7 @@ export const getSelectedOffers = createSelector(
       return offers.filter((offer) => offer.city.name === city.name);
     }
 );
+
+export const getSortHotels = (state) => {
+  return state[NAME_SPACE].offers;
+};
