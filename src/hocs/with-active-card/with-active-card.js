@@ -9,7 +9,6 @@ const withActiveCard = (WrappedComponent) => {
 
       this.state = {
         active: false,
-        // activeCard: null,
       };
 
       this._setActiveItem = this._setActiveItem.bind(this);
@@ -22,16 +21,12 @@ const withActiveCard = (WrappedComponent) => {
         active: true,
       });
 
-
-      // console.log(`wrapped`);
-      // console.log(this.state.activeCard);
     }
 
     _setUnActiveItem() {
 
       this.setState({
         active: false,
-        // activeCard: null,
       });
     }
 
@@ -40,7 +35,6 @@ const withActiveCard = (WrappedComponent) => {
       return (
         <WrappedComponent
           {...this.props}
-          // activeCard={this.state.activeCard}
           onCardClick={this._setActiveItem}
           onCardMouseEnter={this._setActiveItem}
           onCardMouseOut={this._setUnActiveItem}
@@ -51,7 +45,6 @@ const withActiveCard = (WrappedComponent) => {
   }
 
   WithActiveCard.propTypes = {
-    // activeCard: PropTypes.string,
     offer: PropTypes.object,
   };
 

@@ -6,6 +6,7 @@ const initialState = {
   activeOffer: {},
   reviews: [],
   favouriteOffer: [],
+  pinColor: ``,
 };
 
 const ActionCreator = ({
@@ -45,6 +46,12 @@ const ActionCreator = ({
     return {
       type: `ADD_CARD_TO_FAVOURITE`,
       payload: favouriteOffer,
+    };
+  },
+  'addNewPinColor': (color) => {
+    return {
+      type: `ADD_NEW_PIN_COLOR`,
+      payload: color,
     };
   },
 
@@ -96,6 +103,10 @@ const reducer = (state = initialState, action) => {
     case `ADD_CARD_TO_FAVOURITE`:
       return Object.assign({}, state, {
         favouriteOffer: action.payload,
+      });
+    case `ADD_NEW_PIN_COLOR`:
+      return Object.assign({}, state, {
+        pinColor: action.payload,
       });
   }
 

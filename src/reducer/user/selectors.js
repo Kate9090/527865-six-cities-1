@@ -30,3 +30,6 @@ export const getReviews = (state) => {
   return state[NAME_SPACE].reviews;
 };
 
+export const getPinColor = (state) => {
+  return state[NAME_SPACE].pinColor;
+};
