@@ -10,9 +10,6 @@ import Header from '../header/header.jsx';
 const Favourites = (props) => {
   const {favouriteOffers} = props;
 
-  console.log(`favouriteOffers in favorites`);
-  console.log(favouriteOffers);
-
   return <>
     <Header />
     <main className="page__main page__main--favorites">
@@ -80,20 +77,6 @@ const Favourites = (props) => {
     </main>
   </>;
 };
-
-// _getCardsByCities() {
-//   return Object.entries(this.props.offers.filter((it) => it.isFavorite).reduce((obj, it) => {
-//     const cityName = it.city.name;
-
-//     if (!obj[cityName]) {
-//       obj[cityName] = [];
-//     }
-
-//     obj[cityName].push(it);
-
-//     return obj;
-//   }, {}));
-// };
 
 Favourites.propTypes = {
   favouriteOffers: PropTypes.array.isRequired,

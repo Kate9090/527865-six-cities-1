@@ -12,9 +12,11 @@ class Map extends React.Component {
     super(props);
     this.mapRef = React.createRef();
   }
+
   render() {
-    return <section className="cities__map">
-      <div id="map" ref={this.mapRef} style={{height: `800px`}}></div>
+    const {offer} = this.props;
+    return <section className={offer.lenght > 3 ? `cities__map` : `property__map`} id="map" ref={this.mapRef}>
+      {/* <div id="map" ref={this.mapRef} style={{height: `800px`}}></div> */}
     </section>;
   }
 
@@ -24,6 +26,37 @@ class Map extends React.Component {
     }
     return true;
   }
+
+  // componentDidMount() {
+  //   if (offerCities.length > 1) {
+  //     if (this.mapRef.current) {
+
+  //       const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
+
+  //       this.city = offerCoordCity;
+  //       this.center = activeCard !== {} ? [activeCard.location.latitude, activeCard.location.longitude] : this.city;
+
+  //       this.zooms = 12;
+  //       this.map = leaflet.map(this.mapRef.current, {
+  //         center: this.center,
+  //         zoom: this.zooms,
+  //         zoomControl: false,
+  //         marker: true
+  //       });
+
+  //       this.map.setView(this.city, this.zooms);
+
+  //       leaflet
+  //         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+  //           detectRetina: true,
+  //           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+  //         }).addTo(this.map);
+
+  //       leaflet
+  //         .marker(offerCoordCity, {icon}).addTo(this.map);
+  //       }
+  //     }
+  // }
 
   componentDidUpdate() {
     const icon = leaflet.icon({

@@ -71,8 +71,6 @@ const MainScreen = (props) => {
       choseSort(type, offers.filter((it) => it.city.name === activeCity));
     }
     _renderPlaceCard();
-
-    console.log(sortHotels);
   };
 
   return <>
