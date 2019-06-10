@@ -22,6 +22,7 @@ class Map extends React.Component {
     return true;
   }
 
+
   componentDidUpdate() {
     const {color} = this.props;
     console.log(`update`, color);
@@ -83,6 +84,7 @@ class Map extends React.Component {
   }
   render() {
     const {offer, color} = this.props;
+    console.log(offer);
     return <section
       style = {color !== `` ? {borderColor: `${color}`} : {}}
       className={offer.lenght > 3 ? `cities__map` : `property__map`} id="map" ref={this.mapRef}
