@@ -2,12 +2,11 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getActiveOffer} from '../../reducer/user/selectors';
+import {getActiveOffer, getFavouritesList} from '../../reducer/user/selectors';
 
 import {ActionCreator} from '../../reducer/user/user';
 
 import {getHotels} from "../../reducer/data/selectors";
-import {getFavouritesList} from '../../reducer/user/selectors';
 
 import {getStatusAuthorization, getSelectCityNumber} from "../../reducer/user/selectors";
 
@@ -30,6 +29,7 @@ const Offer = (props) => {
   };
 
   const _renderMap = () => {
+
     return <Map
       {...props}
       offer={offers
@@ -38,7 +38,6 @@ const Offer = (props) => {
       cityOnMap={cityOnMap}
       className="offer-map" />;
   };
-
   return <>
     <Header />
     <main className="page__main page__main--property">

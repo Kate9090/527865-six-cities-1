@@ -28,34 +28,57 @@ class Map extends React.Component {
   }
 
   // componentDidMount() {
-  //   if (offerCities.length > 1) {
-  //     if (this.mapRef.current) {
+  //   const icon = leaflet.icon({
+  //     iconUrl: `img/pin.svg`,
+  //     iconSize: [22, 30]
+  //   });
+  //   const {offer, cityOnMap, offerCities, activeCard
+  //   } = this.props;
+  //   if (cityOnMap && offerCities && activeCard && offer) {
+  //     if (offerCities.length > 1) {
+  //       if (this.mapRef.current) {
 
-  //       const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
+  //         const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
 
-  //       this.city = offerCoordCity;
-  //       this.center = activeCard !== {} ? [activeCard.location.latitude, activeCard.location.longitude] : this.city;
+  //         this.city = offerCoordCity;
+  //         this.center = activeCard !== {} ? [activeCard.location.latitude, activeCard.location.longitude] : this.city;
 
-  //       this.zooms = 12;
-  //       this.map = leaflet.map(this.mapRef.current, {
-  //         center: this.center,
-  //         zoom: this.zooms,
-  //         zoomControl: false,
-  //         marker: true
-  //       });
+  //         this.zooms = 12;
+  //         this.map = leaflet.map(this.mapRef.current, {
+  //           center: this.center,
+  //           zoom: this.zooms,
+  //           zoomControl: false,
+  //           marker: true
+  //         });
 
-  //       this.map.setView(this.city, this.zooms);
+  //         this.map.setView(this.city, this.zooms);
 
-  //       leaflet
-  //         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-  //           detectRetina: true,
-  //           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-  //         }).addTo(this.map);
+  //         leaflet
+  //           .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+  //             detectRetina: true,
+  //             attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+  //           }).addTo(this.map);
 
-  //       leaflet
-  //         .marker(offerCoordCity, {icon}).addTo(this.map);
+  //         leaflet
+  //           .marker(offerCoordCity, {icon}).addTo(this.map);
+
+  //         for (let i = 0; i < offer.length; i++) {
+  //           // if (activeCard) {
+  //           //   leaflet
+  //           //     .marker([offer[i].location.latitude, offer[i].location.longitude],
+  //           //         {
+  //           //           icon: offer[i].id === activeCard.id ?
+  //           //             activeIcon
+  //           //             : icon
+  //           //         }).addTo(this.map);
+  //           // } else {
+  //           leaflet
+  //             .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
+  //           // }
+  //         }
   //       }
   //     }
+  //   }
   // }
 
   componentDidUpdate() {
