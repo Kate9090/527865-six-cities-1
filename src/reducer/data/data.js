@@ -2,7 +2,8 @@ const initialState = {
   hotels: [],
   cities: [],
   defaultCity: ``,
-  sortHotels: []
+  sortHotels: [],
+  neighbourHotels: [],
 };
 
 const MAX_NUMBER_OF_CITIES = 6;

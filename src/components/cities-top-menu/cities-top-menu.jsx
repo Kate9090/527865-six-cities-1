@@ -12,7 +12,6 @@ const WrappedCity = withActiveCard(City);
 
 const CitiesTopMenu = (props) => {
   const {cities, onCardClick, onCardMouseOut} = props;
-  console.log(cities);
 
   const _renderCitiesTopMenu = () => {
 

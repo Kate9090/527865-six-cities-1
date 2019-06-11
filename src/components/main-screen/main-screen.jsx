@@ -86,7 +86,7 @@ const MainScreen = (props) => {
       <div className="cities__places-wrapper">
         <div className="cities__places-container container">
           <section className="cities__places places">
-            <HeaderPlaces />
+            <HeaderPlaces offers={offers} />
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">

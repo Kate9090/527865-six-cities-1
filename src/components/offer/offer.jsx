@@ -6,7 +6,7 @@ import {getActiveOffer, getFavouritesList, getSelectCity} from '../../reducer/us
 
 import {ActionCreator} from '../../reducer/user/user';
 
-import {getHotels} from "../../reducer/data/selectors";
+import {getHotels, getNeighbourHotels} from "../../reducer/data/selectors";
 
 import {getStatusAuthorization, getSelectCityNumber} from "../../reducer/user/selectors";
 
@@ -19,7 +19,7 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 const Offer = (props) => {
 
   const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
-    offer, sendOfferToFavourite} = props;
+    offer, sendOfferToFavourite, neighbourHotels} = props;
 
   const onCardClick = () => {
     if (favouriteOffers && offer) {
@@ -32,7 +32,7 @@ const Offer = (props) => {
 
     return <Map
       {...props}
-      offer={offers
+      offer={neighbourHotels
         .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
         .slice(0, 3)}
       nameCityOnMap={nameCityOnMap}
@@ -152,6 +152,17 @@ Offer.propTypes = {
       longitude: PropTypes.number.isRequired,
     }).isRequired,
   })).isRequired,
+  neighbourHotels: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
+  })).isRequired,
   favouriteOffers: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -177,6 +188,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   checkAuthorization: getStatusAuthorization(state),
   cityOnMap: getSelectCityNumber(state),
   nameCityOnMap: getSelectCity(state),
+  neighbourHotels: getNeighbourHotels(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

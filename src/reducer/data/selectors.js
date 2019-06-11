@@ -7,6 +7,11 @@ export const getHotels = (state) => {
   return state[NAME_SPACE].hotels;
 };
 
+export const getNeighbourHotels = (state) => {
+  return state[NAME_SPACE].neighbourHotels;
+};
+
+
 export const getCities = (state) => {
   return state[NAME_SPACE].cities;
 };

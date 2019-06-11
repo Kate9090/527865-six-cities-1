@@ -3,23 +3,32 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {getSelectCity} from '../../reducer/user/selectors';
-import {getDefaultCity} from '../../reducer/data/selectors';
+import {getDefaultCity, getCities} from '../../reducer/data/selectors';
 
 const HeaderPlaces = (props) => {
-  const {activeCity, defaultCity} = props;
+  const {activeCity, cities, offers} = props;
 
-  // console.log(`activeCity is  ` + activeCity);
-  // console.log(`defaultCity is  ` + defaultCity);
 
   return <>
     <h2 className="visually-hidden">Places</h2>
-    <b className="places__found">312 places to stay in {activeCity === `` ? defaultCity : activeCity}</b>
+    <b className="places__found">{offers.length} places to stay in {activeCity === `` ? cities[0] : activeCity}</b>
   </>;
 };
 
 HeaderPlaces.propTypes = {
   activeCity: PropTypes.string.isRequired,
-  defaultCity: PropTypes.string.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string),
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
+  })).isRequired,
 };
 
 export {HeaderPlaces};
@@ -27,6 +36,7 @@ export {HeaderPlaces};
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeCity: getSelectCity(state),
   defaultCity: getDefaultCity(state),
+  cities: getCities(state),
 });
 
 export default connect(
