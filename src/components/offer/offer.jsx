@@ -37,7 +37,7 @@ const Offer = (props) => {
 
     return <Map
       {...props}
-      offer={offers}
+      offer={neighbourOffer}
       nameCityOnMap={nameCityOnMap}
       className="offer-map" />;
   };

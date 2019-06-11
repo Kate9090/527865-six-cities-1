@@ -38,19 +38,6 @@ const ActionCreator = ({
       payload: cities,
     };
   },
-  // 'loadCityCoord': (hotels) => {
-  //   let citiesCoord = [];
-
-  //   if (hotels) {
-  //     citiesCoord = [...new Set(hotels.map((it) =>
-  //       it.city
-  //     ))];
-  //   }
-  //   return {
-  //     type: `LOAD_CITY_LIST`,
-  //     payload: citiesCoord,
-  //   };
-  // },
   'getDefaultCity': (cities) => {
     let defaultcity;
     if (cities) {

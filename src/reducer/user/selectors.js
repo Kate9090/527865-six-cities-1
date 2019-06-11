@@ -26,10 +26,10 @@ export const getFavouritesList = (state) => {
   return state[NAME_SPACE].favouriteOffer;
 };
 
-export const getReviews = (state) => {
-  return state[NAME_SPACE].reviews;
-};
-
 export const getPinColor = (state) => {
   return state[NAME_SPACE].pinColor;
+};
+
+export const getReviews = (state) => {
+  return state[NAME_SPACE].reviews;
 };

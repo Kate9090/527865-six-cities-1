@@ -7,6 +7,7 @@ const initialState = {
   reviews: [],
   favouriteOffer: [],
   pinColor: ``,
+  comment: ``,
 };
 
 const ActionCreator = ({
@@ -52,6 +53,15 @@ const ActionCreator = ({
     return {
       type: `ADD_NEW_PIN_COLOR`,
       payload: color,
+    };
+  },
+  'sendComment': (text, review, i) => {
+    if (review && text) {
+      review[i] = text;
+    }
+    return {
+      type: `ADD_TEXT_COMMENT`,
+      payload: review,
     };
   },
 
@@ -107,6 +117,10 @@ const reducer = (state = initialState, action) => {
     case `ADD_NEW_PIN_COLOR`:
       return Object.assign({}, state, {
         pinColor: action.payload,
+      });
+    case `ADD_TEXT_COMMENT`:
+      return Object.assign({}, state, {
+        reviews: action.payload,
       });
   }
 

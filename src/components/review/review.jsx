@@ -1,10 +1,13 @@
 import React from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import {getReviews} from '../../reducer/user/selectors';
 
+import {connect} from 'react-redux';
 
 const Review = (props) => {
 
-  const {} = props;
+  const {review} = props;
+  console.log(review);
 
   return <li className="reviews__item">
     <div className="reviews__user user">
@@ -23,15 +26,31 @@ const Review = (props) => {
         </div>
       </div>
       <p className="property__text">
-        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-      </p>
-      <p className="property__text">
-        An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-      </p>
-      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        {review[review.length - 1]}</p>
+      <time className="reviews__time" dateTime={review.date}>{
+        // moment(review.date).format(`MMMM YYYY`)
+      }</time>
     </div>
   </li>;
 };
 
-export default Review;
+export {Review};
 
+Review.propTypes = {
+  review: PropTypes.arrayOf(PropTypes.string),
+};
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  review: getReviews(state),
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   onCardClick: (offer) => {
+//     dispatch(ActionCreator.showActiveOffer(offer));
+//   },
+//   newColor: (color) => {
+//     dispatch(ActionCreator.addNewPinColor(color));
+//   },
+// });
+
+export default connect(mapStateToProps)(Review);
