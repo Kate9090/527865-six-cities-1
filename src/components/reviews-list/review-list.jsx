@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
 import {getStatusAuthorization, getReviews} from "../../reducer/user/selectors";
-import Review from '../review/review.jsx';
 
 const ReviewList = (props) => {
 

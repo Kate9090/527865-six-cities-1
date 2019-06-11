@@ -59,7 +59,7 @@ const MainScreen = (props) => {
   };
 
   const _renderMap = () => {
-    return <Map />;
+    return <Map offer={offers}/>;
   };
 
   const selectSort = (e) => {
