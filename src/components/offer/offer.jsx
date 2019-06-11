@@ -6,7 +6,7 @@ import {getActiveOffer, getFavouritesList, getSelectCity} from '../../reducer/us
 
 import {ActionCreator} from '../../reducer/user/user';
 
-import {getHotels, getNeighbourHotels} from "../../reducer/data/selectors";
+import {getHotels} from "../../reducer/data/selectors";
 
 import {getStatusAuthorization, getSelectCityNumber} from "../../reducer/user/selectors";
 
@@ -19,7 +19,12 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 const Offer = (props) => {
 
   const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
-    offer, sendOfferToFavourite, neighbourHotels} = props;
+    offer, sendOfferToFavourite} = props;
+
+  let neighbourOffer = [];
+
+  neighbourOffer = offers.filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
+    .slice(0, 3);
 
   const onCardClick = () => {
     if (favouriteOffers && offer) {
@@ -32,12 +37,17 @@ const Offer = (props) => {
 
     return <Map
       {...props}
-      offer={neighbourHotels
-        .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
-        .slice(0, 3)}
+      offer={offers}
       nameCityOnMap={nameCityOnMap}
       className="offer-map" />;
   };
+
+  const _renderPlaceCardList = () => {
+    return <>
+      {neighbourOffer.map((it, num) => <PlaceCard {...props} checkAuthorization={checkAuthorization} offer={it} key={`nearPlace-${num}`}/>)}
+    </>;
+  };
+
   return <>
     <Header />
     <main className="page__main page__main--property">
@@ -127,11 +137,7 @@ const Offer = (props) => {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {offers
-              .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
-              .map((it, num) => <PlaceCard {...props} checkAuthorization={checkAuthorization} offer={offers[num]} key={`nearPlace-${num}`}/>)
-              .slice(0, 3)
-            }
+            {_renderPlaceCardList()}
           </div>
         </section>
       </div>
@@ -142,17 +148,6 @@ const Offer = (props) => {
 Offer.propTypes = {
   offer: PropTypes.object,
   offers: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-  })).isRequired,
-  neighbourHotels: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -188,7 +183,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   checkAuthorization: getStatusAuthorization(state),
   cityOnMap: getSelectCityNumber(state),
   nameCityOnMap: getSelectCity(state),
-  neighbourHotels: getNeighbourHotels(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
