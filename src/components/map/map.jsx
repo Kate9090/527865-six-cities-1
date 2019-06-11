@@ -38,6 +38,13 @@ class Map extends React.Component {
     return true;
   }
 
+  componentWillUpdate(nextProps) {
+    if (nextProps.offer.length !== this.props.offer.length) {
+      this._init();
+    }
+    return true;
+  }
+
 
   shouldComponentUpdate() {
     if (this.map) {

@@ -35,6 +35,7 @@ const Offer = (props) => {
 
   const _renderMap = () => {
 
+
     return <Map
       {...props}
       offer={neighbourOffer}

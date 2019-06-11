@@ -9,11 +9,7 @@ import {getStatusAuthorization} from "../../reducer/user/selectors";
 
 const PlaceCard = (props) => {
 
-  const {offer, onCardClick, onCardMouseEnter, onCardMouseOut, checkAuthorization, newColor} = props;
-
-  const UpdateMap = () => {
-    newColor(`orange`);
-  };
+  const {offer, onCardClick, onCardMouseEnter, onCardMouseOut, checkAuthorization} = props;
 
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
@@ -54,7 +50,7 @@ const PlaceCard = (props) => {
       <h2 className="place-card__name">
         {!checkAuthorization ?
           <Link to="/login" className="header__login">Sign in</Link>
-          : <Link to={`/offer/${offer.id}`} onClick={UpdateMap} className="header__user-name user__name">{offer.title}</Link>
+          : <Link to={`/offer/${offer.id}`} className="header__user-name user__name">{offer.title}</Link>
         }
       </h2>
       <p className="place-card__type">{offer.name}</p>
@@ -80,7 +76,6 @@ PlaceCard.propTypes = {
   onCardMouseEnter: PropTypes.func,
   onCardMouseOut: PropTypes.func,
   checkAuthorization: PropTypes.bool.isRequired,
-  newColor: PropTypes.func,
 };
 
 export {PlaceCard};
@@ -93,9 +88,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 const mapDispatchToProps = (dispatch) => ({
   onCardClick: (offer) => {
     dispatch(ActionCreator.showActiveOffer(offer));
-  },
-  newColor: (color) => {
-    dispatch(ActionCreator.addNewPinColor(color));
   },
 });
 
