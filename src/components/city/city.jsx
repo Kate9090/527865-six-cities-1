@@ -18,13 +18,13 @@ class City extends Component {
   }
 
   render() {
-    const {cityObject, idx} = this.props;
+    const {city, idx} = this.props;
 
     return <li className="locations__item">
-      <a onClick={(e) => this.handleUserChoose(cityObject.name, idx, e)}
+      <a onClick={(e) => this.handleUserChoose(city, idx, e)}
         className={`locations__item-link tabs__item`}
         href="#">
-        <span>{cityObject.name}</span>
+        <span>{city}</span>
       </a>
     </li>;
   }
@@ -32,13 +32,7 @@ class City extends Component {
 
 City.propTypes = {
   onUserAnswer: PropTypes.func,
-  cityObject: PropTypes.shape({
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  city: PropTypes.string.isRequired,
   idx: PropTypes.number.isRequired,
   onCardClick: PropTypes.func,
   onCardMouseOut: PropTypes.func,

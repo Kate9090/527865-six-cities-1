@@ -12,12 +12,13 @@ const WrappedCity = withActiveCard(City);
 
 const CitiesTopMenu = (props) => {
   const {cities, onCardClick, onCardMouseOut} = props;
+  console.log(cities);
 
   const _renderCitiesTopMenu = () => {
 
     return <ul className="locations__list tabs__list">
       {cities.map((it, i) => (
-        <WrappedCity onCardClick={onCardClick} onCardMouseOut={onCardMouseOut} key={`city-${i}`} cityObject={it} idx={i} />
+        <WrappedCity onCardClick={onCardClick} onCardMouseOut={onCardMouseOut} key={`city-${i}`} city={it} idx={i} />
       )
       )}
     </ul>;
@@ -29,13 +30,7 @@ const CitiesTopMenu = (props) => {
 };
 
 CitiesTopMenu.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.shape({
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string),
   onCardMouseOut: PropTypes.func,
   onCardClick: PropTypes.func,
 };

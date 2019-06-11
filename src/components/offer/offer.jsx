@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getActiveOffer, getFavouritesList} from '../../reducer/user/selectors';
+import {getActiveOffer, getFavouritesList, getSelectCity} from '../../reducer/user/selectors';
 
 import {ActionCreator} from '../../reducer/user/user';
 
@@ -18,7 +18,7 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 
 const Offer = (props) => {
 
-  const {offers, favouriteOffers, checkAuthorization, cityOnMap,
+  const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
     offer, sendOfferToFavourite} = props;
 
   const onCardClick = () => {
@@ -35,7 +35,7 @@ const Offer = (props) => {
       offer={offers
         .filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
         .slice(0, 3)}
-      cityOnMap={cityOnMap}
+      nameCityOnMap={nameCityOnMap}
       className="offer-map" />;
   };
   return <>
@@ -165,7 +165,7 @@ Offer.propTypes = {
   })).isRequired,
   sendOfferToFavourite: PropTypes.func.isRequired,
   checkAuthorization: PropTypes.bool.isRequired,
-  cityOnMap: PropTypes.number.isRequired,
+  nameCityOnMap: PropTypes.string.isRequired,
 };
 
 export {Offer};
@@ -176,6 +176,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: getHotels(state),
   checkAuthorization: getStatusAuthorization(state),
   cityOnMap: getSelectCityNumber(state),
+  nameCityOnMap: getSelectCity(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

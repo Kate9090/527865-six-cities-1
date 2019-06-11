@@ -23,8 +23,7 @@ const ActionCreator = ({
 
     if (hotels) {
       cities = [...new Set(hotels.map((it) =>
-        it.city
-
+        it.city.name
       ))];
       if (cities.length < MAX_NUMBER_OF_CITIES) {
         cities = cities.slice(0, cities.length);
@@ -38,6 +37,19 @@ const ActionCreator = ({
       payload: cities,
     };
   },
+  // 'loadCityCoord': (hotels) => {
+  //   let citiesCoord = [];
+
+  //   if (hotels) {
+  //     citiesCoord = [...new Set(hotels.map((it) =>
+  //       it.city
+  //     ))];
+  //   }
+  //   return {
+  //     type: `LOAD_CITY_LIST`,
+  //     payload: citiesCoord,
+  //   };
+  // },
   'getDefaultCity': (cities) => {
     let defaultcity;
     if (cities) {

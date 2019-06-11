@@ -4,8 +4,16 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getCities, getHotels} from "../../reducer/data/selectors";
-import {getSelectCityNumber, getActiveOffer, getPinColor} from "../../reducer/user/selectors";
+import {getSelectCity, getActiveOffer, getPinColor} from "../../reducer/user/selectors";
 
+const icon = leaflet.icon({
+  iconUrl: `img/pin.svg`,
+  iconSize: [22, 30]
+});
+const activeIcon = leaflet.icon({
+  iconUrl: `/img/pin-active.svg`,
+  iconSize: [30, 30]
+});
 
 class Map extends React.Component {
   constructor(props) {
@@ -13,37 +21,34 @@ class Map extends React.Component {
     this.mapRef = React.createRef();
   }
 
-
   shouldComponentUpdate() {
     if (this.map) {
       this.map.remove();
     }
-
     return true;
   }
 
-
   componentDidUpdate() {
-    const {color} = this.props;
-    console.log(`update`, color);
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [22, 30]
-    });
-    const activeIcon = leaflet.icon({
-      iconUrl: `/img/pin-active.svg`,
-      iconSize: [30, 30]
-    });
-    const {offer, cityOnMap, offerCities, activeCard
+    const {offer, nameCityOnMap, offerCities, activeCard
     } = this.props;
 
-    if (offerCities.length > 1) {
+    if (offerCities.length > 0) {
+
+
       if (this.mapRef.current) {
+        if (nameCityOnMap !== ``) {
+          let coordOffer = offer.filter((it) => it.city.name === nameCityOnMap).slice(0, 1);
 
-        const offerCoordCity = [offerCities[cityOnMap].location.latitude, offerCities[cityOnMap].location.longitude];
+          const offerCoordCity = [coordOffer[0].location.latitude, coordOffer[0].location.longitude];
+          this.city = offerCoordCity;
+        } else {
+          let coordOffer = offer.filter((it) => it.city.name === offerCities[0]).slice(0, 1);
 
-        this.city = offerCoordCity;
-        this.center = activeCard !== {} ? [activeCard.location.latitude, activeCard.location.longitude] : this.city;
+          const offerCoordCity = [coordOffer[0].city.location.latitude, coordOffer[0].city.location.longitude];
+          this.city = offerCoordCity;
+        }
+        this.center = this.city;
+
 
         this.zooms = 12;
         this.map = leaflet.map(this.mapRef.current, {
@@ -58,11 +63,11 @@ class Map extends React.Component {
         leaflet
           .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
             detectRetina: true,
-            // attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
           }).addTo(this.map);
 
         leaflet
-          .marker(offerCoordCity, {icon}).addTo(this.map);
+          .marker(this.city, {icon}).addTo(this.map);
 
 
         for (let i = 0; i < offer.length; i++) {
@@ -82,9 +87,10 @@ class Map extends React.Component {
       }
     }
   }
+
   render() {
     const {offer, color} = this.props;
-    console.log(offer);
+
     return <section
       style = {color !== `` ? {borderColor: `${color}`} : {}}
       className={offer.lenght > 3 ? `cities__map` : `property__map`} id="map" ref={this.mapRef}
@@ -106,14 +112,8 @@ Map.propTypes = {
       longitude: PropTypes.number.isRequired,
     }),
   })).isRequired,
-  cityOnMap: PropTypes.number.isRequired,
-  offerCities: PropTypes.arrayOf(PropTypes.shape({
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }),
-    name: PropTypes.string.isRequired,
-  })),
+  nameCityOnMap: PropTypes.string.isRequired,
+  offerCities: PropTypes.arrayOf(PropTypes.string),
   activeCard: PropTypes.object,
   color: PropTypes.string,
 };
@@ -122,7 +122,7 @@ export {Map};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offerCities: getCities(state),
-  cityOnMap: getSelectCityNumber(state),
+  nameCityOnMap: getSelectCity(state),
   offer: getHotels(state),
   activeCard: getActiveOffer(state),
   color: getPinColor(state),
