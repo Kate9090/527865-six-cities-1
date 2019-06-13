@@ -16,13 +16,14 @@ Array [
         >
           <a
             className="header__logo-link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -68,126 +69,29 @@ Array [
       className="cities__places-wrapper"
     >
       <div
-        className="cities__places-container container"
+        className="cities__places-container cities__places-container--empty container"
       >
         <section
-          className="cities__places places"
+          className="cities__no-places"
         >
-          <h2
-            className="visually-hidden"
-          >
-            Places
-          </h2>
-          <b
-            className="places__found"
-          >
-            312 places to stay in 
-            
-          </b>
-          <form
-            action="#"
-            className="places__sorting"
-            method="get"
-          >
-            <span
-              className="places__sorting-caption"
-            >
-              Sort by
-            </span>
-            <span
-              className="places__sorting-type"
-              tabIndex="0"
-            >
-              Popular
-              <svg
-                className="places__sorting-arrow"
-                height="4"
-                width="7"
-              >
-                <use
-                  xlinkHref="#icon-arrow-select"
-                />
-              </svg>
-            </span>
-            <ul
-              className="places__options places__options--custom places__options--opened"
-            >
-              <li
-                className="places__option places__option--active"
-                tabIndex="0"
-              >
-                Popular
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Price: low to high
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Price: high to low
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Top rated first
-              </li>
-            </ul>
-            <select
-              className="places__sorting-type"
-              defaultValue="popular"
-              id="places-sorting"
-            >
-              <option
-                className="places__option"
-                value="popular"
-              >
-                Popular
-              </option>
-              <option
-                className="places__option"
-                value="to-high"
-              >
-                Price: low to high
-              </option>
-              <option
-                className="places__option"
-                value="to-low"
-              >
-                Price: high to low
-              </option>
-              <option
-                className="places__option"
-                value="top-rated"
-              >
-                Top rated first
-              </option>
-            </select>
-          </form>
           <div
-            className="cities__places-list places__list tabs__content"
-          />
+            className="cities__status-wrapper tabs__content"
+          >
+            <b
+              className="cities__status"
+            >
+              No places to stay available
+            </b>
+            <p
+              className="cities__status-description"
+            >
+              We could not find any property availbale at the moment in Dusseldorf
+            </p>
+          </div>
         </section>
         <div
           className="cities__right-section"
-        >
-          <section
-            className="cities__map"
-          >
-            <div
-              id="map"
-              style={
-                Object {
-                  "height": "800px",
-                }
-              }
-            />
-          </section>
-        </div>
+        />
       </div>
     </div>
   </main>,

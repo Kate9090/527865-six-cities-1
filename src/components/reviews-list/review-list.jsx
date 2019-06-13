@@ -22,49 +22,41 @@ class ReviewList extends Component {
   }
 
   componentWillUpdate(exProps) {
-    console.log(`componentWillUpdate`);
-    console.log(exProps.reviews.length);
-    console.log(this.props.reviews.length);
-
     if (exProps.reviews.length !== this.props.reviews.length) {
       return true;
     }
     return true;
   }
 
-  shouldComponentUpdate() {
-    console.log(`shouldComponentUpdate`);
-    return true;
-  }
-
   _renderNewReview() {
     const {reviews} = this.props;
     return <>
-    {reviews.map((it, i) =>
-      <li key={`review-${i}`} className="reviews__item">
-        <div className="reviews__user user">
-          <div className="reviews__avatar-wrapper user__avatar-wrapper">
-            <img className="reviews__avatar user__avatar" src="/img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-          </div>
-          <span className="reviews__user-name">
-            Max
-          </span>
-        </div>
-        <div className="reviews__info">
-          <div className="reviews__rating rating">
-            <div className="reviews__stars rating__stars">
-              <span style={{width: `94%`}}></span>
-              <span className="visually-hidden">Rating</span>
+    {reviews
+      .map((it, i) =>
+        <li key={`review-${i}`} className="reviews__item">
+          <div className="reviews__user user">
+            <div className="reviews__avatar-wrapper user__avatar-wrapper">
+              <img className="reviews__avatar user__avatar" src="/img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
             </div>
+            <span className="reviews__user-name">
+              Max
+            </span>
           </div>
-          <p className="property__text">
-            {it}</p>
-          <time className="reviews__time" dateTime={it.date}>{
-            // moment(review.date).format(`MMMM YYYY`)
-          }</time>
-        </div>
-      </li>
-    )}
+          <div className="reviews__info">
+            <div className="reviews__rating rating">
+              <div className="reviews__stars rating__stars">
+                <span style={{width: `94%`}}></span>
+                <span className="visually-hidden">Rating</span>
+              </div>
+            </div>
+            <p className="property__text">
+              {it}</p>
+            <time className="reviews__time">{
+              new Date().toLocaleDateString()
+            }</time>
+          </div>
+        </li>
+      )}
     </>;
   }
 

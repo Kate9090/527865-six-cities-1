@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly stateless screen 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews · 
+    <span
+      className="reviews__amount"
+    >
+      0
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  />
+</section>
+`;

@@ -75,8 +75,6 @@ const MainScreen = (props) => {
   };
 
   return <>
-    {offers.length > 0 ?
-      <>
       <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -85,52 +83,42 @@ const MainScreen = (props) => {
             <CitiesTopMenu />
           </section>
         </div>
+        {offers.length > 0 ?
+          <>
+            <div className="cities__places-wrapper">
+              <div className="cities__places-container container">
+                <section className="cities__places places">
+                  <HeaderPlaces offers={offers} />
+                  <form className="places__sorting" action="#" method="get">
+                    <span className="places__sorting-caption">Sort by</span>
+                    <span className="places__sorting-type" tabIndex="0">
+                      Popular
+                      <svg className="places__sorting-arrow" width="7" height="4">
+                        <use xlinkHref="#icon-arrow-select"></use>
+                      </svg>
+                    </span>
+                    <ul className="places__options places__options--custom places__options--opened">
+                      <li onClick={(e) => selectSort(e)} className="places__option places__option--active" tabIndex="0">Popular</li>
+                      <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: low to high</li>
+                      <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: high to low</li>
+                      <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Top rated first</li>
+                    </ul>
 
-        <div className="cities__places-wrapper">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <HeaderPlaces offers={offers} />
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li onClick={(e) => selectSort(e)} className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: low to high</li>
-                  <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: high to low</li>
-                  <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-
-                {/* <select className="places__sorting-type" id="places-sorting" defaultValue={`popular`}>
-                  <option className="places__option" value={`popular`}>Popular</option>
-                  <option className="places__option" value={`to-high`}>Price: low to high</option>
-                  <option className="places__option" value={`to-low`}>Price: high to low</option>
-                  <option className="places__option" value={`top-rated`}>Top rated first</option>
-                </select> */}
-
-              </form>
-              <div className="cities__places-list places__list tabs__content">
-                {_renderPlaceCard()}
+                  </form>
+                  <div className="cities__places-list places__list tabs__content">
+                    {_renderPlaceCard()}
+                  </div>
+                </section>
+                <div className="cities__right-section">
+                  {_renderMap()}
+                </div>
               </div>
-            </section>
-            <div className="cities__right-section">
-              {/* <Map activeCard={activeCard}/>
-            */}
-              {_renderMap()}
             </div>
-          </div>
-        </div>
-
+          </>
+          : <MainEmpty />
+        }
       </main>
-    </>
-      : <MainEmpty />
-    }
-
-  </>;
+    </>;
 };
 
 MainScreen.propTypes = {
