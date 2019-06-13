@@ -9,6 +9,7 @@ import Header from '../header/header.jsx';
 
 const Favourites = (props) => {
   const {favouriteOffers} = props;
+  console.log(favouriteOffers);
 
   return <>
     <Header />
@@ -19,13 +20,13 @@ const Favourites = (props) => {
           <ul className="favorites__list">
             {favouriteOffers.length > 0 ? <>
               {favouriteOffers.map((it, i) => <li className="favorites__locations-items" key={`favour-${i}`}>
-                {/* <div className="favorites__locations locations locations--current"> */}
-                {/* <div className="locations__item">
+                <div className="favorites__locations locations locations--current">
+                  <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
+                      <span>{it.city.name}</span>
                     </a>
                   </div>
-                </div>  */}
+                </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">

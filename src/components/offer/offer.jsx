@@ -74,7 +74,7 @@ const Offer = (props) => {
               <h1 className="property__name">
                 {offer.title}
               </h1>
-              <button onClick={onCardClick} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`}}>
+              <button onClick={onCardClick} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`, backgroundSize: `cover`}}>
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
