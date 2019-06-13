@@ -19,7 +19,10 @@ const PlaceCard = (props) => {
     </div>
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#"
-        onClick= {onCardClick(offer)}
+        onClick= {
+          onCardClick(offer)
+
+        }
         onMouseOver={onCardMouseEnter}
         onMouseOut={onCardMouseOut}
       >

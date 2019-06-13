@@ -60,7 +60,9 @@ const MainScreen = (props) => {
   };
 
   const _renderMap = () => {
-    return <Map offer={offers}/>;
+    const {activeCity} = props;
+    return <Map offer={offers}
+      nameCityOnMap={activeCity}/>;
   };
 
   const selectSort = (e) => {
