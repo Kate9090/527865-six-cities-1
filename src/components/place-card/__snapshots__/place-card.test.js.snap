@@ -100,9 +100,7 @@ exports[`renders correctly PlaceCard 1`] = `
     </h2>
     <p
       className="place-card__type"
-    >
-      Apartment
-    </p>
+    />
   </div>
 </article>
 `;

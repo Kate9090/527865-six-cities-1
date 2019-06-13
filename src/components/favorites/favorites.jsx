@@ -9,7 +9,6 @@ import Header from '../header/header.jsx';
 
 const Favourites = (props) => {
   const {favouriteOffers} = props;
-  console.log(favouriteOffers);
 
   return <>
     <Header />

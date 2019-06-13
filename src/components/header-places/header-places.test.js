@@ -12,13 +12,17 @@ const store = createStore(
 );
 
 import offerCities from '../../mocks/offers-city';
+const mock = offerCities;
 
-const mock = offerCities[1].city;
+import offerHotelList from '../../mocks/offers-in-amsterdam';
+const mockOffers = offerHotelList;
 
 it(`renders correctly header places part`, () => {
   const tree = renderer
     .create(<Provider store={store}><HeaderPlaces
-      activeCity = {mock}
+      activeCity = {mock[1]}
+      offers= {mockOffers}
+      cities={mock}
     /></Provider>)
     .toJSON();
   expect(tree).toMatchSnapshot();
