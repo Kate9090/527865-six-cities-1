@@ -25,6 +25,7 @@ const Offer = (props) => {
 
   neighbourOffer = offers.filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
     .slice(0, 3);
+  neighbourOffer[3] = offer;
 
   const onCardClick = () => {
     if (favouriteOffers && offer) {
@@ -41,12 +42,13 @@ const Offer = (props) => {
       offer={neighbourOffer}
       offerCities={offerCities}
       nameCityOnMap={nameCityOnMap}
+      activeCard = {offer}
       className="offer-map" />;
   };
 
   const _renderPlaceCardList = () => {
     return <>
-      {neighbourOffer.map((it, num) => <PlaceCard {...props} checkAuthorization={checkAuthorization} offer={it} key={`nearPlace-${num}`}/>)}
+      {neighbourOffer.map((it, num) => <PlaceCard {...props} checkAuthorization={checkAuthorization} offer={it} key={`nearPlace-${num}`}/>).slice(0, 3)}
     </>;
   };
 
