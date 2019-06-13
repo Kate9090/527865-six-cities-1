@@ -52,63 +52,57 @@ class Map extends React.Component {
   }
 
   _init() {
-    console.log(`_init`);
     const {offer, nameCityOnMap, activeCard
     } = this.props;
-    console.log(offer);
-    console.log(this.props.offerCities);
-    console.log(nameCityOnMap);
-      if (this.props.offerCities.length > 0) {
-        console.log(`_init start`);
-        if (this.mapRef.current) {
-          if (nameCityOnMap !== ``) {
-            let coordOffer = offer.filter((it) => it.city.name === nameCityOnMap).slice(0, 1);
+    if (this.props.offerCities.length > 0) {
+      if (this.mapRef.current) {
+        if (nameCityOnMap !== ``) {
+          let coordOffer = offer.filter((it) => it.city.name === nameCityOnMap).slice(0, 1);
 
-            const offerCoordCity = [coordOffer[0].location.latitude, coordOffer[0].location.longitude];
-            this.city = offerCoordCity;
+          const offerCoordCity = [coordOffer[0].location.latitude, coordOffer[0].location.longitude];
+          this.city = offerCoordCity;
+        } else {
+          let coordOffer = offer.filter((it) => it.city.name === this.props.offerCities[0]).slice(0, 1);
+
+          const offerCoordCity = [coordOffer[0].city.location.latitude, coordOffer[0].city.location.longitude];
+          this.city = offerCoordCity;
+        }
+        this.center = this.city;
+
+
+        this.zooms = 12;
+        this.map = leaflet.map(this.mapRef.current, {
+          center: this.center,
+          zoom: this.zooms,
+          zoomControl: false,
+          marker: true
+        });
+
+        this.map.setView(this.city, this.zooms);
+
+        leaflet
+          .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+            detectRetina: true,
+            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+          }).addTo(this.map);
+
+        leaflet
+          .marker(this.city, {icon}).addTo(this.map);
+
+        for (let i = 0; i < offer.length; i++) {
+          if (activeCard) {
+            leaflet
+              .marker([offer[i].location.latitude, offer[i].location.longitude],
+                  {
+                    icon: offer[i].id === activeCard.id ?
+                      activeIcon
+                      : icon
+                  }).addTo(this.map);
           } else {
-            let coordOffer = offer.filter((it) => it.city.name === this.props.offerCities[0]).slice(0, 1);
-
-            const offerCoordCity = [coordOffer[0].city.location.latitude, coordOffer[0].city.location.longitude];
-            this.city = offerCoordCity;
+            leaflet
+              .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
           }
-          this.center = this.city;
-
-
-          this.zooms = 12;
-          this.map = leaflet.map(this.mapRef.current, {
-            center: this.center,
-            zoom: this.zooms,
-            zoomControl: false,
-            marker: true
-          });
-
-          this.map.setView(this.city, this.zooms);
-
-          leaflet
-            .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-              detectRetina: true,
-              attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-            }).addTo(this.map);
-
-          leaflet
-            .marker(this.city, {icon}).addTo(this.map);
-
-          for (let i = 0; i < offer.length; i++) {
-            if (activeCard) {
-              leaflet
-                .marker([offer[i].location.latitude, offer[i].location.longitude],
-                    {
-                      icon: offer[i].id === activeCard.id ?
-                        activeIcon
-                        : icon
-                    }).addTo(this.map);
-            } else {
-              leaflet
-                .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
-            }
-          }
-        // }
+        }
       }
     }
   }

@@ -20,6 +20,8 @@ import {getSelectCity} from "../../reducer/user/selectors";
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
 
+const WrappedCitiesList = withActiveCard(CitiesTopMenu);
+
 const MainScreen = (props) => {
   const {
     offers, onCardClick, choseSort, sortHotels
@@ -82,7 +84,7 @@ const MainScreen = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="cities tabs">
           <section className="locations container">
-            <CitiesTopMenu />
+            <WrappedCitiesList />
           </section>
         </div>
         {offers.length > 0 ?

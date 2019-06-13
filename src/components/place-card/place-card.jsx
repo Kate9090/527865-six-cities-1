@@ -21,7 +21,6 @@ const PlaceCard = (props) => {
       <a href="#"
         onClick= {
           onCardClick(offer)
-
         }
         onMouseOver={onCardMouseEnter}
         onMouseOut={onCardMouseOut}

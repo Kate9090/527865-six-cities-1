@@ -14,7 +14,7 @@ class City extends Component {
   handleUserChoose(city, num, evt) {
     evt.preventDefault();
     this.props.onUserAnswer(city, num);
-    this.props.onCardClick();
+    this.props.onCardClick(city);
   }
 
   render() {
@@ -22,7 +22,8 @@ class City extends Component {
 
     return <li className="locations__item">
       <a onClick={(e) => this.handleUserChoose(city, idx, e)}
-        className={`locations__item-link tabs__item`}
+        // onMouseOut={this.props.onCardMouseOut}
+        className={this.props.current === city ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link tabs__item`}
         href="#">
         <span>{city}</span>
       </a>
@@ -36,6 +37,7 @@ City.propTypes = {
   idx: PropTypes.number.isRequired,
   onCardClick: PropTypes.func,
   onCardMouseOut: PropTypes.func,
+  current: PropTypes.string,
 };
 
 export {City};

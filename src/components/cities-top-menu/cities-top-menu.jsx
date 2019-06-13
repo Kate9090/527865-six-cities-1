@@ -7,17 +7,14 @@ import City from '../city/city.jsx';
 import {getCities} from "../../reducer/data/selectors";
 
 
-import withActiveCard from '../../hocs/with-active-card/with-active-card';
-const WrappedCity = withActiveCard(City);
-
 const CitiesTopMenu = (props) => {
-  const {cities, onCardClick, onCardMouseOut} = props;
+  const {cities, onCardClick, onCardMouseOut, current} = props;
 
   const _renderCitiesTopMenu = () => {
 
     return <ul className="locations__list tabs__list">
       {cities.map((it, i) => (
-        <WrappedCity onCardClick={onCardClick} onCardMouseOut={onCardMouseOut} key={`city-${i}`} city={it} idx={i} />
+        <City onCardClick={onCardClick} current={current} onCardMouseOut={onCardMouseOut} key={`city-${i}`} city={it} idx={i} />
       )
       )}
     </ul>;
@@ -32,6 +29,7 @@ CitiesTopMenu.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string),
   onCardMouseOut: PropTypes.func,
   onCardClick: PropTypes.func,
+  current: PropTypes.string,
 };
 
 export {CitiesTopMenu};
