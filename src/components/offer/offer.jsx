@@ -6,7 +6,7 @@ import {getActiveOffer, getFavouritesList, getSelectCity} from '../../reducer/us
 
 import {ActionCreator} from '../../reducer/user/user';
 
-import {getHotels} from "../../reducer/data/selectors";
+import {getHotels, getCities} from "../../reducer/data/selectors";
 
 import {getStatusAuthorization, getSelectCityNumber} from "../../reducer/user/selectors";
 
@@ -19,7 +19,7 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 const Offer = (props) => {
 
   const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
-    offer, sendOfferToFavourite} = props;
+    offer, sendOfferToFavourite, offerCities} = props;
 
   let neighbourOffer = [];
 
@@ -39,6 +39,7 @@ const Offer = (props) => {
     return <Map
       {...props}
       offer={neighbourOffer}
+      offerCities={offerCities}
       nameCityOnMap={nameCityOnMap}
       className="offer-map" />;
   };
@@ -173,6 +174,7 @@ Offer.propTypes = {
   sendOfferToFavourite: PropTypes.func.isRequired,
   checkAuthorization: PropTypes.bool.isRequired,
   nameCityOnMap: PropTypes.string.isRequired,
+  offerCities: PropTypes.arrayOf(PropTypes.string),
 };
 
 export {Offer};
@@ -184,6 +186,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   checkAuthorization: getStatusAuthorization(state),
   cityOnMap: getSelectCityNumber(state),
   nameCityOnMap: getSelectCity(state),
+  offerCities: getCities(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

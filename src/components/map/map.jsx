@@ -7,7 +7,7 @@ import {getCities} from "../../reducer/data/selectors";
 import {getSelectCity, getActiveOffer, getPinColor} from "../../reducer/user/selectors";
 
 const icon = leaflet.icon({
-  iconUrl: `img/pin.svg`,
+  iconUrl: `/img/pin.svg`,
   iconSize: [22, 30]
 });
 const activeIcon = leaflet.icon({
@@ -19,8 +19,6 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
-
-    this._init();
   }
 
   componentDidMount() {
@@ -28,8 +26,6 @@ class Map extends React.Component {
       if (this.map) {
         this.map.remove();
       }
-
-      this.forceUpdate();
       this._init();
     } catch (err) {
       return true;
@@ -38,8 +34,8 @@ class Map extends React.Component {
     return true;
   }
 
-  componentWillUpdate(nextProps) {
-    if (nextProps.offer.length !== this.props.offer.length) {
+  componentWillUpdate(exProps) {
+    if (exProps.offer !== this.props.offer) {
       this._init();
     }
     return true;
@@ -56,13 +52,13 @@ class Map extends React.Component {
   }
 
   _init() {
+
     const {offer, nameCityOnMap, offerCities, activeCard
     } = this.props;
-    if (offer && offerCities && activeCard && nameCityOnMap) {
+    if (offer && offerCities && nameCityOnMap) {
       if (offerCities.length > 0) {
 
         if (this.mapRef.current) {
-
           if (nameCityOnMap !== ``) {
             let coordOffer = offer.filter((it) => it.city.name === nameCityOnMap).slice(0, 1);
 
@@ -95,7 +91,6 @@ class Map extends React.Component {
 
           leaflet
             .marker(this.city, {icon}).addTo(this.map);
-
 
           for (let i = 0; i < offer.length; i++) {
             if (activeCard) {
