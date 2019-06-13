@@ -18,12 +18,22 @@ class ReviewList extends Component {
     let text = document.querySelector(`textarea`).value;
     this.props.sendComment(text, reviews, reviews.length);
     document.querySelector(`textarea`).value = ``;
+    this.forceUpdate();
   }
 
-  componentWillUpdate(nextProps) {
-    if (nextProps.reviews.length !== this.props.reviews.length) {
+  componentWillUpdate(exProps) {
+    console.log(`componentWillUpdate`);
+    console.log(exProps.reviews.length);
+    console.log(this.props.reviews.length);
+
+    if (exProps.reviews.length !== this.props.reviews.length) {
       return true;
     }
+    return true;
+  }
+
+  shouldComponentUpdate() {
+    console.log(`shouldComponentUpdate`);
     return true;
   }
 
