@@ -149,6 +149,7 @@ MainScreen.propTypes = {
   onCardClick: PropTypes.func,
   activeCity: PropTypes.string.isRequired,
   choseSort: PropTypes.func.isRequired,
+  offerCities: PropTypes.arrayOf(PropTypes.string),
 };
 
 export {MainScreen};

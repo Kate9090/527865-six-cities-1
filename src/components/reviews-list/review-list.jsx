@@ -52,11 +52,14 @@ class ReviewList extends Component {
             <p className="property__text">
               {it}</p>
             <time className="reviews__time">{
-              new Date().toLocaleDateString()
+              new Date().toLocaleDateString(`en-US`, {month: `long`, year: `numeric`})
             }</time>
           </div>
         </li>
-      )}
+      )
+      .sort((a, b) => a.date - b.date)
+      .slice(0, 10)
+    }
     </>;
   }
 

@@ -52,12 +52,14 @@ class Map extends React.Component {
   }
 
   _init() {
-
-    const {offer, nameCityOnMap, offerCities, activeCard
+    console.log(`_init`);
+    const {offer, nameCityOnMap, activeCard
     } = this.props;
-    if (offer && offerCities && nameCityOnMap) {
-      if (offerCities.length > 0) {
-
+    console.log(offer);
+    console.log(this.props.offerCities);
+    console.log(nameCityOnMap);
+      if (this.props.offerCities.length > 0) {
+        console.log(`_init start`);
         if (this.mapRef.current) {
           if (nameCityOnMap !== ``) {
             let coordOffer = offer.filter((it) => it.city.name === nameCityOnMap).slice(0, 1);
@@ -65,7 +67,7 @@ class Map extends React.Component {
             const offerCoordCity = [coordOffer[0].location.latitude, coordOffer[0].location.longitude];
             this.city = offerCoordCity;
           } else {
-            let coordOffer = offer.filter((it) => it.city.name === offerCities[0]).slice(0, 1);
+            let coordOffer = offer.filter((it) => it.city.name === this.props.offerCities[0]).slice(0, 1);
 
             const offerCoordCity = [coordOffer[0].city.location.latitude, coordOffer[0].city.location.longitude];
             this.city = offerCoordCity;
@@ -106,7 +108,7 @@ class Map extends React.Component {
                 .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
             }
           }
-        }
+        // }
       }
     }
   }
