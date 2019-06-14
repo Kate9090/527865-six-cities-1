@@ -57,7 +57,7 @@ class ReviewList extends Component {
           </div>
         </li>
       )
-      .sort((a, b) => a.date - b.date)
+      .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
       .slice(0, 10)
     }
     </>;

@@ -24,6 +24,7 @@ const PlaceCard = (props) => {
         }
         onMouseOver={onCardMouseEnter}
         onMouseOut={onCardMouseOut}
+        className="cities__image-link"
       >
         <img
           className={`place-card__image`}

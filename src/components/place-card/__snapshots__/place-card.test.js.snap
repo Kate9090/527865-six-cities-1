@@ -15,6 +15,7 @@ exports[`renders correctly PlaceCard 1`] = `
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
+      className="cities__image-link"
       href="#"
     >
       <img
