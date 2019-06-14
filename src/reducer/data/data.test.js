@@ -3,14 +3,6 @@ import {configureAPI} from '../../api';
 
 import {Operation, reducer, ActionCreator} from './data';
 
-// const initialState = {
-//   hotels: [],
-//   cities: [],
-//   defaultCity: ``,
-//   sortHotels: [],
-//   neighbourHotels: [],
-// };
-
 describe(`Test server operation works correctly`, () => {
   it(`make a correct API call to /hotels`, function () {
     const dispatch = jest.fn();
@@ -33,12 +25,6 @@ describe(`Test server operation works correctly`, () => {
 });
 
 describe(`Test action creator reducer data`, () => {
-  it(`set cities list`, () => {
-    expect(ActionCreator.selectCity(``)).toEqual({
-      payload: ``,
-      type: `NEW_CITY`
-    });
-  });
   it(`set loadHotels list`, () => {
     expect(ActionCreator.loadHotels([])).toEqual({
       payload: [],

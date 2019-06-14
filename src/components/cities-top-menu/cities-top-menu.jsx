@@ -14,7 +14,7 @@ const CitiesTopMenu = (props) => {
 
     return <ul className="locations__list tabs__list">
       {cities.map((it, i) => (
-        <City onCardClick={onCardClick} current={current} onCardMouseOut={onCardMouseOut} key={`city-${i}`} city={it} idx={i} />
+        <City cities={cities} onCardClick={onCardClick} current={current} onCardMouseOut={onCardMouseOut} key={`city-${i}`} city={it} idx={i} />
       )
       )}
     </ul>;

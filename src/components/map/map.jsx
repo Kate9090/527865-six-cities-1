@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getCities} from "../../reducer/data/selectors";
-import {getSelectCity, getActiveOffer, getPinColor} from "../../reducer/user/selectors";
+import {getSelectCity, getPinColor} from "../../reducer/user/selectors";
 
 const icon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
@@ -141,7 +141,6 @@ export {Map};
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offerCities: getCities(state),
   nameCityOnMap: getSelectCity(state),
-  activeCard: getActiveOffer(state),
   color: getPinColor(state),
 });
 

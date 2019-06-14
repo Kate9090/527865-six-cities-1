@@ -11,18 +11,17 @@ class City extends Component {
     this.handleUserChoose = this.handleUserChoose.bind(this);
   }
 
-  handleUserChoose(city, num, evt) {
+  handleUserChoose(city, num, cities, evt) {
     evt.preventDefault();
-    this.props.onUserAnswer(city, num);
+    this.props.onUserAnswer(city, num, cities);
     this.props.onCardClick(city);
   }
 
   render() {
-    const {city, idx} = this.props;
+    const {city, idx, cities} = this.props;
 
     return <li className="locations__item">
-      <a onClick={(e) => this.handleUserChoose(city, idx, e)}
-        // onMouseOut={this.props.onCardMouseOut}
+      <a onClick={(e) => this.handleUserChoose(city, idx, cities, e)}
         className={this.props.current === city ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link tabs__item`}
         href="#">
         <span>{city}</span>
@@ -38,13 +37,14 @@ City.propTypes = {
   onCardClick: PropTypes.func,
   onCardMouseOut: PropTypes.func,
   current: PropTypes.string,
+  cities: PropTypes.arrayOf(PropTypes.string),
 };
 
 export {City};
 
 const mapDispatchToProps = (dispatch) => ({
-  onUserAnswer: (city, num) => {
-    dispatch(ActionCreator.selectCity(city, num));
+  onUserAnswer: (city, num, cities) => {
+    dispatch(ActionCreator.selectCity(city, num, cities));
   },
 });
 

@@ -1,7 +1,6 @@
 const initialState = {
   hotels: [],
   cities: [],
-  defaultCity: ``,
   sortHotels: [],
   neighbourHotels: [],
 };
@@ -9,10 +8,6 @@ const initialState = {
 const MAX_NUMBER_OF_CITIES = 6;
 
 const ActionCreator = ({
-  'selectCity': (newCity) => ({
-    type: `NEW_CITY`,
-    payload: newCity,
-  }),
   'loadHotels': (hotels) => {
     return {
       type: `LOAD_HOTELS`,
@@ -36,17 +31,6 @@ const ActionCreator = ({
     return {
       type: `LOAD_CITY_LIST`,
       payload: cities,
-    };
-  },
-  'getDefaultCity': (cities) => {
-    let defaultcity;
-    if (cities) {
-      defaultcity = cities[0].name;
-    }
-
-    return {
-      type: `GET_DEFAULT_CITY`,
-      payload: defaultcity,
     };
   },
   'sortOffers': (type, offers) => {

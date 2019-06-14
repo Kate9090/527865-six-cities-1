@@ -11,9 +11,9 @@ const initialState = {
 };
 
 const ActionCreator = ({
-  'selectCity': (newCity, numberOfTheCityInList, hotels) => {
+  'selectCity': (newCity, numberOfTheCityInList, cities) => {
     if (newCity.length < 1) {
-      newCity = hotels[0].city;
+      newCity = cities[0];
     }
 
     return {

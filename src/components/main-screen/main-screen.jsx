@@ -14,8 +14,7 @@ import {ActionCreator} from '../../reducer/data/data';
 
 
 import {getHotels, getSortHotels} from "../../reducer/data/selectors";
-import {getSelectCity} from "../../reducer/user/selectors";
-// import {sortOffers}
+import {getSelectCity, getActiveOffer} from "../../reducer/user/selectors";
 
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);
@@ -24,11 +23,10 @@ const WrappedCitiesList = withActiveCard(CitiesTopMenu);
 
 const MainScreen = (props) => {
   const {
-    offers, onCardClick, choseSort, sortHotels
+    offers, onCardClick, choseSort, sortHotels, activeCity, activeCard
   } = props;
 
   const _getActiveOffers = () => {
-    const {activeCity} = props;
     if (sortHotels.length > 0) {
       return activeCity === `` ? sortHotels : sortHotels.filter((it) => it.city.name === activeCity);
     }
@@ -61,14 +59,7 @@ const MainScreen = (props) => {
     </>;
   };
 
-  const _renderMap = () => {
-    const {activeCity} = props;
-    return <Map offer={offers}
-      nameCityOnMap={activeCity}/>;
-  };
-
   const selectSort = (e) => {
-    const {activeCity} = props;
     let type = e.target.innerHTML;
     if (activeCity === ``) {
       choseSort(type, offers);
@@ -114,7 +105,7 @@ const MainScreen = (props) => {
                   </div>
                 </section>
                 <div className="cities__right-section">
-                  {_renderMap()}
+                  <Map offer={offers} nameCityOnMap={activeCity} activeCard={activeCard}/>
                 </div>
               </div>
             </div>
@@ -150,6 +141,7 @@ MainScreen.propTypes = {
   })).isRequired,
   onCardClick: PropTypes.func,
   activeCity: PropTypes.string.isRequired,
+  activeCard: PropTypes.object,
   choseSort: PropTypes.func.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.string),
 };
@@ -160,6 +152,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: getHotels(state),
   activeCity: getSelectCity(state),
   sortHotels: getSortHotels(state),
+  activeCard: getActiveOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
