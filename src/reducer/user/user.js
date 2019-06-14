@@ -114,10 +114,6 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         favouriteOffer: action.payload,
       });
-    case `ADD_NEW_PIN_COLOR`:
-      return Object.assign({}, state, {
-        pinColor: action.payload,
-      });
     case `ADD_TEXT_COMMENT`:
       return Object.assign({}, state, {
         reviews: action.payload,

@@ -94,5 +94,43 @@ describe(`Test reducer data`, () => {
     });
   });
 
+  it(`load city`, () => {
+    expect(reducer({city: `Moscow`}, {
+      type: `NEW_CITY`,
+      payload: `Moscow`,
+      num: 1,
+    })).toEqual({
+      city: `Moscow`,
+      cityNumber: 1
+    });
+  });
+
+  it(`load user`, () => {
+    expect(reducer({user: {}}, {
+      type: `SIGN_IN`,
+      payload: {},
+    })).toEqual({
+      user: {}
+    });
+  });
+
+  it(`load activeOffer`, () => {
+    expect(reducer({}, {
+      type: `SHOW_ACTIVE_OFFER`,
+      payload: {},
+    })).toEqual({
+      activeOffer: {}
+    });
+  });
+
+  it(`load reviews`, () => {
+    expect(reducer([], {
+      type: `ADD_TEXT_COMMENT`,
+      payload: [{}],
+    })).toEqual({
+      reviews: [{}]
+    });
+  });
+
 });
 
