@@ -21,6 +21,7 @@ it(`renders correctly PlaceCard`, () => {
     .create(<BrowserRouter><Provider store={store}><Offer
       offer = {mock[1]}
       offers = {mock}
+      reviews = {[]}
     /></Provider></BrowserRouter>)
     .toJSON();
   expect(tree).toMatchSnapshot();

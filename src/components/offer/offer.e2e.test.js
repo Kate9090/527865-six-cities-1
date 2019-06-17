@@ -25,6 +25,7 @@ it(`simulates click event on the btn to send offer to favorite`, () =>{
   const tree = mount(<BrowserRouter><Provider store={store}><Offer
     offer = {mock[1]}
     offers = {mock}
+    reviews = {[]}
     onSendOfferToFavourite= {sendOfferToFavourite}
   /></Provider></BrowserRouter>);
 
@@ -32,5 +33,5 @@ it(`simulates click event on the btn to send offer to favorite`, () =>{
 
   btnToFavorite.simulate(`click`);
 
-  expect(sendOfferToFavourite).toHaveBeenCalledTimes(0);
+  expect(sendOfferToFavourite).toHaveBeenCalledTimes(1);
 });

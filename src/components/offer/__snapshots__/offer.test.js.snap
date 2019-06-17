@@ -172,7 +172,7 @@ Array [
               <span
                 style={
                   Object {
-                    "width": "96%",
+                    "width": 0,
                   }
                 }
               />
@@ -184,7 +184,9 @@ Array [
             </div>
             <span
               className="property__rating-value rating__value"
-            />
+            >
+              0
+            </span>
           </div>
           <ul
             className="property__features"

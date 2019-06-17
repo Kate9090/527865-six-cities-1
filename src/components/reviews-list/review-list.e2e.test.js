@@ -24,9 +24,9 @@ it(`simulates click event on the btn to send offer to favorite`, () =>{
     onSendComment= {sendComment}
   /></Provider>);
 
-  const btnToFavorite = tree.find(`button.reviews__submit`);
+  const formToFavorite = tree.find(`.reviews__form`);
 
-  btnToFavorite.at(0).simulate(`click`);
+  formToFavorite.at(0).simulate(`submit`);
 
   expect(sendComment).toHaveBeenCalledTimes(1);
 });

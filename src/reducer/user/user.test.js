@@ -58,12 +58,6 @@ describe(`Test action creator reducer data`, () => {
       payload: [{}],
     });
   });
-  it(`set addNewPinColor`, () => {
-    expect(ActionCreator.addNewPinColor(``)).toEqual({
-      type: `ADD_NEW_PIN_COLOR`,
-      payload: ``,
-    });
-  });
   it(`set sendComment`, () => {
     expect(ActionCreator.sendComment(``, [], 0)).toEqual({
       type: `ADD_TEXT_COMMENT`,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {getActiveOffer, getFavouritesList, getSelectCity} from '../../reducer/user/selectors';
+import {getActiveOffer, getFavouritesList, getSelectCity, getReviews} from '../../reducer/user/selectors';
 
 import {ActionCreator} from '../../reducer/user/user';
 
@@ -19,18 +19,25 @@ import {PlaceCard} from '../place-card/place-card.jsx';
 const OfferParameters = {
   MAX_IMAGES: 6,
   MAX_NEIGHBOURS: 3,
+  FULL_WIDTH_IN_PX: 147,
+  NUMBER_OF_STARS: 5,
 };
 
 const Offer = (props) => {
 
   const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
-    offer, onSendOfferToFavourite, offerCities} = props;
+    offer, onSendOfferToFavourite, offerCities, reviews} = props;
 
   let neighbourOffer = [];
 
   neighbourOffer = offers.filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
     .slice(0, OfferParameters.MAX_NEIGHBOURS);
   neighbourOffer[OfferParameters.MAX_NEIGHBOURS] = offer;
+
+  let middleReviews = 0;
+  reviews.forEach((it, idx) => {
+    middleReviews = (middleReviews + it.rating) / (idx + 1);
+  });
 
   const _handleCardClick = () => {
     if (favouriteOffers && offer) {
@@ -88,10 +95,10 @@ const Offer = (props) => {
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{width: `96%`}}></span>
+                <span style={{width: middleReviews / OfferParameters.NUMBER_OF_STARS * OfferParameters.FULL_WIDTH_IN_PX}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
-              <span className="property__rating-value rating__value">{offer.rating}</span>
+              <span className="property__rating-value rating__value">{middleReviews}</span>
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
@@ -214,6 +221,10 @@ Offer.propTypes = {
   checkAuthorization: PropTypes.bool.isRequired,
   nameCityOnMap: PropTypes.string.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.string),
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    comment: PropTypes.string.isRequired,
+    rating: PropTypes.number
+  })).isRequired,
 };
 
 export {Offer};
@@ -226,6 +237,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cityOnMap: getSelectCityNumber(state),
   nameCityOnMap: getSelectCity(state),
   offerCities: getCities(state),
+  reviews: getReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
