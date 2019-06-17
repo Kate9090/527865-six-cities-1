@@ -1,34 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
-class City extends Component {
-  constructor(props) {
-    super(props);
+const City = (props) => {
 
-    this._handleUserChoose = this._handleUserChoose.bind(this);
-  }
-
-  _handleUserChoose(city, num, cities, evt) {
+  const _handleUserChoose = (city, num, cities, evt) => {
     evt.preventDefault();
-    this.props.onUserAnswer(city, num, cities);
-    this.props.onCardClick(city);
-  }
+    props.onUserAnswer(city, num, cities);
+    props.onCardClick(city);
+  };
 
-  render() {
-    const {city, idx, cities} = this.props;
+  const {city, idx, cities} = props;
 
-    return <li className="locations__item">
-      <a onClick={(e) => this._handleUserChoose(city, idx, cities, e)}
-        className={this.props.current === city ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link tabs__item`}
-        href="#">
-        <span>{city}</span>
-      </a>
-    </li>;
-  }
-}
+  return <li className="locations__item">
+    <a onClick={(e) => _handleUserChoose(city, idx, cities, e)}
+      className={props.current === city ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link tabs__item`}
+      href="#">
+      <span>{city}</span>
+    </a>
+  </li>;
+};
 
 City.propTypes = {
   onUserAnswer: PropTypes.func,
