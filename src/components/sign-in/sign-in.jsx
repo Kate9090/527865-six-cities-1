@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {Operation} from '../../reducer/user/user';
 
 const SignIn = (props) => {
-  // constructor(props) {
 
   let _loginField = React.createRef();
   let _passwordField = React.createRef();

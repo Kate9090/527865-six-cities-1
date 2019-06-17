@@ -141,7 +141,17 @@ MainScreen.propTypes = {
   })).isRequired,
   onCardClick: PropTypes.func,
   activeCity: PropTypes.string.isRequired,
-  activeCard: PropTypes.object,
+  activeCard: PropTypes.shape({
+    src: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+    }),
+  }),
   onChoseSort: PropTypes.func.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.string),
 };

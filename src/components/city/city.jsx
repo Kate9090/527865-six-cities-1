@@ -24,11 +24,11 @@ const City = (props) => {
 };
 
 City.propTypes = {
-  onUserAnswer: PropTypes.func,
+  onUserAnswer: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   idx: PropTypes.number.isRequired,
-  onCardClick: PropTypes.func,
-  onCardMouseOut: PropTypes.func,
+  onCardClick: PropTypes.func.isRequired,
+  onCardMouseOut: PropTypes.func.isRequired,
   current: PropTypes.string,
   cities: PropTypes.arrayOf(PropTypes.string),
 };

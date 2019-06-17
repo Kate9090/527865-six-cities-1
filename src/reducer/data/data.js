@@ -77,6 +77,7 @@ const hotelsDataAdapter = (data) => {
     maxAdults: data.max_adults,
     isPremium: data.is_premium,
     isFavorite: data.is_favorite,
+    isPro: data.is_pro,
   };
 };
 

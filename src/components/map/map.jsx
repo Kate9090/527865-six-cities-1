@@ -137,7 +137,17 @@ Map.propTypes = {
   })).isRequired,
   nameCityOnMap: PropTypes.string.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.string),
-  activeCard: PropTypes.object,
+  activeCard: PropTypes.shape({
+    src: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    raiting: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+    }),
+  }),
   color: PropTypes.string,
 };
 

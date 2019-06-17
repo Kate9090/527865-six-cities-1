@@ -128,7 +128,7 @@ const Offer = (props) => {
                   {offer.host.name}
                 </span>
                 <span className="property__user-status">
-                  {offer.is_pro ? `Pro` : ``}
+                  {offer.isPro ? `Pro` : ``}
                 </span>
               </div>
               <div className="property__description">
@@ -155,7 +155,29 @@ const Offer = (props) => {
 };
 
 Offer.propTypes = {
-  offer: PropTypes.object,
+  offer: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+    }).isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
+    id: PropTypes.number,
+    isPremium: PropTypes.bool.isRequired,
+    isPro: PropTypes.bool,
+    type: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    maxAdults: PropTypes.number,
+    bedrooms: PropTypes.number,
+    host: PropTypes.object,
+    images: PropTypes.arrayOf(PropTypes.string),
+  }),
   offers: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -166,6 +188,15 @@ Offer.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
     }).isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
+    id: PropTypes.number,
+    isPremium: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    maxAdults: PropTypes.number,
+    bedrooms: PropTypes.number,
   })).isRequired,
   favouriteOffers: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
@@ -177,6 +208,7 @@ Offer.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
     }),
+    type: PropTypes.string.isRequired,
   })).isRequired,
   onSendOfferToFavourite: PropTypes.func.isRequired,
   checkAuthorization: PropTypes.bool.isRequired,

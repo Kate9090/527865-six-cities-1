@@ -27,8 +27,8 @@ const CitiesTopMenu = (props) => {
 
 CitiesTopMenu.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string),
-  onCardMouseOut: PropTypes.func,
-  onCardClick: PropTypes.func,
+  onCardMouseOut: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
   current: PropTypes.string,
 };
 
