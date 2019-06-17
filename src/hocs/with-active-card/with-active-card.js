@@ -12,18 +12,18 @@ const withActiveCard = (WrappedComponent) => {
         current: undefined,
       };
 
-      this._setActiveItem = this._setActiveItem.bind(this);
-      this._setUnActiveItem = this._setUnActiveItem.bind(this);
+      this._onSetActiveItem = this._onSetActiveItem.bind(this);
+      this._onSetUnActiveItem = this._onSetUnActiveItem.bind(this);
     }
 
-    _setActiveItem(card) {
+    _onSetActiveItem(card) {
       this.setState({
         active: true,
         current: card,
       });
     }
 
-    _setUnActiveItem() {
+    _onSetUnActiveItem() {
       this.setState({
         active: false,
         current: null,
@@ -35,9 +35,9 @@ const withActiveCard = (WrappedComponent) => {
       return (
         <WrappedComponent
           {...this.props}
-          onCardClick={this._setActiveItem}
-          onCardMouseEnter={this._setActiveItem}
-          onCardMouseOut={this._setUnActiveItem}
+          onCardClick={this._onSetActiveItem}
+          onCardMouseEnter={this._onSetActiveItem}
+          onCardMouseOut={this._onSetUnActiveItem}
           current = {this.state.current}
           classForLink={this.state.active === true ? `active` : ``} />
       );

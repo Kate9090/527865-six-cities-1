@@ -10,19 +10,17 @@ const withFavouriteCard = (WrappedComponent) => {
         isFavorite: false,
       };
 
-      this._setActiveItem = this._setActiveItem.bind(this);
-      this._setUnActiveItem = this._setUnActiveItem.bind(this);
+      this._onSetActiveItem = this._onSetActiveItem.bind(this);
+      this._onSetUnActiveItem = this._onSetUnActiveItem.bind(this);
     }
 
-    _setActiveItem() {
-
+    _onSetActiveItem() {
       this.setState({
         isFavorite: true,
       });
     }
 
-    _setUnActiveItem() {
-
+    _onSetUnActiveItem() {
       this.setState({
         isFavorite: false,
       });
@@ -33,7 +31,7 @@ const withFavouriteCard = (WrappedComponent) => {
       return (
         <WrappedComponent
           {...this.props}
-          onCardClick={this._setActiveItem}
+          onCardClick={this._onSetActiveItem}
         />
       );
     }

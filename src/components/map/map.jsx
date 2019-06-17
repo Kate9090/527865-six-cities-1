@@ -15,6 +15,11 @@ const activeIcon = leaflet.icon({
   iconSize: [30, 30]
 });
 
+const map = {
+  ZOOM: 12,
+  NEIGHBOURS: 3,
+};
+
 class Map extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +75,7 @@ class Map extends React.Component {
         this.center = this.city;
 
 
-        this.zooms = 12;
+        this.zooms = map.ZOOM;
         this.map = leaflet.map(this.mapRef.current, {
           center: this.center,
           zoom: this.zooms,
@@ -111,7 +116,7 @@ class Map extends React.Component {
     const {offer} = this.props;
 
     return <section
-      className={offer.length > 3 ? `cities__map` : `property__map`} id="map" ref={this.mapRef}
+      className={offer.length > map.NEIGHBOURS ? `cities__map` : `property__map`} id="map" ref={this.mapRef}
     >
     </section>;
   }

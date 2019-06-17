@@ -5,6 +5,10 @@ import {ActionCreator} from '../../reducer/user/user';
 
 import {getStatusAuthorization, getReviews} from "../../reducer/user/selectors";
 
+const reviewParams = {
+  MAX_REVIEWS: 10,
+};
+
 class ReviewList extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +62,7 @@ class ReviewList extends Component {
         </li>
       )
       .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-      .slice(0, 10)
+      .slice(0, reviewParams.MAX_REVIEWS)
     }
     </>;
   }
