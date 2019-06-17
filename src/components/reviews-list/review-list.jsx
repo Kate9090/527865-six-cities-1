@@ -5,10 +5,11 @@ import {ActionCreator} from '../../reducer/user/user';
 
 import {getStatusAuthorization, getReviews} from '../../reducer/user/selectors';
 
-const reviewParams = {
+const ReviewParams = {
   MAX_REVIEWS: 10,
   MIN_LENGTH: 50,
   MAX_LENGTH: 300,
+  NUMBER_OF_STARS: 5,
 };
 
 class ReviewList extends PureComponent {
@@ -18,6 +19,7 @@ class ReviewList extends PureComponent {
     this._reviewBtn = React.createRef();
     this._reviewField = React.createRef();
     this._reviewForm = React.createRef();
+    this._ratingList = React.createRef();
 
     this.text = null;
 
@@ -61,8 +63,8 @@ class ReviewList extends PureComponent {
           </div>
         </li>
       )
-      .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-      .slice(0, reviewParams.MAX_REVIEWS)
+      .sort((a, b) => b.key - a.key)
+      .slice(0, ReviewParams.MAX_REVIEWS)
     }
     </>;
   }
@@ -74,13 +76,7 @@ class ReviewList extends PureComponent {
 
     this.text = this._reviewField.current.value;
 
-    this.props.onSendComment(this.text, reviews, reviews.length);
-    // hotelCommentPost(
-    //     id,
-    //     {rating: +this.selectedRateting, comment: this.text},
-    //     this._commentPostResolve,
-    //     this._commentPostReject
-    // );
+    this.props.onSendComment({rating: +this.selectedRating, comment: this.text}, reviews, reviews.length);
 
     this._reviewField.current.value = ``;
     this._clearErrorForm();
@@ -90,18 +86,16 @@ class ReviewList extends PureComponent {
 
 
   _handleFormChange() {
-    if (!this._reviewField) {
-    //  || !this._ratingList)
+    if (!this._reviewField || !this._ratingList) {
 
       return;
     }
 
     this.text = this._reviewField.current.value;
 
-    if (this.text.length < reviewParams.MIN_LENGTH || this.text.length > reviewParams.MAX_LENGTH) {
-      //  || !this.selectedRateting) {
+    if (this.text.length < ReviewParams.MIN_LENGTH || this.text.length > ReviewParams.MAX_LENGTH || !this.selectedRating) {
       this._disabledButtonReview();
-      if (this.text.length > reviewParams.MAX_LENGTH) {
+      if (this.text.length > ReviewParams.MAX_LENGTH) {
         this._setErrorForm();
       }
     } else {
@@ -127,24 +121,11 @@ class ReviewList extends PureComponent {
 
   _disabledFormReview() {
     this._reviewBtn.current.disabled = true;
-    // this._reviewField.current.disabled = true;
   }
 
   _enabledFormReview() {
     this._reviewBtn.current.disabled = false;
-    // this._reviewField.current.disabled = false;
   }
-
-  // _reviewPostResolve() {
-  //   this.text = null;
-  //   this._commentField.current.value = ``;
-  //   this._enabledFormReview();
-  // }
-
-  // _reviewPostReject() {
-  //   this._enabledFormReview();
-  //   this._setErrorForm();
-  // }
 
 
   render() {
@@ -158,41 +139,27 @@ class ReviewList extends PureComponent {
       {checkAuthorization ?
         <form ref={this._reviewForm} onSubmit={this._handlePrintComment} className="reviews__form form" action="#" method="post">
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
-          <div className="reviews__rating-form form__rating">
-            <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
-            <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
+          <div className="reviews__rating-form form__rating" ref={this._ratingList}>
+            {Array(ReviewParams.NUMBER_OF_STARS).fill(null).map((it, idx, arr) => {
+              const rate = arr.length - idx;
+              return <React.Fragment key = {idx}>
+                <input
+                  onClick={() => {
+                    this.selectedRating = rate;
+                  }}
+                  className="form__rating-input visually-hidden"
+                  name="rating"
+                  value={rate}
+                  id={`${rate}-stars`} type="radio" />
+                <label htmlFor={`${rate}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
+                  <svg className="form__star-image" width="37" height="33">
+                    <use xlinkHref="#icon-star"></use>
+                  </svg>
+                </label>
+              </React.Fragment>;
 
-            <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" />
-            <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-
-            <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" />
-            <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-
-            <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" />
-            <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-
-            <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" />
-            <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="/icon-star"></use>
-              </svg>
-            </label>
+            })
+            }
           </div>
           <textarea ref={this._reviewField} onChange={this._handleFormChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
           <div className="reviews__button-wrapper">
@@ -211,7 +178,10 @@ class ReviewList extends PureComponent {
 
 ReviewList.propTypes = {
   checkAuthorization: PropTypes.bool.isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    comment: PropTypes.string.isRequired,
+    rating: PropTypes.number
+  })).isRequired,
   onSendComment: PropTypes.func.isRequired,
 };
 
@@ -224,8 +194,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSendComment: (text, reviewArray, lengthOfArray) => {
-    dispatch(ActionCreator.sendComment(text, reviewArray, lengthOfArray));
+  onSendComment: ({data}, reviewArray, lengthOfArray) => {
+    dispatch(ActionCreator.sendComment({data}, reviewArray, lengthOfArray));
   },
 });
 

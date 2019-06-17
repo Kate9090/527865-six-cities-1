@@ -6,7 +6,6 @@ const initialState = {
   activeOffer: {},
   reviews: [],
   favouriteOffer: [],
-  pinColor: ``,
   comment: ``,
 };
 
@@ -49,15 +48,12 @@ const ActionCreator = ({
       payload: favouriteOffer,
     };
   },
-  'addNewPinColor': (color) => {
-    return {
-      type: `ADD_NEW_PIN_COLOR`,
-      payload: color,
-    };
-  },
-  'sendComment': (text, review, i) => {
+  'sendComment': ({rating: stars, comment: text}, review, i) => {
     if (review && text) {
-      review[i] = text;
+      review[i] = {
+        rating: stars,
+        comment: text,
+      };
     }
     return {
       type: `ADD_TEXT_COMMENT`,
