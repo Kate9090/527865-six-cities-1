@@ -7,6 +7,8 @@ import {getStatusAuthorization, getReviews} from '../../reducer/user/selectors';
 
 const reviewParams = {
   MAX_REVIEWS: 10,
+  MIN_LENGTH: 50,
+  MAX_LENGTH: 300,
 };
 
 class ReviewList extends Component {
@@ -15,18 +17,13 @@ class ReviewList extends Component {
 
     this._reviewBtn = React.createRef();
     this._reviewField = React.createRef();
+    this._reviewForm = React.createRef();
+
+    this.text = null;
 
     this._handlePrintComment = this._handlePrintComment.bind(this);
-  }
-
-  _handlePrintComment(e) {
-    const {reviews} = this.props;
-    e.preventDefault();
-    this.text = this._reviewField.current.value;
-    this.props.onSendComment(this.text, reviews, reviews.length);
-
-    this._reviewField.current.value = ``;
-    this.forceUpdate();
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
+    this._handleFormChange = this._handleFormChange.bind(this);
   }
 
   componentWillUpdate(exProps) {
@@ -70,6 +67,95 @@ class ReviewList extends Component {
     }
     </>;
   }
+  _handlePrintComment(e) {
+    const {reviews} = this.props;
+    e.preventDefault();
+    this.text = this._reviewField.current.value;
+    this.props.onSendComment(this.text, reviews, reviews.length);
+
+    this._reviewField.current.value = ``;
+    this.forceUpdate();
+  }
+
+  _handleFormSubmit(evt) {
+    const {reviews} = this.props;
+    evt.preventDefault();
+
+
+    this.text = this._reviewField.current.value;
+
+    this.props.onSendComment(this.text, reviews, reviews.length);
+    // hotelCommentPost(
+    //     id,
+    //     {rating: +this.selectedRateting, comment: this.text},
+    //     this._commentPostResolve,
+    //     this._commentPostReject
+    // );
+
+    this._reviewField.current.value = ``;
+    this._clearErrorForm();
+    this._disabledFormReview();
+    this.forceUpdate();
+  }
+
+
+  _handleFormChange() {
+    if (!this._reviewField) {
+    //  || !this._ratingList)
+
+      return;
+    }
+
+    this.text = this._reviewField.current.value;
+
+    if (this.text.length < reviewParams.MIN_LENGTH || this.text.length > reviewParams.MAX_LENGTH) {
+      //  || !this.selectedRateting) {
+      this._disabledButtonReview();
+      if (this.text.length > reviewParams.MAX_LENGTH) {
+        this._setErrorForm();
+      }
+    } else {
+      this._enabledButtonReview();
+    }
+  }
+
+  _setErrorForm() {
+    this._reviewField.current.style.border = `solid 1px red`;
+  }
+
+  _clearErrorForm() {
+    this._reviewField.current.style.border = ``;
+  }
+
+  _disabledButtonReview() {
+    this._reviewBtn.current.disabled = true;
+  }
+
+  _enabledButtonReview() {
+    this._reviewBtn.current.disabled = false;
+  }
+
+  _disabledFormReview() {
+    this._reviewBtn.current.disabled = true;
+    // this._reviewField.current.disabled = true;
+  }
+
+  _enabledFormReview() {
+    this._reviewBtn.current.disabled = false;
+    // this._reviewField.current.disabled = false;
+  }
+
+  // _reviewPostResolve() {
+  //   this.text = null;
+  //   this._commentField.current.value = ``;
+  //   this._enabledFormReview();
+  // }
+
+  // _reviewPostReject() {
+  //   this._enabledFormReview();
+  //   this._setErrorForm();
+  // }
+
 
   render() {
     const {checkAuthorization, reviews} = this.props;
@@ -80,7 +166,7 @@ class ReviewList extends Component {
       </ul>
 
       {checkAuthorization ?
-        <form className="reviews__form form" action="#" method="post">
+        <form ref={this._reviewForm} onSubmit={this._handleFormSubmit} className="reviews__form form" action="#" method="post">
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
           <div className="reviews__rating-form form__rating">
             <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
@@ -118,12 +204,14 @@ class ReviewList extends Component {
               </svg>
             </label>
           </div>
-          <textarea ref={this._reviewField} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+          <textarea ref={this._reviewField} onChange={this._handleFormChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
           <div className="reviews__button-wrapper">
             <p className="reviews__help">
               To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
             </p>
-            <button ref={this._reviewBtn} onClick={(e) => this._handlePrintComment(e)} className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+            <button ref={this._reviewBtn}
+            //  onClick={(e) => this._handlePrintComment(e)}
+              disabled={true} className="reviews__submit form__submit button" type="submit">Submit</button>
           </div>
         </form>
         : <></>
