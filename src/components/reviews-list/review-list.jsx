@@ -51,12 +51,12 @@ class ReviewList extends PureComponent {
           <div className="reviews__info">
             <div className="reviews__rating rating">
               <div className="reviews__stars rating__stars">
-                <span style={{width: `94%`}}></span>
+                <span style={{width: it.rating / ReviewParams.NUMBER_OF_STARS * 100}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
             </div>
             <p className="property__text">
-              {it}</p>
+              {it.comment}</p>
             <time className="reviews__time">{
               new Date().toLocaleDateString(`en-US`, {month: `long`, year: `numeric`})
             }</time>
@@ -194,8 +194,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSendComment: ({data}, reviewArray, lengthOfArray) => {
-    dispatch(ActionCreator.sendComment({data}, reviewArray, lengthOfArray));
+  onSendComment: ({rating: ratingNew, comment: commentNew}, reviewArray, lengthOfArray) => {
+    dispatch(ActionCreator.sendComment({rating: ratingNew, comment: commentNew}, reviewArray, lengthOfArray));
   },
 });
 
