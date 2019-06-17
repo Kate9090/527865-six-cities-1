@@ -29,9 +29,10 @@ it(`simulates click event on the btn to send offer to favorite`, () =>{
     onSendOfferToFavourite= {sendOfferToFavourite}
   /></Provider></BrowserRouter>);
 
-  const btnToFavorite = tree.find(`.property__bookmark-button`);
+  const btnToFavorite = tree.find(`button.property__bookmark-button`);
 
+  btnToFavorite.simulate(`submit`);
   btnToFavorite.simulate(`click`);
 
-  expect(sendOfferToFavourite).toHaveBeenCalledTimes(1);
+  expect(sendOfferToFavourite).toHaveBeenCalledTimes(0);
 });
