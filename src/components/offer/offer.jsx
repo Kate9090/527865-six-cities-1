@@ -16,7 +16,7 @@ import {Map} from '../map/map.jsx';
 
 import {PlaceCard} from '../place-card/place-card.jsx';
 
-const offerParameters = {
+const OfferParameters = {
   MAX_IMAGES: 6,
   MAX_NEIGHBOURS: 3,
 };
@@ -29,8 +29,8 @@ const Offer = (props) => {
   let neighbourOffer = [];
 
   neighbourOffer = offers.filter((it) => it.city.name === offer.city.name && it.id !== offer.id)
-    .slice(0, offerParameters.MAX_NEIGHBOURS);
-  neighbourOffer[offerParameters.MAX_NEIGHBOURS] = offer;
+    .slice(0, OfferParameters.MAX_NEIGHBOURS);
+  neighbourOffer[OfferParameters.MAX_NEIGHBOURS] = offer;
 
   const _handleCardClick = () => {
     if (favouriteOffers && offer) {
@@ -67,7 +67,7 @@ const Offer = (props) => {
               <div className="property__image-wrapper" key={`images-${i}`}>
                 <img className="property__image" src={it} alt="Photo studio" />
               </div>
-            )).slice(0, offerParameters.MAX_IMAGES)}
+            )).slice(0, OfferParameters.MAX_IMAGES)}
           </div>
         </div>
         <div className="property__container container">

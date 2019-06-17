@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
@@ -11,7 +11,7 @@ const reviewParams = {
   MAX_LENGTH: 300,
 };
 
-class ReviewList extends Component {
+class ReviewList extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -22,7 +22,6 @@ class ReviewList extends Component {
     this.text = null;
 
     this._handlePrintComment = this._handlePrintComment.bind(this);
-    this._handleFormSubmit = this._handleFormSubmit.bind(this);
     this._handleFormChange = this._handleFormChange.bind(this);
   }
 
@@ -67,17 +66,8 @@ class ReviewList extends Component {
     }
     </>;
   }
-  _handlePrintComment(e) {
-    const {reviews} = this.props;
-    e.preventDefault();
-    this.text = this._reviewField.current.value;
-    this.props.onSendComment(this.text, reviews, reviews.length);
 
-    this._reviewField.current.value = ``;
-    this.forceUpdate();
-  }
-
-  _handleFormSubmit(evt) {
+  _handlePrintComment(evt) {
     const {reviews} = this.props;
     evt.preventDefault();
 
@@ -166,7 +156,7 @@ class ReviewList extends Component {
       </ul>
 
       {checkAuthorization ?
-        <form ref={this._reviewForm} onSubmit={this._handleFormSubmit} className="reviews__form form" action="#" method="post">
+        <form ref={this._reviewForm} onSubmit={this._handlePrintComment} className="reviews__form form" action="#" method="post">
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
           <div className="reviews__rating-form form__rating">
             <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
@@ -210,7 +200,6 @@ class ReviewList extends Component {
               To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
             </p>
             <button ref={this._reviewBtn}
-            //  onClick={(e) => this._handlePrintComment(e)}
               disabled={true} className="reviews__submit form__submit button" type="submit">Submit</button>
           </div>
         </form>
