@@ -19,7 +19,7 @@ import {PlaceCard} from "../place-card/place-card.jsx";
 const Offer = (props) => {
 
   const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
-    offer, sendOfferToFavourite, offerCities} = props;
+    offer, onSendOfferToFavourite, offerCities} = props;
 
   let neighbourOffer = [];
 
@@ -27,10 +27,10 @@ const Offer = (props) => {
     .slice(0, 3);
   neighbourOffer[3] = offer;
 
-  const onCardClick = () => {
+  const _handleCardClick = () => {
     if (favouriteOffers && offer) {
       let i = favouriteOffers.length;
-      sendOfferToFavourite(favouriteOffers, offer, i);
+      onSendOfferToFavourite(favouriteOffers, offer, i);
     }
   };
 
@@ -74,7 +74,7 @@ const Offer = (props) => {
               <h1 className="property__name">
                 {offer.title}
               </h1>
-              <button onClick={onCardClick} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`, backgroundSize: `cover`}}>
+              <button onClick={_handleCardClick} className="property__bookmark-button button" type="button" style={{backgroundImage: `url('/img/icon-bookmark.svg')`, backgroundRepeat: `no-repeat`, backgroundSize: `cover`}}>
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
@@ -173,7 +173,7 @@ Offer.propTypes = {
       longitude: PropTypes.number.isRequired,
     }),
   })).isRequired,
-  sendOfferToFavourite: PropTypes.func.isRequired,
+  onSendOfferToFavourite: PropTypes.func.isRequired,
   checkAuthorization: PropTypes.bool.isRequired,
   nameCityOnMap: PropTypes.string.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.string),
@@ -192,7 +192,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendOfferToFavourite: (favouriteOffers, offer, i) => {
+  onSendOfferToFavourite: (favouriteOffers, offer, i) => {
     dispatch(ActionCreator.addCardToFavourite(favouriteOffers, offer, i));
   },
 });

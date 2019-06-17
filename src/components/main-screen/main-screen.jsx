@@ -23,7 +23,7 @@ const WrappedCitiesList = withActiveCard(CitiesTopMenu);
 
 const MainScreen = (props) => {
   const {
-    offers, onCardClick, choseSort, sortHotels, activeCity, activeCard
+    offers, onCardClick, onChoseSort, sortHotels, activeCity, activeCard
   } = props;
 
   const _getActiveOffers = () => {
@@ -59,12 +59,12 @@ const MainScreen = (props) => {
     </>;
   };
 
-  const selectSort = (e) => {
+  const _handleSelectSort = (e) => {
     let type = e.target.innerHTML;
     if (activeCity === ``) {
-      choseSort(type, offers);
+      onChoseSort(type, offers);
     } else {
-      choseSort(type, offers.filter((it) => it.city.name === activeCity));
+      onChoseSort(type, offers.filter((it) => it.city.name === activeCity));
     }
     _renderPlaceCard();
   };
@@ -93,10 +93,10 @@ const MainScreen = (props) => {
                       </svg>
                     </span>
                     <ul className="places__options places__options--custom places__options--opened">
-                      <li onClick={(e) => selectSort(e)} className="places__option places__option--active" tabIndex="0">Popular</li>
-                      <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: low to high</li>
-                      <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Price: high to low</li>
-                      <li onClick={(e) => selectSort(e)} className="places__option" tabIndex="0">Top rated first</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option places__option--active" tabIndex="0">Popular</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex="0">Price: low to high</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex="0">Price: high to low</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex="0">Top rated first</li>
                     </ul>
 
                   </form>
@@ -142,7 +142,7 @@ MainScreen.propTypes = {
   onCardClick: PropTypes.func,
   activeCity: PropTypes.string.isRequired,
   activeCard: PropTypes.object,
-  choseSort: PropTypes.func.isRequired,
+  onChoseSort: PropTypes.func.isRequired,
   offerCities: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -156,7 +156,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  choseSort: (type, offers) => {
+  onChoseSort: (type, offers) => {
     dispatch(ActionCreator.sortOffers(type, offers));
   },
 });

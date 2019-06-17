@@ -9,14 +9,14 @@ class ReviewList extends Component {
   constructor(props) {
     super(props);
 
-    this._PrintComment = this._PrintComment.bind(this);
+    this._handlePrintComment = this._handlePrintComment.bind(this);
   }
 
-  _PrintComment(e) {
+  _handlePrintComment(e) {
     const {reviews} = this.props;
     e.preventDefault();
     let text = document.querySelector(`textarea`).value;
-    this.props.sendComment(text, reviews, reviews.length);
+    this.props.onSendComment(text, reviews, reviews.length);
     document.querySelector(`textarea`).value = ``;
     this.forceUpdate();
   }
@@ -115,7 +115,7 @@ class ReviewList extends Component {
             <p className="reviews__help">
               To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
             </p>
-            <button onClick={(e) => this._PrintComment(e)} className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+            <button onClick={(e) => this._handlePrintComment(e)} className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
           </div>
         </form>
         : <></>
@@ -127,7 +127,7 @@ class ReviewList extends Component {
 ReviewList.propTypes = {
   checkAuthorization: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  sendComment: PropTypes.func.isRequired,
+  onSendComment: PropTypes.func.isRequired,
 };
 
 export {ReviewList};
@@ -139,7 +139,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendComment: (text, reviewArray, lengthOfArray) => {
+  onSendComment: (text, reviewArray, lengthOfArray) => {
     dispatch(ActionCreator.sendComment(text, reviewArray, lengthOfArray));
   },
 });

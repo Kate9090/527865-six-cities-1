@@ -8,10 +8,10 @@ class City extends Component {
   constructor(props) {
     super(props);
 
-    this.handleUserChoose = this.handleUserChoose.bind(this);
+    this._handleUserChoose = this._handleUserChoose.bind(this);
   }
 
-  handleUserChoose(city, num, cities, evt) {
+  _handleUserChoose(city, num, cities, evt) {
     evt.preventDefault();
     this.props.onUserAnswer(city, num, cities);
     this.props.onCardClick(city);
@@ -21,7 +21,7 @@ class City extends Component {
     const {city, idx, cities} = this.props;
 
     return <li className="locations__item">
-      <a onClick={(e) => this.handleUserChoose(city, idx, cities, e)}
+      <a onClick={(e) => this._handleUserChoose(city, idx, cities, e)}
         className={this.props.current === city ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link tabs__item`}
         href="#">
         <span>{city}</span>

@@ -10,17 +10,17 @@ class SignIn extends Component {
     this._loginField = React.createRef();
     this._passwordField = React.createRef();
 
-    this.handleCheckDataSignIn = this.handleCheckDataSignIn.bind(this);
+    this._handleCheckDataSignIn = this._handleCheckDataSignIn.bind(this);
   }
 
-  handleCheckDataSignIn(email, password) {
+  _handleCheckDataSignIn(email, password) {
     if (email && password) {
-      this.props.signIn({email, password});
+      this.props.onSignIn({email, password});
     }
   }
 
   render() {
-    const {_loginField, _passwordField, handleCheckDataSignIn} = this;
+    const {_loginField, _passwordField, _handleCheckDataSignIn} = this;
 
     return <div className="page page--gray page--login">
       <div style={{display: `none`}}>
@@ -46,7 +46,7 @@ class SignIn extends Component {
                 onClick={(evt) => {
                   evt.preventDefault();
                   if (_loginField && _passwordField) {
-                    handleCheckDataSignIn(_loginField.current.value, _passwordField.current.value);
+                    _handleCheckDataSignIn(_loginField.current.value, _passwordField.current.value);
                   }
                 }}
               >Sign in</button>
@@ -66,13 +66,13 @@ class SignIn extends Component {
 }
 
 SignIn.propTypes = {
-  signIn: PropTypes.func,
+  onSignIn: PropTypes.func,
 };
 
 export {SignIn};
 
 const mapDispatchToProps = (dispatch) => ({
-  signIn: (data) => {
+  onSignIn: (data) => {
     dispatch(Operation.signIn(data));
   },
 });
