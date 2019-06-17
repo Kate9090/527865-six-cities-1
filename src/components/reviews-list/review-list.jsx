@@ -13,15 +13,19 @@ class ReviewList extends Component {
   constructor(props) {
     super(props);
 
+    this._reviewBtn = React.createRef();
+    this._reviewField = React.createRef();
+
     this._handlePrintComment = this._handlePrintComment.bind(this);
   }
 
   _handlePrintComment(e) {
     const {reviews} = this.props;
     e.preventDefault();
-    let text = document.querySelector(`textarea`).value;
-    this.props.onSendComment(text, reviews, reviews.length);
-    document.querySelector(`textarea`).value = ``;
+    this.text = this._reviewField.current.value;
+    this.props.onSendComment(this.text, reviews, reviews.length);
+
+    this._reviewField.current.value = ``;
     this.forceUpdate();
   }
 
@@ -114,12 +118,12 @@ class ReviewList extends Component {
               </svg>
             </label>
           </div>
-          <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+          <textarea ref={this._reviewField} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
           <div className="reviews__button-wrapper">
             <p className="reviews__help">
               To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
             </p>
-            <button onClick={(e) => this._handlePrintComment(e)} className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+            <button ref={this._reviewBtn} onClick={(e) => this._handlePrintComment(e)} className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
           </div>
         </form>
         : <></>
