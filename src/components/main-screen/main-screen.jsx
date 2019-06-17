@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
@@ -13,8 +13,8 @@ import MainEmpty from '../main-empty/main-empty.jsx';
 import {ActionCreator} from '../../reducer/data/data';
 
 
-import {getHotels, getSortHotels} from "../../reducer/data/selectors";
-import {getSelectCity, getActiveOffer} from "../../reducer/user/selectors";
+import {getHotels, getSortHotels} from '../../reducer/data/selectors';
+import {getSelectCity, getActiveOffer} from '../../reducer/user/selectors';
 
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
 const WrappedPlaceCard = withActiveCard(PlaceCard);

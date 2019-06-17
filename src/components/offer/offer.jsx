@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
@@ -6,15 +6,15 @@ import {getActiveOffer, getFavouritesList, getSelectCity} from '../../reducer/us
 
 import {ActionCreator} from '../../reducer/user/user';
 
-import {getHotels, getCities} from "../../reducer/data/selectors";
+import {getHotels, getCities} from '../../reducer/data/selectors';
 
-import {getStatusAuthorization, getSelectCityNumber} from "../../reducer/user/selectors";
+import {getStatusAuthorization, getSelectCityNumber} from '../../reducer/user/selectors';
 
 import Header from '../header/header.jsx';
 import ReviewList from '../reviews-list/review-list.jsx';
-import {Map} from "../map/map.jsx";
+import {Map} from '../map/map.jsx';
 
-import {PlaceCard} from "../place-card/place-card.jsx";
+import {PlaceCard} from '../place-card/place-card.jsx';
 
 const offerParameters = {
   MAX_IMAGES: 6,

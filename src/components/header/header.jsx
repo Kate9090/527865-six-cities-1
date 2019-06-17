@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
-import {getUser, getStatusAuthorization} from "../../reducer/user/selectors";
+import {getUser, getStatusAuthorization} from '../../reducer/user/selectors';
 
 
 const Header = (props) => {

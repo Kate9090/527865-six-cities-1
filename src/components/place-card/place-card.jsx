@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import {ActionCreator} from '../../reducer/user/user';
 
-import {getStatusAuthorization} from "../../reducer/user/selectors";
+import {getStatusAuthorization} from '../../reducer/user/selectors';
 
 
 const PlaceCard = (props) => {

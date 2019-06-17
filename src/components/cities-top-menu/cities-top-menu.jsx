@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
-import {getCities} from "../../reducer/data/selectors";
+import {getCities} from '../../reducer/data/selectors';
 
 
 const CitiesTopMenu = (props) => {

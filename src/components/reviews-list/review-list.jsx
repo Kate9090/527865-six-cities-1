@@ -1,9 +1,9 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
-import {getStatusAuthorization, getReviews} from "../../reducer/user/selectors";
+import {getStatusAuthorization, getReviews} from '../../reducer/user/selectors';
 
 const reviewParams = {
   MAX_REVIEWS: 10,

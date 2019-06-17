@@ -1,10 +1,10 @@
-import React from "react";
-import leaflet from "leaflet";
+import React from 'react';
+import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getCities} from "../../reducer/data/selectors";
-import {getSelectCity, getPinColor} from "../../reducer/user/selectors";
+import {getCities} from '../../reducer/data/selectors';
+import {getSelectCity, getPinColor} from '../../reducer/user/selectors';
 
 const icon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
