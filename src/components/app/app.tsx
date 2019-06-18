@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import withRedirect from '../../hocs/with-redirect/with-redirect';
 
@@ -10,14 +9,14 @@ import {getStatusAuthorization} from '../../reducer/user/selectors';
 
 const WrappedMainScreen = withRedirect(MainScreen);
 
-const App = (props) => {
+interface Props {
+  authorized: boolean,
+};
+
+const App: React.FunctionComponent<Props> = (props) => {
   const {authorized} = props;
 
   return <WrappedMainScreen notNeedToAuthrized={authorized}/>;
-};
-
-App.propTypes = {
-  authorized: PropTypes.bool.isRequired,
 };
 
 export {App};

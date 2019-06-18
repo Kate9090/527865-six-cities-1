@@ -1,9 +1,13 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import { FavouriteOfferType } from '../../types';
 
+interface State {
+  active: boolean,
+  current: FavouriteOfferType,
+}
 
 const withActiveCard = (WrappedComponent) => {
-  class WithActiveCard extends PureComponent {
+  class WithActiveCard extends PureComponent<React.ComponentProps<typeof PureComponent>, State> {
     constructor(props) {
       super(props);
 
@@ -44,10 +48,6 @@ const withActiveCard = (WrappedComponent) => {
     }
 
   }
-
-  WithActiveCard.propTypes = {
-    offer: PropTypes.object,
-  };
 
   return WithActiveCard;
 };

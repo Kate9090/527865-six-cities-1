@@ -1,11 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {getSelectCity} from '../../reducer/user/selectors';
 import {getCities} from '../../reducer/data/selectors';
 
-const HeaderPlaces = (props) => {
+import {FavouriteOfferType} from '../../types';
+
+interface Props {
+  activeCity: string,
+  cities: string[],
+  offers: FavouriteOfferType[],
+}
+
+const HeaderPlaces: React.FunctionComponent<Props> = (props) => {
   const {activeCity, cities, offers} = props;
 
   return <>
@@ -14,22 +21,6 @@ const HeaderPlaces = (props) => {
       offers.filter((it) => it.city.name === cities[0]).length
       : offers.filter((it) => it.city.name === activeCity).length} places to stay in {activeCity === `` ? cities[0] : activeCity}</b>
   </>;
-};
-
-HeaderPlaces.propTypes = {
-  activeCity: PropTypes.string.isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string),
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-  })).isRequired,
 };
 
 export {HeaderPlaces};

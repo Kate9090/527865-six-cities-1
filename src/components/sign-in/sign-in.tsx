@@ -1,9 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Operation} from '../../reducer/user/user';
 
-const SignIn = (props) => {
+import {SignInObject} from '../../types';
+
+interface Props {
+  onSignIn: ({email, password}: SignInObject) => void,
+}
+
+const SignIn: React.FunctionComponent<Props> = (props) => {
+  // _loginField: React.RefObject<HTMLInputElement>;
+  // _passwordField: React.RefObject<HTMLInputElement>;
 
   let _loginField = React.createRef();
   let _passwordField = React.createRef();
@@ -54,10 +61,6 @@ const SignIn = (props) => {
       </div>
     </main>
   </div>;
-};
-
-SignIn.propTypes = {
-  onSignIn: PropTypes.func,
 };
 
 export {SignIn};

@@ -6,8 +6,17 @@ import {ActionCreator} from '../../reducer/user/user';
 
 import {getStatusAuthorization} from '../../reducer/user/selectors';
 
+import {OfferType, Review, FavouriteOfferType} from '../../types';
 
-const PlaceCard = (props) => {
+interface Props {
+  offer: FavouriteOfferType,
+  onCardClick: (offer: FavouriteOfferType) => void,
+  onCardMouseEnter: () => void,
+  onCardMouseOut: () => void,
+  checkAuthorization: boolean,
+}
+
+const PlaceCard: React.FunctionComponent<Props> = (props) => {
 
   const {offer, onCardClick, onCardMouseEnter, onCardMouseOut, checkAuthorization} = props;
 
@@ -64,21 +73,7 @@ const PlaceCard = (props) => {
 
 
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  onCardClick: PropTypes.func,
-  onCardMouseEnter: PropTypes.func,
-  onCardMouseOut: PropTypes.func,
-  checkAuthorization: PropTypes.bool.isRequired,
+
 };
 
 export {PlaceCard};

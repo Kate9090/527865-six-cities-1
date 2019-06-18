@@ -1,13 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
 import City from '../city/city.jsx';
 import {getCities} from '../../reducer/data/selectors';
 
+interface Props {
+  cities: string[],
+  onCardMouseOut: () => void,
+  onCardClick: () => void,
+  current: string,
+};
 
-const CitiesTopMenu = (props) => {
+const CitiesTopMenu: React.FunctionComponent<Props> = (props) => {
   const {cities, onCardClick, onCardMouseOut, current} = props;
 
   const _renderCitiesTopMenu = () => {
@@ -23,13 +28,6 @@ const CitiesTopMenu = (props) => {
   return <>
   {_renderCitiesTopMenu()}
   </>;
-};
-
-CitiesTopMenu.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string),
-  onCardMouseOut: PropTypes.func.isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  current: PropTypes.string,
 };
 
 export {CitiesTopMenu};

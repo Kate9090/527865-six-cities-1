@@ -1,13 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {getFavouritesList} from '../../reducer/user/selectors';
 
+import {FavouriteOfferType} from '../../types';
 import Header from '../header/header.jsx';
 
+interface Props {
+  favouriteOffers: FavouriteOfferType[],
+}
 
-const Favourites = (props) => {
+const Favourites: React.FunctionComponent<Props> = (props) => {
   const {favouriteOffers} = props;
 
   return <>
@@ -76,24 +79,6 @@ const Favourites = (props) => {
       </div>
     </main>
   </>;
-};
-
-Favourites.propTypes = {
-  favouriteOffers: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-    type: PropTypes.string.isRequired,
-    city: PropTypes.shape({
-      name: PropTypes.string,
-    }).isRequired,
-  })).isRequired,
 };
 
 export {Favourites};

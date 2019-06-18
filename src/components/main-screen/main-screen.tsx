@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import {connect} from 'react-redux';
 
 import Header from '../header/header.jsx';
@@ -21,7 +19,20 @@ const WrappedPlaceCard = withActiveCard(PlaceCard);
 
 const WrappedCitiesList = withActiveCard(CitiesTopMenu);
 
-const MainScreen = (props) => {
+
+import {FavouriteOfferType} from '../../types';
+
+interface Props {
+  offers: FavouriteOfferType[],
+  sortHotels: FavouriteOfferType[],
+  onCardClick: () => void,
+  activeCity: string,
+  activeCard: FavouriteOfferType,
+  onChoseSort: (type: string, offers: FavouriteOfferType[]) => void,
+  offerCities: string[],
+}
+
+const MainScreen: React.FunctionComponent<Props> = (props) => {
   const {
     offers, onCardClick, onChoseSort, sortHotels, activeCity, activeCard
   } = props;
@@ -114,46 +125,6 @@ const MainScreen = (props) => {
         }
       </main>
     </>;
-};
-
-MainScreen.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-  })).isRequired,
-  sortHotels: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-  })).isRequired,
-  onCardClick: PropTypes.func,
-  activeCity: PropTypes.string.isRequired,
-  activeCard: PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number,
-      longitude: PropTypes.number,
-    }),
-  }),
-  onChoseSort: PropTypes.func.isRequired,
-  offerCities: PropTypes.arrayOf(PropTypes.string),
 };
 
 export {MainScreen};

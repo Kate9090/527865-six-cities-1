@@ -1,10 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
-const City = (props) => {
+interface Props {
+  onUserAnswer: (city: string, num: number, cities: string[]) => void,
+  city: string,
+  idx: number,
+  onCardClick: (city: string) => void,
+  current: string,
+  cities: string[],
+};
+
+const City: React.FunctionComponent<Props> = (props) => {
 
   const _handleUserChoose = (city, num, cities, evt) => {
     evt.preventDefault();
@@ -21,16 +29,6 @@ const City = (props) => {
       <span>{city}</span>
     </a>
   </li>;
-};
-
-City.propTypes = {
-  onUserAnswer: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
-  idx: PropTypes.number.isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  onCardMouseOut: PropTypes.func.isRequired,
-  current: PropTypes.string,
-  cities: PropTypes.arrayOf(PropTypes.string),
 };
 
 export {City};

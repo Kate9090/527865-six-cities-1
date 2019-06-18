@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
@@ -11,8 +10,13 @@ import Offer from '../../components/offer/offer.jsx';
 import withFavouriteCard from '../with-favourite-card/with-favourite-card';
 const WrappedOffer = withFavouriteCard(Offer);
 
+interface Props {
+  notNeedToAuthrized: boolean,
+  onCardClick: () => void,
+}
+
 const withRedirect = () => {
-  const WithRedirect = (props) => {
+  const WithRedirect:React.FunctionComponent<Props> = (props) => {
     const {notNeedToAuthrized, onCardClick} = props;
 
     return <BrowserRouter><Switch>
@@ -52,11 +56,6 @@ const withRedirect = () => {
       </Route>
     </Switch>
     </BrowserRouter>;
-  };
-
-  WithRedirect.propTypes = {
-    notNeedToAuthrized: PropTypes.bool.isRequired,
-    onCardClick: PropTypes.func,
   };
 
   return WithRedirect;

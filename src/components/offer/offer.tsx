@@ -16,6 +16,8 @@ import {Map} from '../map/map.jsx';
 
 import {PlaceCard} from '../place-card/place-card.jsx';
 
+import {OfferType, Review, FavouriteOfferType} from '../../types';
+
 const OfferParameters = {
   MAX_IMAGES: 6,
   MAX_NEIGHBOURS: 3,
@@ -23,7 +25,18 @@ const OfferParameters = {
   NUMBER_OF_STARS: 5,
 };
 
-const Offer = (props) => {
+interface Props {
+  offer: OfferType,
+  offers: OfferType[],
+  favouriteOffers: FavouriteOfferType[],
+  onSendOfferToFavourite: (favouriteOffers: FavouriteOfferType[], offer: FavouriteOfferType, i: number) => void,
+  checkAuthorization: boolean,
+  nameCityOnMap: string,
+  offerCities: string[],
+  reviews: Review[],
+}
+
+const Offer: React.FunctionComponent<Props> = (props) => {
 
   const {offers, favouriteOffers, checkAuthorization, nameCityOnMap,
     offer, onSendOfferToFavourite, offerCities, reviews} = props;
@@ -162,69 +175,7 @@ const Offer = (props) => {
 };
 
 Offer.propTypes = {
-  offer: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-    city: PropTypes.shape({
-      name: PropTypes.string,
-    }).isRequired,
-    id: PropTypes.number,
-    isPremium: PropTypes.bool.isRequired,
-    isPro: PropTypes.bool,
-    type: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    maxAdults: PropTypes.number,
-    bedrooms: PropTypes.number,
-    host: PropTypes.object,
-    images: PropTypes.arrayOf(PropTypes.string),
-  }),
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }).isRequired,
-    city: PropTypes.shape({
-      name: PropTypes.string,
-    }).isRequired,
-    id: PropTypes.number,
-    isPremium: PropTypes.bool.isRequired,
-    type: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    maxAdults: PropTypes.number,
-    bedrooms: PropTypes.number,
-  })).isRequired,
-  favouriteOffers: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }),
-    type: PropTypes.string.isRequired,
-  })).isRequired,
-  onSendOfferToFavourite: PropTypes.func.isRequired,
-  checkAuthorization: PropTypes.bool.isRequired,
-  nameCityOnMap: PropTypes.string.isRequired,
-  offerCities: PropTypes.arrayOf(PropTypes.string),
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    comment: PropTypes.string.isRequired,
-    rating: PropTypes.number
-  })).isRequired,
+
 };
 
 export {Offer};

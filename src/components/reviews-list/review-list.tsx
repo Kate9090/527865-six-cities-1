@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
 import {getStatusAuthorization, getReviews} from '../../reducer/user/selectors';
+import {Review} from '../../types';
 
 const ReviewParams = {
   MAX_REVIEWS: 10,
@@ -12,9 +13,24 @@ const ReviewParams = {
   NUMBER_OF_STARS: 5,
 };
 
-class ReviewList extends PureComponent {
+interface Props {
+  checkAuthorization: boolean,
+  reviews: Review[],
+  onSendComment: ({}: Review, reviews: Review[], length: number) => void,
+}
+
+class ReviewList extends PureComponent<Props, null> {
+  private _reviewBtn: React.RefObject<HTMLFormElement>;
+  private _reviewField: React.RefObject<HTMLFormElement>;
+  private _reviewForm: React.RefObject<HTMLFormElement>;
+  private _ratingList: React.RefObject<HTMLFormElement>;
+
+  private selectedRating: number;
+  private text: string;
+
   constructor(props) {
     super(props);
+
 
     this._reviewBtn = React.createRef();
     this._reviewField = React.createRef();
@@ -63,7 +79,7 @@ class ReviewList extends PureComponent {
           </div>
         </li>
       )
-      .sort((a, b) => b.key - a.key)
+      // .sort((a, b) => b.key - a.key)
       .slice(0, ReviewParams.MAX_REVIEWS)
     }
     </>;
@@ -175,15 +191,6 @@ class ReviewList extends PureComponent {
     </section>;
   }
 }
-
-ReviewList.propTypes = {
-  checkAuthorization: PropTypes.bool.isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    comment: PropTypes.string.isRequired,
-    rating: PropTypes.number
-  })).isRequired,
-  onSendComment: PropTypes.func.isRequired,
-};
 
 export {ReviewList};
 

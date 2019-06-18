@@ -1,14 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
 import {Link} from 'react-router-dom';
 
+import {UserData} from '../../types';
 import {getUser, getStatusAuthorization} from '../../reducer/user/selectors';
 
+interface Props {
+  user: UserData,
+  checkAuthorization: boolean,
+}
 
-const Header = (props) => {
+const Header: React.FunctionComponent<Props> = (props) => {
   const {user, checkAuthorization} = props;
 
   return <>
@@ -34,17 +38,6 @@ const Header = (props) => {
       </div>
     </header>
     </>;
-};
-
-Header.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatarUrl: PropTypes.string,
-    isPro: PropTypes.bool,
-  }),
-  checkAuthorization: PropTypes.bool.isRequired,
 };
 
 export {Header};

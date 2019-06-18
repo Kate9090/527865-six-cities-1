@@ -1,10 +1,10 @@
 import React from 'react';
 import leaflet from 'leaflet';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getCities} from '../../reducer/data/selectors';
 import {getSelectCity, getPinColor} from '../../reducer/user/selectors';
+import { FavouriteOfferType } from '../../types';
 
 const icon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
@@ -15,12 +15,24 @@ const activeIcon = leaflet.icon({
   iconSize: [30, 30]
 });
 
-const map = {
+let map = {
   ZOOM: 12,
   NEIGHBOURS: 3,
 };
 
-class Map extends React.Component {
+interface Props {
+  offer: FavouriteOfferType[],
+  nameCityOnMap: string,
+  offerCities: string[],
+  activeCard: FavouriteOfferType,
+  color: string,
+}
+
+class Map extends React.Component<Props, null> {
+  private mapRef: React.RefObject<HTMLFormElement>;
+
+  private map: {};
+
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
@@ -122,34 +134,6 @@ class Map extends React.Component {
   }
 
 }
-
-Map.propTypes = {
-  offer: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    raiting: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-    }),
-  })).isRequired,
-  nameCityOnMap: PropTypes.string.isRequired,
-  offerCities: PropTypes.arrayOf(PropTypes.string),
-  activeCard: PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    raiting: PropTypes.number,
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number,
-      longitude: PropTypes.number,
-    }),
-  }),
-  color: PropTypes.string,
-};
 
 export {Map};
 
