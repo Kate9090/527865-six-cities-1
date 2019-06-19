@@ -11,9 +11,9 @@ import {getStatusAuthorization, getSelectCityNumber} from '../../reducer/user/se
 
 import Header from '../header/header.jsx';
 import ReviewList from '../reviews-list/review-list.jsx';
-import {Map} from '../map/map.jsx';
+import Map from '../map/map.jsx';
 
-import {PlaceCard} from '../place-card/place-card.jsx';
+import PlaceCard from '../place-card/place-card.jsx';
 
 import {OfferType, Review, FavouriteOfferType} from '../../types';
 
@@ -59,8 +59,6 @@ const Offer: React.FunctionComponent<Props> = (props) => {
   };
 
   const _renderMap = () => {
-
-
     return <Map
       {...props}
       offer={neighbourOffer}

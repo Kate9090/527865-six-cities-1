@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import { FavouriteOfferType } from '../../types';
 
 interface State {
@@ -7,7 +7,7 @@ interface State {
 }
 
 const withActiveCard = (WrappedComponent) => {
-  class WithActiveCard extends PureComponent<React.ComponentProps<typeof PureComponent>, State> {
+  class WithActiveCard extends React.PureComponent<React.ComponentProps<typeof React.PureComponent>, State> {
     constructor(props) {
       super(props);
 

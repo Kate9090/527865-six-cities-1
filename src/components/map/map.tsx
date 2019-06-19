@@ -27,11 +27,11 @@ interface Props {
   activeCard: FavouriteOfferType,
   color: string,
 }
+let mapMain = null;
+let city = [];
 
 class Map extends React.Component<Props, null> {
   private mapRef: React.RefObject<HTMLFormElement>;
-
-  private map: {};
 
   constructor(props) {
     super(props);
@@ -40,8 +40,8 @@ class Map extends React.Component<Props, null> {
 
   componentDidMount() {
     try {
-      if (this.map) {
-        this.map.remove();
+      if (mapMain) {
+        mapMain.remove();
       }
       this._init();
     } catch (err) {
@@ -60,8 +60,8 @@ class Map extends React.Component<Props, null> {
 
 
   shouldComponentUpdate() {
-    if (this.map) {
-      this.map.remove();
+    if (mapMain) {
+      mapMain.remove();
     }
 
     this._init();
@@ -71,40 +71,41 @@ class Map extends React.Component<Props, null> {
   _init() {
     const {offer, nameCityOnMap, activeCard
     } = this.props;
+
     if (this.props.offerCities.length > 0) {
       if (this.mapRef.current) {
         if (nameCityOnMap !== ``) {
           let coordOffer = offer.filter((it) => it.city.name === nameCityOnMap).slice(0, 1);
 
           const offerCoordCity = [coordOffer[0].location.latitude, coordOffer[0].location.longitude];
-          this.city = offerCoordCity;
+          city = offerCoordCity;
         } else {
           let coordOffer = offer.filter((it) => it.city.name === this.props.offerCities[0]).slice(0, 1);
 
           const offerCoordCity = [coordOffer[0].city.location.latitude, coordOffer[0].city.location.longitude];
-          this.city = offerCoordCity;
+          city = offerCoordCity;
         }
-        this.center = this.city;
 
+        const center = city;
+        const zooms = map.ZOOM;
 
-        this.zooms = map.ZOOM;
-        this.map = leaflet.map(this.mapRef.current, {
-          center: this.center,
-          zoom: this.zooms,
+        mapMain = leaflet.map(this.mapRef.current, {
+          center: center,
+          zoom: zooms,
           zoomControl: false,
-          marker: true
+          marker: true,
         });
 
-        this.map.setView(this.city, this.zooms);
+        mapMain.setView(city, zooms);
 
         leaflet
           .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
             detectRetina: true,
             attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-          }).addTo(this.map);
+          }).addTo(mapMain);
 
-        leaflet
-          .marker(this.city, {icon}).addTo(this.map);
+        // leaflet
+        //   .marker(city, {icon}).addTo(mapMain);
 
         for (let i = 0; i < offer.length; i++) {
           if (activeCard) {
@@ -114,10 +115,10 @@ class Map extends React.Component<Props, null> {
                     icon: offer[i].id === activeCard.id ?
                       activeIcon
                       : icon
-                  }).addTo(this.map);
+                  }).addTo(mapMain);
           } else {
             leaflet
-              .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(this.map);
+              .marker([offer[i].location.latitude, offer[i].location.longitude], {icon}).addTo(mapMain);
           }
         }
       }

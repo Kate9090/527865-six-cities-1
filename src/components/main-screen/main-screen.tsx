@@ -37,7 +37,7 @@ const MainScreen: React.FunctionComponent<Props> = (props) => {
     offers, onCardClick, onChoseSort, sortHotels, activeCity, activeCard
   } = props;
 
-  const _getActiveOffers = () => {
+  const _getActiveOffers = (param) => {
     if (sortHotels.length > 0) {
       return activeCity === `` ? sortHotels : sortHotels.filter((it) => it.city.name === activeCity);
     }
