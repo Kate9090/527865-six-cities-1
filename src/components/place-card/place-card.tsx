@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {ActionCreator} from '../../reducer/user/user';
@@ -20,6 +19,9 @@ const PlaceCard: React.FunctionComponent<Props> = (props) => {
 
   const {offer, onCardClick, onCardMouseEnter, onCardMouseOut, checkAuthorization} = props;
 
+  const _handleClick = () => {
+    onCardClick(offer)
+  }
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
       <span>
@@ -28,9 +30,7 @@ const PlaceCard: React.FunctionComponent<Props> = (props) => {
     </div>
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#"
-        onClick= {
-          onCardClick(offer)
-        }
+        onClick = {_handleClick}
         onMouseOver={onCardMouseEnter}
         onMouseOut={onCardMouseOut}
         className="cities__image-link"

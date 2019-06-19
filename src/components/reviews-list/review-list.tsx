@@ -1,5 +1,4 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 
@@ -19,11 +18,11 @@ interface Props {
   onSendComment: ({}: Review, reviews: Review[], length: number) => void,
 }
 
-class ReviewList extends PureComponent<Props, null> {
-  private _reviewBtn: React.RefObject<HTMLFormElement>;
-  private _reviewField: React.RefObject<HTMLFormElement>;
+class ReviewList extends React.PureComponent<Props, null> {
+  private _reviewBtn: React.RefObject<HTMLButtonElement>;
+  private _reviewField: React.RefObject<HTMLTextAreaElement>;
   private _reviewForm: React.RefObject<HTMLFormElement>;
-  private _ratingList: React.RefObject<HTMLFormElement>;
+  private _ratingList: React.RefObject<HTMLDivElement>;
 
   private selectedRating: number;
   private text: string;

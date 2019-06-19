@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
@@ -8,15 +8,16 @@ import Favorites from '../../components/favorites/favorites.jsx';
 import Offer from '../../components/offer/offer.jsx';
 
 import withFavouriteCard from '../with-favourite-card/with-favourite-card';
+import { FavouriteOfferType } from '../../types';
 const WrappedOffer = withFavouriteCard(Offer);
 
-interface Props {
+interface InjectedProps {
+  onCardClick: (current: FavouriteOfferType) => void,
   notNeedToAuthrized: boolean,
-  onCardClick: () => void,
 }
 
 const withRedirect = () => {
-  const WithRedirect:React.FunctionComponent<Props> = (props) => {
+  const WithRedirect:React.FunctionComponent<InjectedProps> = (props) => {
     const {notNeedToAuthrized, onCardClick} = props;
 
     return <BrowserRouter><Switch>
@@ -40,7 +41,7 @@ const withRedirect = () => {
       }} />
       <Route path="/offer/:id" render={() => {
         if (notNeedToAuthrized) {
-          return <WrappedOffer onCardClick={onCardClick}/>;
+          return <WrappedOffer/>;
         }
 
         return <Redirect to="/login" />;

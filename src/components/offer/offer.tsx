@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
 import {getActiveOffer, getFavouritesList, getSelectCity, getReviews} from '../../reducer/user/selectors';
@@ -142,7 +141,7 @@ const Offer: React.FunctionComponent<Props> = (props) => {
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src={`/${offer.host.avatar_url}`} width="74" height="74" alt="Host avatar" />
+                  <img className="property__avatar user__avatar" src={`/${offer.host.avatarUrl}`} width="74" height="74" alt="Host avatar" />
                 </div>
                 <span className="property__user-name">
                   {offer.host.name}

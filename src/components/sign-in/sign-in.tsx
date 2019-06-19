@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Operation} from '../../reducer/user/user';
 
@@ -9,11 +9,9 @@ interface Props {
 }
 
 const SignIn: React.FunctionComponent<Props> = (props) => {
-  // _loginField: React.RefObject<HTMLInputElement>;
-  // _passwordField: React.RefObject<HTMLInputElement>;
 
-  let _loginField = React.createRef();
-  let _passwordField = React.createRef();
+  let _loginField: React.RefObject<HTMLInputElement> = React.createRef();
+  let _passwordField: React.RefObject<HTMLInputElement> = React.createRef();
 
   const _handleCheckDataSignIn = (email, password) => {
     if (email && password) {
@@ -34,11 +32,11 @@ const SignIn: React.FunctionComponent<Props> = (props) => {
           <form className="login__form form" action="#" method="post">
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
-              <input ref={_loginField} className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
+              <input ref={_loginField} className="login__input form__input" type="email" name="email" placeholder="Email" required />
             </div>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">Password</label>
-              <input ref={_passwordField} className="login__input form__input" type="password" name="password" placeholder="Password" required="" />
+              <input ref={_passwordField} className="login__input form__input" type="password" name="password" placeholder="Password" required />
             </div>
             <button className="login__submit form__submit button"
               type="submit"

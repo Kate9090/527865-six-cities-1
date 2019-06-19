@@ -1,5 +1,5 @@
-import React from 'react';
-import leaflet from 'leaflet';
+import * as React from 'react';
+import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
 
 import {getCities} from '../../reducer/data/selectors';
