@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
 
 import Header from '../header/header.jsx';
@@ -15,9 +15,6 @@ import {getHotels, getSortHotels} from '../../reducer/data/selectors';
 import {getSelectCity, getActiveOffer} from '../../reducer/user/selectors';
 
 import withActiveCard from '../../hocs/with-active-card/with-active-card';
-const WrappedPlaceCard = withActiveCard(PlaceCard);
-
-const WrappedCitiesList = withActiveCard(CitiesTopMenu);
 
 
 import {FavouriteOfferType} from '../../types';
@@ -33,9 +30,14 @@ interface Props {
 }
 
 const MainScreen: React.FunctionComponent<Props> = (props) => {
+
   const {
     offers, onCardClick, onChoseSort, sortHotels, activeCity, activeCard
   } = props;
+
+  const WrappedPlaceCard = withActiveCard(PlaceCard);
+
+  const WrappedCitiesList = withActiveCard(CitiesTopMenu);
 
   const _getActiveOffers = (param) => {
     if (sortHotels.length > 0) {
@@ -51,8 +53,8 @@ const MainScreen: React.FunctionComponent<Props> = (props) => {
         {_getActiveOffers(sortHotels).map((it, i) => (
           <WrappedPlaceCard
             key={i}
-            offer={it}
-            onCardClick={onCardClick}
+            // offer={it}
+            // onCardClick={onCardClick}
           />
         )
         )}
@@ -62,8 +64,8 @@ const MainScreen: React.FunctionComponent<Props> = (props) => {
       {_getActiveOffers(offers).map((it, i) => (
         <WrappedPlaceCard
           key={i}
-          offer={it}
-          onCardClick={onCardClick}
+          // offer={it}
+          // onCardClick={onCardClick}
         />
       )
       )}
@@ -97,17 +99,17 @@ const MainScreen: React.FunctionComponent<Props> = (props) => {
                   <HeaderPlaces offers={offers} />
                   <form className="places__sorting" action="#" method="get">
                     <span className="places__sorting-caption">Sort by</span>
-                    <span className="places__sorting-type" tabIndex="0">
+                    <span className="places__sorting-type" tabIndex={0}>
                       Popular
                       <svg className="places__sorting-arrow" width="7" height="4">
                         <use xlinkHref="#icon-arrow-select"></use>
                       </svg>
                     </span>
                     <ul className="places__options places__options--custom places__options--opened">
-                      <li onClick={(e) => _handleSelectSort(e)} className="places__option places__option--active" tabIndex="0">Popular</li>
-                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex="0">Price: low to high</li>
-                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex="0">Price: high to low</li>
-                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex="0">Top rated first</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option places__option--active" tabIndex={0}>Popular</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex={0}>Price: low to high</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex={0}>Price: high to low</li>
+                      <li onClick={(e) => _handleSelectSort(e)} className="places__option" tabIndex={0}>Top rated first</li>
                     </ul>
 
                   </form>

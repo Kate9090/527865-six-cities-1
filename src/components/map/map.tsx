@@ -89,12 +89,12 @@ class Map extends React.Component<Props, null> {
         const center = city;
         const zooms = map.ZOOM;
 
-        mapMain = leaflet.map(this.mapRef.current, {
-          center: center,
-          zoom: zooms,
-          zoomControl: false,
-          marker: true,
-        });
+        // mapMain = leaflet.map(this.mapRef.current, {
+        //   center: center,
+        //   zoom: zooms,
+        //   zoomControl: false,
+        //   marker: true,
+        // });
 
         mapMain.setView(city, zooms);
 

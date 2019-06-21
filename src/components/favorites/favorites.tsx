@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
 import {getFavouritesList} from '../../reducer/user/selectors';
@@ -90,4 +90,3 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 export default connect(
     mapStateToProps
 )(Favourites);
-

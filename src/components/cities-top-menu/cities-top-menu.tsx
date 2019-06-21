@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 
 import {connect} from 'react-redux';
 
-import City from '../city/city.jsx';
+import City from '../city/city';
 import {getCities} from '../../reducer/data/selectors';
 
 interface Props {

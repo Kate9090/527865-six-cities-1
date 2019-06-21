@@ -5,6 +5,12 @@ interface OfferLocation {
 
 interface City {
   name: string,
+  location: Location,
+}
+
+interface Location {
+  latitude: number,
+  longitude: number,
 }
 
 interface HostObject {

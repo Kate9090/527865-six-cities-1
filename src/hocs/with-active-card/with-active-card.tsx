@@ -39,6 +39,7 @@ const withActiveCard = (WrappedComponent) => {
       return (
         <WrappedComponent
           {...this.props}
+          // offer={offer}
           onCardClick={this._onSetActiveItem}
           onCardMouseEnter={this._onSetActiveItem}
           onCardMouseOut={this._onSetUnActiveItem}

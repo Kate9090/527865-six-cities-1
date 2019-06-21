@@ -16,7 +16,7 @@ interface InjectedProps {
   notNeedToAuthrized: boolean,
 }
 
-const withRedirect = () => {
+const withRedirect = (param) => {
   const WithRedirect:React.FunctionComponent<InjectedProps> = (props) => {
     const {notNeedToAuthrized, onCardClick} = props;
 
